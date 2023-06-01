@@ -1,0 +1,27 @@
+.site {
+    background-color: white;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+div.flash_messages {
+    border: 1px solid #eaeaea;
+    padding: 10px 15px;
+    margin: 15px;
+}
+
+.slideshow {
+    max-height: 100px;
+    overflow-y: hidden;
+}
+
+.slideshow img {
+    background-position: center center;
+    background-size:cover;
+    background-repeat: no-repeat;
+}
