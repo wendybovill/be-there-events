@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if session.user|lower %}
+
+    <h3 class="center-align">Events</h3>
+
+        <div class="row grey lighten-5">
+            <form method="POST" action="{{ url_for('search') }}" class="class col s12">
+                <div class="row valign-wrapper center-align">
+                    <div class="input-field col s12 m8">
+                        <i class="fas fa-search prefix "></i>
+                        <input type="text" name="query" id="query" class="validate" minlength="2" required>
+                        <label for="query">Search Events</label>
+                    </div>
+                    <div class="col s12 m4">
+                        <a href="{{ url_for('get_events') }}" class="red btn">Reset</a>
+                        <button class="darken-q btn">
+                            <i class="fas fa-search left"></i>Events</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+{% endif %}
+
+{% endblock content %}

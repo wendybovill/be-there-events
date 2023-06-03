@@ -17,7 +17,7 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 
-mongo = PyMongo
+mongo = PyMongo(app)
 
 
 @app.route("/")
@@ -29,7 +29,7 @@ def home():
 @app.route("/get_events")
 def get_events():
     events = list(mongo.db.events.find())
-    return render_template(events.html)
+    return render_template("events.html")
 
 
 if __name__ == "__main__":
