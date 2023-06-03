@@ -2,27 +2,58 @@
 
 {% block content %}
 
-{% if session.user|lower %}
 
-    <h3 class="center-align">Events</h3>
+    <h1 class="center-align">Whats Happening, When??</h1>
 
-        <div class="row grey lighten-5">
-            <form method="POST" action="{{ url_for('search') }}" class="class col s12">
-                <div class="row valign-wrapper center-align">
-                    <div class="input-field col s12 m8">
-                        <i class="fas fa-search prefix "></i>
-                        <input type="text" name="query" id="query" class="validate" minlength="2" required>
-                        <label for="query">Search Events</label>
+        <div class="row">
+            <ul>
+                {% for event in events %}
+                <li>
+                    <div class="card-pane page-padding">
+                        <div class="event-title cyan darken-6 white-text">
+                            {{ event.event_type }}:  
+                            <div class="event-heading">{{ event.event_title }}</div>
+                            <div class="event-date">on {{ event.event_date }} </div>
+                            <div class="event-time">at {{ event.event_time }}</div>
+                            <div class="event-town"><small> - in {{ event.event_location_town }}</small></div>
+                        </div>
+                        <div class="event-description  grey lighten-5">
+                            {% if event.event_entrance_fee %}
+                            <h3>Event Entrance Fee: £ {{ event.event_entrance_fee }}</h3>
+                            {% endif %}
+                            <h5>What is it?</h5>
+                            <p>{{ event.event_description }}</p>
+                            <p>{% if event.event_url %}
+                                Visit the link for more information:
+                                <a href="{{ event.event_url }}" target="_blank">{{ event.event_url }}</a> 
+                                {% endif %}</p>
+                               <p><strong><em>* <small>Please ensure you contact the organiser if you are attending. They need to know how many people will be there.</small> *</em></strong></p>
+                            
+                            <h5>Where is it?</h5>
+                            <p> {% if event.event_location_name %}
+                                {{ event.event_location_name }}
+                                {% endif %}
+                                {% if event.event_location_postcode %}
+                                {{ event.event_location_postcode }}
+                                {% endif %}
+                                <br><strong></strong></p>
+                        </div>
+                        <div class="event-description  grey lighten-5 row">
+                            {% if event.event_organiser %}
+                            <p>Organiser: {{ event.event_organiser }}</p>
+                            {% endif %}
+                            {% if event.event_contact_details %}
+                            <p>Contact details: {{ event.event_contact_details }}</p>
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class="col s12 m4">
-                        <a href="{{ url_for('get_events') }}" class="red btn">Reset</a>
-                        <button class="darken-q btn">
-                            <i class="fas fa-search left"></i>Events</button>
-                    </div>
-                </div>
-            </form>
+
+                </li>
+                {% endfor %}
+            </ul>
         </div>
-        
-{% endif %}
+
+
+
 
 {% endblock content %}

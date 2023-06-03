@@ -57,6 +57,25 @@ h1 {
     font-size: 2em;
 }
 
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1em;
+    font-weight: 800;
+}
+h4, h5, h4 a, h5 a {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: rgb(98, 41, 131);
+    padding: 20px 0 0 0;
+}
+
+p {
+    line-height: 1em;
+}
+
 #section_one {
     background-color: rgb(208, 218, 223);
 }
@@ -86,4 +105,23 @@ h1 {
     text-align: center;
     padding: 10px;
     font-size: 0.75em;
+}
+
+.page-padding {
+    padding: 0 35px;
+}
+
+.event-title, .event-title a {
+    color: white;
+    font-size: 1.5em;
+    font-weight: 700;
+    padding: 0 25px;
+}
+
+.event-description {
+    padding: 7px 35px;
+}
+
+.event-town, .event-time, .event-date, .event-heading, .event-type {
+    display: inline-flex;
 }

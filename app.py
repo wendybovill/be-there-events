@@ -29,7 +29,7 @@ def home():
 @app.route("/get_events")
 def get_events():
     events = list(mongo.db.events.find())
-    return render_template("events.html")
+    return render_template("events.html", events=events)
 
 
 if __name__ == "__main__":
