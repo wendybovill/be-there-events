@@ -20,6 +20,62 @@
 <section id="section_two">
   <div class="overlay">
   <h1 class="">Latest Event Listed</h1>
+  <ul>
+    {% for event in events %}
+      {% if loop.index >= -1 %}
+
+
+    <li>
+      <div class="event-title indigo-text text-lighten-1">
+          <i class="fa fa-arrow-right" aria-hidden="true"></i> {{ event.event_type }}:&nbsp;&nbsp; 
+          <div class="event-heading">{{ event.event_title }}&nbsp;&nbsp; </div>
+          <div class="event-date">on {{ event.event_date }}&nbsp;&nbsp;  </div>
+          <div class="event-time">at {{ event.event_time }}&nbsp;&nbsp; </div>
+          <div class="event-town"><small> - in {{ event.event_location_town }}</small></div>
+      </div>
+      <div class="">
+          <div class="">
+              {% if event.event_entrance_fee %}
+              <h3>Event Entrance Fee: £ {{ event.event_entrance_fee }}</h3>
+              {% endif %}
+              <h5>What is it?</h5>
+              <p>{{ event.event_description }}</p>
+              <p>{% if event.event_url %}
+                  Visit the link for more information:
+                  <a href="{{ event.event_url }}" target="_blank">{{ event.event_url }}</a> 
+                  {% endif %}</p>
+              <p><strong><em>* <small>Please ensure you contact the organiser if you are attending. They need to know how many people will be there.</small> *</em></strong></p>
+              
+              <h5>Where is it?</h5>
+              <p> {% if event.event_location_postcode or event.event_location_town or event.event_location_name%}
+                      {% if event.event_location_name %}
+                      {{ event.event_location_name }}<br>
+                      {% endif %}
+                      {% if event.event_location_town %}
+                      {{ event.event_location_town }}<br>
+                      {% endif %}
+                      {% if event.event_location_postcode %}
+                      {{ event.event_location_postcode }}<br>
+                      {% endif %}
+                      {% else %}
+                      Contact the organiser to find out where to go.
+                  {% endif %}
+              </p>
+          </div>
+          <div class="">
+              {% if event.event_organiser %}
+              <p>Organiser: {{ event.event_organiser }}</p>
+              {% endif %}
+              {% if event.event_contact_details %}
+              <p>Contact details: {{ event.event_contact_details }}</p>
+              {% endif %}
+          </div>
+      </div>
+
+</li>
+      {% endif %}
+     {% endfor %}
+</ul>
 </div>
 </section>
 {% endblock content %}
