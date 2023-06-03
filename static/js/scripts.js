@@ -1,5 +1,7 @@
-var myCarousel = document.getElementById('myCarousel')
+$('.carousel.carousel-slider').carousel({
+  fullWidth: true,
+  indicators: true
+});
+    
 
-myCarousel.addEventListener('slide.bs.carousel', function () {
-  // do something...
-})
+M.AutoInit();

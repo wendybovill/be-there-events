@@ -3,6 +3,14 @@
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    padding: 0;
+}
+
+header {
+    height: 60px;
+    background-color: rgb(10, 32, 46);
+    z-index: 9999;
+    color: white;
 }
 
 main {
@@ -15,13 +23,67 @@ div.flash_messages {
     margin: 15px;
 }
 
-.slideshow {
-    max-height: 100px;
-    overflow-y: hidden;
-}
-
-.slideshow img {
+.jumbotron {
+    background-image: url(/static/images/image_1.jpg);
     background-position: center center;
     background-size:cover;
     background-repeat: no-repeat;
+    max-height: 400px;
+    min-height: 28vh;
+    height: auto;
+    overflow-y: hidden;
+}
+
+section {
+    padding: 25px;
+    margin: 0;
+    width: 100%;
+    min-height: 28vh;
+}
+
+#logo {
+    color: white;
+    font-size: 2em;
+    float: left;
+    padding: 10px 25px 5px 25px;
+}
+
+nav {
+ z-index: 99999;
+ background-color: rgb(20, 32, 43);
+}
+
+h1 { 
+    font-size: 2em;
+}
+
+#section_one {
+    background-color: rgb(208, 218, 223);
+}
+#section_two {
+    background-image: url(/static/images/image_5.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.95;
+    padding:0;
+}
+
+.overlay {
+    background-color: rgba(17, 21, 37, 0.959);
+    color: white;
+    text-align: justify;
+    width: 100%;
+    min-height:28vh;
+    padding: 25px;
+}
+
+.page-footer {
+    background: rgb(12, 18, 32);
+    color: rgb(115, 124, 139);
+    line-height: 1em;
+    height: 8vh;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.75em;
 }

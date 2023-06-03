@@ -26,6 +26,12 @@ def home():
     return render_template("index.html")
 
 
+@app.route("/get_events")
+def get_events():
+    events = list(mongo.db.events.find())
+    return render_template(events.html)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")), debug=True)
