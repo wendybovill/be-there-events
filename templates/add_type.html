@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1 class="center-align">Add A New Event Type</h1>
+
+    {% for message in get_flashed_messages() %}
+    <h2>{{ message }}</h2>
+    {% endfor %}
+
+        <div class="row centered">
+            <form class="s12 card m8" method="POST" action="{{ url_for('add_type') }}">
+                 <!-- type Name -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="fas fa-pencil-alt prefix"></i>
+                    <input id="type_name" name="type_name" type="text" class="validate" minlength="5" maxlength="85" required>
+                    <label for="type_name">Type Name</label>
+                    </div>
+                </div>
+                <!-- type Description -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="fas fa-align-left prefix"></i>
+                        <textarea id="type_description" name="type_description" type="text" class="validate section scrollspy" minlength="5" maxlength="100" required></textarea>
+                        <label for="type_description">Type Description</label>
+                    </div>
+                </div>
+                <!-- Submit Button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button type="submit" class="btn-large indigo darken-1 text-white text-shadow">
+                            Add type <i class="right fa fa-check" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+{% endblock content %}

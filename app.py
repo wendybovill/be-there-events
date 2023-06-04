@@ -88,15 +88,83 @@ def log_in():
     return render_template("login.html")
 
 
+@app.route("/log_out")
+def log_out():
+    # redirect to confirmation page
+    flash("Are you sure you want to log out?")
+    return render_template("log_out_confirm.html")
+
+
+@app.route("/log_out_confirm")
+def log_out_confirm():
+    session.pop("user")
+    flash("You are now logged out.")
+    return redirect(url_for("get_events"))
+
+
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # retrieve username for session from db
     username = mongo.db.user.find_one(
         {"username": session["user"]})["username"]
 
+    user = username
+
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template("profile.html", username=username, user=user)
     return redirect(url_for("log_in"))
+
+
+@app.route("/get_types")
+def get_types():
+    types = list(mongo.db.types.find().sort("type_name", 1))
+    return render_template("types.html", types=types)
+
+
+@app.route("/add_type", methods=["GET", "POST"])
+def add_type():
+    if request.method == "POST":
+        type = {
+            "added_by": session["user"],
+            "type_name": request.form.get("type_name"),
+            "type_description": request.form.get("type_description"),
+        }
+
+        mongo.db.types.insert_one(type)
+        flash("You have added an Event Type")
+        return redirect(url_for("get_types"))
+    types = mongo.db.types.find().sort("type_name", 1)
+    return render_template("add_type.html", types=types)
+
+
+@app.route("/edit_type/<type_id>", methods=["GET", "POST"])
+def edit_type(type_id):
+    if request.method == "POST":
+        type = {
+            "type_name": request.form.get("type_name"),
+            "type_description": request.form.get("type_description"),
+        }
+        flash("You have updated an Event Type")
+        mongo.db.types.update_one(
+            {"_id": ObjectId(type_id)}, {"$set": type})
+    types = mongo.db.types.find().sort("type_name", 1)
+    type = mongo.db.types.find_one({"_id": ObjectId(type_id)})
+    return render_template("edit_type.html", type=type, types=types)
+
+
+@app.route("/delete_type/<type_id>", methods=["GET", "POST"])
+def delete_type(type_id):
+    types = mongo.db.types.find().sort("type_name", 1)
+    type = mongo.db.types.find_one({"_id": ObjectId(type_id)})
+    flash("Are you sure you want to delete this Event Type?")
+    return render_template("delete_type.html", type=type, types=types)
+
+
+@app.route("/delete_type_confirm/<type_id>")
+def delete_type_confirm(type_id):
+    mongo.db.types.delete_one({"_id": ObjectId(type_id)})
+    flash("Event Type Deleted")
+    return redirect(url_for("get_types"))
 
 
 @app.route("/get_events")
@@ -111,6 +179,7 @@ def add_event():
         event_paid_for = "true" if request.form.get(
             "event_paid_for") else "false"
         event = {
+            "added_by": session["user"],
             "event_type": request.form.get("event_type"),
             "event_title": request.form.get("event_title"),
             "event_date": request.form.get("event_date"),
@@ -123,11 +192,11 @@ def add_event():
             "event_contact_details": request.form.get("event_contact_details"),
             "event_url": request.form.get("event_url"),
             "event_entrance_fee": request.form.get("event_entrance_fee"),
-            "event_paid_for": event_paid_for,
+            "event_paid_for": event_paid_for
         }
 
         mongo.db.events.insert_one(event)
-        flash("You have added an event: {{ event_title }}")
+        flash("You have added an Event: {{ event_title }}")
         return redirect(url_for("get_events"))
     types = mongo.db.types.find().sort("type_name", 1)
     return render_template("add_event.html", types=types)
@@ -153,7 +222,7 @@ def edit_event(event_id):
             "event_entrance_fee": request.form.get("event_entrance_fee"),
             "event_paid_for": event_paid_for,
         }
-        flash("You have updated an event")
+        flash("You have updated an Event")
         mongo.db.events.update_one(
             {"_id": ObjectId(event_id)}, {"$set": submit})
     types = mongo.db.types.find().sort("type_name", 1)

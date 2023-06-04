@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1 class="center-align">Delete this Event Type?</h1>
+        <div class="section">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="box black-text">
+                        {{ message }}
+                        <div class="col s12 center-align">
+                            <p class="center-align"> <!-- cancel button -->
+                        <a href="{{ url_for('get_types') }}" class="btn-small grey darken-1 text-shadow white-text">Cancel</a>
+                        <a href="{{ url_for('delete_type_confirm', type_id=type._id)}}" class="btn-small red accent-4">Yes Delete</a>
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif%}
+            {% endwith %}
+        </div>
+        <div class="row centered">
+            <form class="s12 card m8 no-style white" method="POST" action="{{ url_for('delete_type_confirm', type_id=type._id) }}">
+                 <!-- type Name -->
+                <div class="row">
+                    <div class=" col s12">
+                    <i class="fas fa-pencil-alt prefix"></i>
+                    <input disabled id="type_name" name="type_name" type="text" class="" minlength="5" maxlength="85" value="{{ type.type_name }}" >
+                    <label for="type_name">Type Title</label>
+                    </div>
+                </div>
+                <!-- type Description -->
+                <div class="row">
+                    <div class=" col s12">
+                        <i class="fas fa-align-left prefix"></i>
+                        <div id="type_description" name="type_description" type="text" class=" section scrollspy" minlength="5" maxlength="250" disabled>{{- type.type_description -}}</div>
+                        <label for="type_description" class="black-text">Type Description</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+
+{% endblock content %}

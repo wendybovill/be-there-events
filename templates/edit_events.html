@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 
-{% for message in get_flashed_messages() %}
-<h2>{{ message }}</h2>
-{% endfor %}
-
-
 {% block content %}
 
     <h1 class="center-align">Edit the Event</h1>
+
+        {% for message in get_flashed_messages() %}
+            <h2 class="center">{{ message }}</h2>
+        {% endfor %}
 
         <div class="row centered">
             <form class="s12 card m8" method="POST" action="{{ url_for('edit_event', event_id=event._id) }}">

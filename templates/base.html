@@ -20,33 +20,40 @@
         {% block navigation %}
         <nav class="nav-extended lighten-1">
             <div class="nav-wrapper">
-              <div id="logo" class="col-4 med"><a href="#!" class="brand-logo">BeThere! Events</a></div>
-              <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons right">menu</i></a>
+              <a href="{{ url_for('home')}}" class="brand-logo">BeThere! Events</a>
+              <a href="#" class="sidenav-trigger right" data-target="mobile" ><i class="material-icons right">menu</i></a>
               <ul class="right hide-on-med-and-down">
                 <li><a href="{{ url_for('home')}}">Home</a></li>
-                <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
-                <li><a href="{{ url_for('log_in')}}">Log In</a></li>
+                <li><a href="{{ url_for('get_events')}}">Events</a></li>
                 <!-- Check if a user is logged then show profile link -->
                 {% if session.user %}
-                <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                {% endif %}
-                <li><a href="{{ url_for('get_events')}}">Events</a></li>
                 <li><a href="{{ url_for('add_event')}}">Add Event</a></li>
+                <li><a href="{{ url_for('get_types')}}">View Event Types</a></li>
+                <li><a href="{{ url_for('add_type')}}">Add Event Type</a></li>
+                <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                <li><a href="{{ url_for('log_out')}}">Logout</a></li>
+                {% else %}
+                <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
+                <li><a href="{{ url_for('log_in')}}">Log In</a></li>
+                {% endif %}
               </ul>
             </div>
           </nav>
         
-          <ul class="sidenav sidenav-trigger right" id="mobile-demo">
-            <ul class="right hide-on-med-and-down">
+          <ul class="sidenav" id="mobile">
                 <li><a href="{{ url_for('home')}}">Home</a></li>
-                <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
-                <li><a href="{{ url_for('log_in')}}">Log In</a></li>
+                <li><a href="{{ url_for('get_events')}}">Events</a></li>
                 <!-- Check if a user is logged then show profile link -->
                 {% if session.user %}
-                <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                {% endif %}
-                <li><a href="{{ url_for('get_events')}}">Events</a></li>
                 <li><a href="{{ url_for('add_event')}}">Add Event</a></li>
+                <li><a href="{{ url_for('get_types')}}">View Event Types</a></li>
+                <li><a href="{{ url_for('add_type')}}">Add Event Type</a></li>
+                <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                <li><a href="{{ url_for('log_out')}}">Logout</a></li>
+                {% else %}
+                <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
+                <li><a href="{{ url_for('log_in')}}">Log In</a></li>
+                {% endif %}
           </ul>
         {% endblock navigation %}
     </header>

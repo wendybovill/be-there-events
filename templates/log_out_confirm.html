@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1 class="center-align">Logout?</h1>
+        <div class="section">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="box black-text">
+                        {{ message }}
+                        <div class="col s12 center-align">
+                        
+                         <p class="center-align">
+                            <!-- cancel button -->
+                                <a href="{{ url_for('get_events') }}" class="btn-small grey darken-3 text-shadow white-text">Cancel</a>
+                            <!-- logout confirm button -->
+                                <a href="{{ url_for('log_out_confirm')}}" class="btn-small grey darken 1 accent-4">Yes Logout</a>
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif%}
+            {% endwith %}
+        </div>
+
+
+
+
+
+{% endblock content %}

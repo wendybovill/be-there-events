@@ -1,14 +1,11 @@
 {% extends "base.html" %}
 
-{% for message in get_flashed_messages() %}
-<h2>{{ message }}</h2>
-{% endfor %}
-
 {% block content %}
 
-
     <h1 class="center-align">Whats Happening, When??</h1>
-
+        {% for message in get_flashed_messages() %}
+            <h2 class="center">{{ message }}</h2>
+        {% endfor %}
         <div class="row card-pane page-padding ">
             <ul class="collapsible">
                 {% for event in events %}
@@ -59,12 +56,16 @@
                                 <p>Contact details: {{ event.event_contact_details }}</p>
                                 {% endif %}
                             </div>
-                            <div class="row">
-                                <div class="col s3">
-                                    <a href="{{ url_for('edit_event', event_id=event._id)}}" class="btn-small indigo lighten-3">Edit</a>
-                                    <a href="{{ url_for('delete_event', event_id=event._id)}}" class="btn-small red darken-4 white-text">Delete</a>
+                            {% if session.user %}
+                                {% if (session.user|lower == event.added_by|lower) or (session.user|lower == 'admin') %}
+                                <div class="row">
+                                    <div class="col s3">
+                                        <a href="{{ url_for('edit_event', event_id=event._id)}}" class="btn-small indigo lighten-3">Edit</a>
+                                        <a href="{{ url_for('delete_event', event_id=event._id)}}" class="btn-small red darken-4 white-text">Delete</a>
+                                    </div>
                                 </div>
-                            </div>
+                                {% endif %}
+                            {% endif %}
                         </div>
                 </li>
                 {% endfor %}

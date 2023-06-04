@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h2 class="center-align">Login</h2>
+<h1 class="center-align">Login</h1>
 
 <div class="section">
     {% with messages = get_flashed_messages() %}
@@ -16,7 +16,7 @@
     {% endwith %}
 </div>
 
-<div class="grey lighten-2 box black-text">
+<div class="box-form black-text">
     <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('log_in')}}">
         <!-- Username -->
         <div class="row">
@@ -35,8 +35,8 @@
             </div>
         </div>
         <!-- Submit -->
-        <div class="row">
-            <button type="submit" class="col s12 btn-large test-shadow">Login <i class="fas fa-sign-in-alt"></i></button>
+        <div class="">
+            <button type="submit" class="col s6 btn-large indigo white-text text-shadow centered">Login <i class="fas fa-sign-in-alt"></i></button>
         </div>
     </form>
 </div>

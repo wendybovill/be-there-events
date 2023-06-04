@@ -4,27 +4,35 @@
 {% endblock jumbotron %}
 
 {% block content %}
+
 <section id="section_one">
   <h1 class="">Welcome to Event Calendar</h1>
-  <form class="form-inline my-2 my-med-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  <div class="col m8 s12 centered">
+    <form class="form-inline my-2 my-med-0">
+      <input class="col form-control m8 s12" type="search" placeholder="Search">
+    <button class="btn-small btn-outline-success my-2 my-sm-0 front_button" type="submit">Search</button>
   </form>
-  <p>
-    This is the site to come to, to find out "Whats On!"
-  </p>
-  <p>
-    As a visitor, you can search for an event by Town or Postcode. As a registerd user you can Add, Edit and Delete your events.
-  </p>
+    <p>
+      This is the site to come to, to find out "Whats On!"
+    </p>
+    <p>
+      As a visitor, you can search for an event by Town or Postcode. As a registerd user you can Add, Edit and Delete your events.
+    </p></div>
+
 </section>
 <section id="section_two">
   <div class="overlay">
   <h1 class="">The Benefits of Signing up!</h1>
- <div class="benefits"><p>This is the one stop site for all the listings in your area! We don't charge to list an event.
+ <div class="benefits centered col m8 s12"><p>This is the one stop site for all the listings in your area! We don't charge to list an event.
   Its a community run site, that offers this service to enable people to connect. </p>
   <p>You can get fit and healthy while you're at it. Or enjoy some food and good conversation.<br>
   As a business you will get more coverage and give back to the community. As an individual looking for the next event, you will find something to ease your boredom and get you active.
  </p>
+ <div class="row right">
+  <div class="col s6 ">
+      <a href="{{ url_for('sign_up')}}" class="btn-small front_button center"> Register </a>
+  </div>
+</div>
  </div>
 </div>
 </section>
