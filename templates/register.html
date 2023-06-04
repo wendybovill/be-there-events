@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="center-align">Sign Up!</h2>
+
+    <div class="section">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="grey lighten-2 box black-text">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif%}
+        {% endwith %}
+    </div>
+
+
+
+{% endblock %}
