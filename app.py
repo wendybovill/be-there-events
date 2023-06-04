@@ -26,6 +26,79 @@ def home():
     return render_template("index.html")
 
 
+@app.route("/sign_up", methods=["GET", "POST"])
+def sign_up():
+    if request.method == "POST":
+        existing_username = mongo.db.user.find_one(
+            {"username": request.form.get("username").lower()}
+        )
+        existing_email = mongo.db.user.find_one(
+            {"email": request.form.get("email").lower()}
+        )
+        sign_up = {
+            "username": request.form.get("username").lower(),
+            "fname": request.form.get("fname").lower(),
+            "lname": request.form.get("lname").lower(),
+            "dob": request.form.get("dob").lower(),
+            "email": request.form.get("email").lower(),
+            "password": generate_password_hash(
+                request.form.get("password")),
+        }
+        if existing_username:
+            flash("That username is taken")
+            return redirect(url_for("sign_up"))
+        elif existing_email:
+            flash("That email address is already registered")
+            return redirect(url_for("sign_up"))
+
+        mongo.db.user.insert_one(sign_up)
+
+        session["user"] = request.form.get("username").lower()
+        flash("Welcome to BeThere Events!")
+        return render_template(url_for("events", username=session["user"]))
+    return render_template("register.html")
+
+
+@app.route("/log_in", methods=["GET", "POST"])
+def log_in():
+    if request.method == "POST":
+        existing_user = mongo.db.user.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            if check_password_hash(
+                existing_user["password"], request.form.get(
+                        "password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(
+                    request.form.get("username").capitalize()))
+                return redirect(url_for(
+                    "profile", username=session["user"]))
+            else:
+                # password not matching
+                flash("Please check your login details")
+                return redirect(url_for(("log_in")))
+        else:
+            # user is not found in database
+            flash("Please check your login details")
+            return redirect(url_for("log_in"))
+
+        session["user"] = request.form.get("username").lower()
+        flash("Welcome to BeThere Events!")
+    return render_template("login.html")
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # retrieve username for session from db
+    username = mongo.db.user.find_one(
+        {"username": session["user"]})["username"]
+
+    if session["user"]:
+        return render_template("profile.html", username=username)
+    return redirect(url_for("log_in"))
+
+
 @app.route("/get_events")
 def get_events():
     events = list(mongo.db.events.find())

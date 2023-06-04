@@ -182,6 +182,7 @@ a.btn-large, a.btn-small, button {
     text-align: center;
     border-top: 1px white solid;
     border-left: 1px white solid;
+    background-color: rgb(199, 199, 199);
 } 
 
 form.no-style, form.no-style.validate {
@@ -200,4 +201,8 @@ input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-d
 
 .no-justify {
     text-align: unset;
+}
+
+.rtxt {
+    color: #970101;
 }
