@@ -5,50 +5,121 @@
 
     <h1 class="center-align">Add A New Event</h1>
 
-        <div class="row page-padding ">
-
-                        <div class="event-title indigo lighten-1 collapsible-header ">
-                            <i class="fa fa-arrow-right" aria-hidden="true"></i> {{ event.event_type }}:&nbsp;&nbsp; 
-                            <div class="event-heading">{{ event.event_title }}&nbsp;&nbsp; </div>
-                            <div class="event-date">on {{ event.event_date }}&nbsp;&nbsp;  </div>
-                            <div class="event-time">at {{ event.event_time }}&nbsp;&nbsp; </div>
-                            <div class="event-town"><small> - in {{ event.event_location_town }}</small></div>
-                        </div>
-                        <div class="description  white lighten-5 row collapsible-body ">
-                            <div class="event-description">
-
-                                <h3>Event Entrance Fee: £ {{ event.event_entrance_fee }}</h3>
-
-                                <h5>What is it?</h5>
-                                <p>{{ event.event_description }}</p>
-
-                                    Visit the link for more information:
-                                    <a href="{{ event.event_url }}" target="_blank">{{ event.event_url }}</a> 
-
-                                <p><strong><em>* <small>Please ensure you contact the organiser if you are attending. They need to know how many people will be there.</small> *</em></strong></p>
-                                
-                                <h5>Where is it?</h5>
-
-                                        {{ event.event_location_name }}<br>
-
-                                        {{ event.event_location_town }}<br>
-
-                                        {{ event.event_location_postcode }}<br>
-
-                                        Contact the organiser to find out where to go.
-
-                                </p>
-                            </div>
-                            <div class="event-description">
-
-                                <p>Organiser: {{ event.event_organiser }}</p>
-
-
-                                <p>Contact details: {{ event.event_contact_details }}</p>
-
-                            </div>
-                        </div>
-
+        <div class="row centered">
+            <form class="s12 card m8" method="POST" action="{{ url_for('add_event') }}">
+                <!-- Type Selector -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="prefix fa fa-calendar-plus" aria-hidden="true" ></i>
+                            <select id="event_type" name="event_type" class="validate" required>
+                                <option value="" selected>Choose type</option>
+                                {% for type in types %}
+                                    <option value="{{ type.type_name }}">{{ type.type_name }}</option>
+                                {% endfor %}
+                            </select>
+                        <label for="event_type">What is it?</label>
+                    </div>
+                </div>
+                 <!-- Event Name -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="fas fa-pencil-alt prefix"></i>
+                    <input id="event_title" name="event_title" type="text" class="validate" minlength="5" maxlength="85" required>
+                    <label for="event_title">Event Title</label>
+                    </div>
+                </div>
+                <!-- Event Description -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="fas fa-align-left prefix"></i>
+                        <textarea id="event_description" name="event_description" type="text" class="validate section scrollspy" minlength="5" maxlength="250" required></textarea>
+                        <label for="event_description">Event Description</label>
+                    </div>
+                </div>
+                 <!-- Event URL -->
+                 <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="prefix fa fa-mouse-pointer" aria-hidden="true"></i>
+                    <input id="event_url" name="event_url" type="text" class="validate" minlength="5" maxlength="85">
+                    <label for="event_url">Website Address to book or pay, or for more info</label>
+                    </div>
+                </div>
+                 <!-- Event Organiser -->
+                 <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="prefix fa fa-user" aria-hidden="true"></i>
+                    <input id="event_organiser" name="event_organiser" type="text" class="validate" minlength="5" maxlength="85" required>
+                    <label for="event_organiser">Event Organiser</label>
+                    </div>
+                </div>
+                 <!-- Event Organiser Contact Details -->
+                 <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="prefix fa fa-address-card" aria-hidden="true"></i>
+                    <input id="event_contact_details" name="event_contact_details" type="text" class="validate" minlength="5" maxlength="100">
+                    <label for="event_contact_details">Event Organiser Contact Phone / Email</label>
+                    </div>
+                </div>
+                <!-- Event Location Town -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="prefix fa fa-map-signs" aria-hidden="true"></i>
+                        <input id="event_location_town" name="event_location_town" type="text" class="validate" minlength="5" maxlength="100" required>
+                        <label for="event_location_town">What Town is it in?</label>
+                    </div>
+                </div>
+                <!-- Event Location Postcode -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="prefix fa fa-map-marker" aria-hidden="true"></i>
+                        <input id="event_location_postcode" name="event_location_postcode" type="text" class="validate" minlength="5" maxlength="25">
+                        <label for="event_location_postcode">Postcode where the Event will take place?</label>
+                    </div>
+                </div>
+                <!-- Date Picker -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="fa fa-calendar prefix"></i>
+                        <input id="event_date" name="event_date" type="text" class="datepicker validate" minlength="5" maxlength="50" required>
+                        <label for="event_date">Event Date</label>
+                    </div>
+                </div>
+                <!-- Time Picker -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="fa fa-clock prefix" aria-hidden="true" ></i>
+                        <input id="event_time" name="event_time" type="text" class="timepicker validate" minlength="5" maxlength="50" required>
+                        <label for="event_time">Event Time</label>
+                    </div>
+                </div>
+                  <!-- Paid for checkbox -->
+                <div class="row white">
+                    <div class="input-field  col s12 switch">
+                        <i class="fa fa-credit-card prefix" aria-hidden="true"></i>
+                        <label for="event_paid_for">Entry Fee? <span>&nbsp;No</span> 
+                        <input id="event_paid_for" name="event_paid_for" type="checkbox">
+                        <span class="lever"></span>Yes <small>[Tick if Yes]</small></label>
+                    </div>
+                </div>
+                <!-- Event Entrance Fee -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <p>
+                        <i class="prefix fa fa-ticket" aria-hidden="true"></i>
+                        <label for="event_entrance_fee">Entrance Cost £</label>
+                        <input id="event_entrance_fee" name="event_entrance_fee" type="text" class="validate" minlength="5" maxlength="25">
+                        </p>
+                    </div>
+                </div>
+                <!-- Submit Button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button type="submit" class="btn-large indigo darken-1 text-white text-shadow">
+                            Add Event <i class="right fa fa-check" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
 
 

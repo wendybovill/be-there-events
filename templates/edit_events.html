@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <h1 class="center-align">Edit the Event</h1>
+
+        <div class="row centered">
+            <form class="s12 card m8" method="POST" action="{{ url_for('edit_event', event_id=event._id) }}">
+                <!-- Type Selector -->
+                <div class="row white">
+                    <div class="input-field col s12 m10">
+                        <i class="prefix fa fa-calendar-plus" aria-hidden="true" ></i>
+                            <select id="event_type" name="event_type" class="validate" required>
+                                <option value="{{ types.type_name }}" selected>Choose type</option>
+                                    {% for type in types %}
+                                        {% if type.type_name == event.event_type %}
+                                            <option value="{{ type.type_name }}" selected>{{ type.type_name }}</option>
+                                        {% else %}
+                                            <option value="{{ type.type_name }}">{{ type.type_name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                            </select>
+                        <label for="event_type">What is it?</label>
+                    </div>
+                </div>
+                 <!-- Event Name -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="fas fa-pencil-alt prefix"></i>
+                    <input id="event_title" name="event_title" type="text" class="validate" minlength="5" maxlength="85" value="{{ event.event_title }}" required>
+                    <label for="event_title">Event Title</label>
+                    </div>
+                </div>
+                <!-- Event Description -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="fas fa-align-left prefix"></i>
+                        <textarea id="event_description" name="event_description" type="text" class="validate section scrollspy" minlength="5" maxlength="250" required>{{- event.event_description -}}</textarea>
+                        <label for="event_description">Event Description</label>
+                    </div>
+                </div>
+                 <!-- Event URL -->
+                 <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="prefix fa fa-mouse-pointer" aria-hidden="true"></i>
+                    <input id="event_url" name="event_url" type="text" class="validate" minlength="5" maxlength="85" value="{{ event.event_url }}">
+                    <label for="event_url">Website Address to book or pay, or for more info</label>
+                    </div>
+                </div>
+                 <!-- Event Organiser -->
+                 <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="prefix fa fa-user" aria-hidden="true"></i>
+                    <input id="event_organiser" name="event_organiser" type="text" class="validate" minlength="5" maxlength="85" value="{{ event.event_organiser }}" required>
+                    <label for="event_organiser">Event Organiser</label>
+                    </div>
+                </div>
+                 <!-- Event Organiser Contact Details -->
+                 <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="prefix fa fa-address-card" aria-hidden="true"></i>
+                    <input id="event_contact_details" name="event_contact_details" type="text" class="validate" minlength="5" maxlength="100" value="{{ event.event_contact_details }}">
+                    <label for="event_contact_details">Event Organiser Contact Phone / Email</label>
+                    </div>
+                </div>
+                <!-- Event Location Town -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="prefix fa fa-map-signs" aria-hidden="true"></i>
+                        <input id="event_location_town" name="event_location_town" type="text" class="validate" minlength="5" maxlength="100" value="{{ event.event_location_town }}" required>
+                        <label for="event_location_town">What Town is it in?</label>
+                    </div>
+                </div>
+                <!-- Event Location Postcode -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="prefix fa fa-map-marker" aria-hidden="true"></i>
+                        <input id="event_location_postcode" name="event_location_postcode" type="text" class="validate" minlength="5" maxlength="25" value="{{ event.event_location_postcode }}">
+                        <label for="event_location_postcode">Postcode where the Event will take place?</label>
+                    </div>
+                </div>
+                <!-- Date Picker -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="fa fa-calendar prefix"></i>
+                        <input id="event_date" name="event_date" type="text" class="datepicker validate" minlength="5" maxlength="50" value="{{ event.event_date }}" required>
+                        <label for="event_date">Event Date</label>
+                    </div>
+                </div>
+                <!-- Time Picker -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="fa fa-clock prefix" aria-hidden="true" ></i>
+                        <input id="event_time" name="event_time" type="text" class="timepicker validate" minlength="5" maxlength="50" value="{{ event.event_time }}" required>
+                        <label for="event_time">Event Time</label>
+                    </div>
+                </div>
+                  <!-- Paid for checkbox -->
+                <div class="row white">
+                    <div class="input-field  col s12 switch">
+                        <p>
+                        <i class="fa fa-credit-card prefix" aria-hidden="true"></i>
+                        <label for="event_paid_for">Entry Fee? <span>&nbsp;No</span>
+                            {% if event.event_paid_for == "true" %}
+                                <input id="event_paid_for" name="event_paid_for" type="checkbox" checked>
+                            {% else %}
+                                <input id="event_paid_for" name="event_paid_for" type="checkbox">
+                            {% endif%}
+                            <span class="lever"></span>Yes <small>[Tick if Yes]</small></label>
+                    </p>
+                    </div>
+                </div>
+                <!-- Event Entrance Fee -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <p>
+                        <i class="prefix fa fa-ticket" aria-hidden="true"></i>
+                        <label for="event_entrance_fee">Entrance Cost £</label>
+                        <input id="event_entrance_fee" name="event_entrance_fee" type="text" class="validate" minlength="1" maxlength="25" value="{{ event.event_entrance_fee }}">
+                    </p>
+                    </div>
+                </div>
+                <!-- Submit Button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button type="submit" class="btn-large indigo darken-1 text-white text-shadow">
+                            Update Event <i class="right fa fa-check" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+
+{% endblock content %}

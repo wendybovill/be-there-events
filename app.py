@@ -23,13 +23,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def home():
-    events = list(mongo.db.events.find())
-
-    def show_last_event(event_id):
-        last_event = list(mongo.db.events.find_one().sort({"_id": ObjectId(
-            event_id)}).limit(1))
-        return render_template("index.html", events=last_event)
-    return render_template("index.html", events=events)
+    return render_template("index.html")
 
 
 @app.route("/get_events")
@@ -38,11 +32,12 @@ def get_events():
     return render_template("events.html", events=events)
 
 
-@app.route("/add_events", methods=["GET", "POST"])
-def add_events():
+@app.route("/add_event", methods=["GET", "POST"])
+def add_event():
     if request.method == "POST":
-        is_paid_for = "yes" if request.form.get("is_paid_for") else "free"
-        events = {
+        event_paid_for = "true" if request.form.get(
+            "event_paid_for") else "false"
+        event = {
             "event_type": request.form.get("event_type"),
             "event_title": request.form.get("event_title"),
             "event_date": request.form.get("event_date"),
@@ -55,12 +50,56 @@ def add_events():
             "event_contact_details": request.form.get("event_contact_details"),
             "event_url": request.form.get("event_url"),
             "event_entrance_fee": request.form.get("event_entrance_fee"),
-            "event_paid_for": request.form.get("event_paid_for"),
+            "event_paid_for": event_paid_for,
         }
         flash("You have added an event: {{ event_title }}")
         mongo.db.events.insert_one(event)
         return redirect(url_for("get_events"))
-    return render_template("events.html", events=events)
+    types = mongo.db.types.find().sort("type_name", 1)
+    return render_template("add_event.html", types=types)
+
+
+@app.route("/edit_event/<event_id>", methods=["GET", "POST"])
+def edit_event(event_id):
+    if request.method == "POST":
+        event_paid_for = request.form.get(
+            "event_paid_for")
+        submit = {
+            "event_type": request.form.get("event_type"),
+            "event_title": request.form.get("event_title"),
+            "event_date": request.form.get("event_date"),
+            "event_time": request.form.get("event_time"),
+            "event_description": request.form.get("event_description"),
+            "event_location_town": request.form.get("event_location_town"),
+            "event_location_postcode": request.form.get(
+                "event_location_postcode"),
+            "event_organiser": request.form.get("event_organiser"),
+            "event_contact_details": request.form.get("event_contact_details"),
+            "event_url": request.form.get("event_url"),
+            "event_entrance_fee": request.form.get("event_entrance_fee"),
+            "event_paid_for": event_paid_for,
+        }
+        flash("You have updated an event")
+        mongo.db.events.update_one(
+            {"_id": ObjectId(event_id)}, {"$set": submit})
+    types = mongo.db.types.find().sort("type_name", 1)
+    event = mongo.db.events.find_one({"_id": ObjectId(event_id)})
+    return render_template("edit_events.html", event=event, types=types)
+
+
+@app.route("/delete_event/<event_id>", methods=["GET", "POST"])
+def delete_event(event_id):
+    types = mongo.db.types.find().sort("type_name", 1)
+    event = mongo.db.events.find_one({"_id": ObjectId(event_id)})
+    flash("Are you sure you want to delete this event?")
+    return render_template("delete_event.html", event=event, types=types)
+
+
+@app.route("/delete_event_confirm/<event_id>")
+def delete_event_confirm(event_id):
+    mongo.db.events.delete_one({"_id": ObjectId(event_id)})
+    flash("Event Deleted")
+    return redirect(url_for("get_events"))
 
 
 if __name__ == "__main__":
