@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% for message in get_flashed_messages() %}
+<h2>{{ message }}</h2>
+{% endfor %}
 
+
+{% block content %}
 
     <h1 class="center-align">Edit the Event</h1>
 
@@ -52,7 +56,7 @@
                  <div class="row white">
                     <div class="input-field col s12">
                     <i class="prefix fa fa-user" aria-hidden="true"></i>
-                    <input id="event_organiser" name="event_organiser" type="text" class="validate" minlength="5" maxlength="85" value="{{ event.event_organiser }}" required>
+                    <input id="event_organiser" name="event_organiser" type="text" class="validate" minlength="2" maxlength="85" value="{{ event.event_organiser }}" required>
                     <label for="event_organiser">Event Organiser</label>
                     </div>
                 </div>

@@ -10,6 +10,5 @@ $(document).ready(function(){
 $(document).ready(function(){
   $('.timepicker').timepicker();
 });
-       
 
 M.AutoInit();

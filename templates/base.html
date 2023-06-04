@@ -39,20 +39,10 @@
         {% endblock navigation %}
     </header>
     <main>
-        <div class="jumbotron">
-
-        </div>{% with message = get_flashed_messages() %}
-        {% if message %}
-            <div class="section">
-                {% for message in messages %}
-                    <div class="row flash-messages red darken-2 ">
-                        <h4 class="center-align text-white">{{ message }}</h4>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif%}
-        {% endwith %}
+        <div class="jumbotron"></div>
+        
         {% block content %}
+
         {% endblock content %}
     </main>
     <!-- Footer -->

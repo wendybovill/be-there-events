@@ -52,8 +52,9 @@ def add_event():
             "event_entrance_fee": request.form.get("event_entrance_fee"),
             "event_paid_for": event_paid_for,
         }
-        flash("You have added an event: {{ event_title }}")
+
         mongo.db.events.insert_one(event)
+        flash("You have added an event: {{ event_title }}")
         return redirect(url_for("get_events"))
     types = mongo.db.types.find().sort("type_name", 1)
     return render_template("add_event.html", types=types)
@@ -62,8 +63,8 @@ def add_event():
 @app.route("/edit_event/<event_id>", methods=["GET", "POST"])
 def edit_event(event_id):
     if request.method == "POST":
-        event_paid_for = request.form.get(
-            "event_paid_for")
+        event_paid_for = "true" if request.form.get(
+            "event_paid_for") else "false"
         submit = {
             "event_type": request.form.get("event_type"),
             "event_title": request.form.get("event_title"),

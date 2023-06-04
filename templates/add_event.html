@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
+{% if messages %}
+    {% if messages|length > 0 %}
+    {{ type.type_name }}
+    {% endif %}
+    {% if messages != [] %}
+    {% endif %}
+{% endif %}
+
 {% block content %}
 
 
@@ -48,7 +56,7 @@
                  <div class="row white">
                     <div class="input-field col s12">
                     <i class="prefix fa fa-user" aria-hidden="true"></i>
-                    <input id="event_organiser" name="event_organiser" type="text" class="validate" minlength="5" maxlength="85" required>
+                    <input id="event_organiser" name="event_organiser" type="text" class="validate" minlength="2" maxlength="85" required>
                     <label for="event_organiser">Event Organiser</label>
                     </div>
                 </div>
@@ -80,7 +88,7 @@
                 <div class="row white">
                     <div class="input-field col s12">
                         <i class="fa fa-calendar prefix"></i>
-                        <input id="event_date" name="event_date" type="text" class="datepicker validate" minlength="5" maxlength="50" required>
+                        <input id="event_date" name="event_date" type="text" class="datepicker validate" minlength="2" maxlength="50" required>
                         <label for="event_date">Event Date</label>
                     </div>
                 </div>
@@ -88,7 +96,7 @@
                 <div class="row white">
                     <div class="input-field col s12">
                         <i class="fa fa-clock prefix" aria-hidden="true" ></i>
-                        <input id="event_time" name="event_time" type="text" class="timepicker validate" minlength="5" maxlength="50" required>
+                        <input id="event_time" name="event_time" type="text" class="timepicker validate" minlength="2" maxlength="50" required>
                         <label for="event_time">Event Time</label>
                     </div>
                 </div>
@@ -104,10 +112,10 @@
                 <!-- Event Entrance Fee -->
                 <div class="row white">
                     <div class="input-field col s12">
-                        <p>
+                        <p class="left">
                         <i class="prefix fa fa-ticket" aria-hidden="true"></i>
                         <label for="event_entrance_fee">Entrance Cost £</label>
-                        <input id="event_entrance_fee" name="event_entrance_fee" type="text" class="validate" minlength="5" maxlength="25">
+                        <input id="event_entrance_fee" name="event_entrance_fee" type="text" class="validate" minlength="1" maxlength="25">
                         </p>
                     </div>
                 </div>

@@ -163,6 +163,41 @@ div.event-title.indigo-text.text-lighten-1.collapsible-header, .collapsible {
     padding: 2px 20px;
 }
 
-.vertical-spacing {
+.vertical-spacing a {
     padding: 15px 0;
+}
+
+a.btn-large, a.btn-small, button {
+    border-radius: 5px;
+}
+
+.box {
+    min-width: 30%;
+    height: auto;
+    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.555);
+    padding:30px 20px;
+    border-radius: 15px;
+    display: flexbox;
+    margin:0 33%;
+    text-align: center;
+    border-top: 1px white solid;
+    border-left: 1px white solid;
+} 
+
+form.no-style, form.no-style.validate {
+    border: unset;
+    box-shadow: unset;
+    background-color: unset;
+}
+
+input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-default):disabled+label, input[type="checkbox"] {
+    color:black;
+    border: unset;
+    background-color: unset;
+    text-align: left;
+    width: 95%
+}
+
+.no-justify {
+    text-align: unset;
 }
