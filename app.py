@@ -61,7 +61,9 @@ def sign_up():
 
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
+
     if request.method == "POST":
+        logged_in = ""
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -84,6 +86,10 @@ def log_in():
             return redirect(url_for("log_in"))
 
         session["user"] = request.form.get("username").lower()
+
+    if session["user"]:
+        loggedin = True
+
         flash("Welcome to BeThere Events!")
     return render_template("login.html")
 
@@ -100,19 +106,6 @@ def log_out_confirm():
     session.pop("user")
     flash("You are now logged out.")
     return redirect(url_for("get_events"))
-
-
-@app.route("/profile/<username>", methods=["GET", "POST"])
-def profile(username):
-    # retrieve username for session from db
-    user_id = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-
-    user = username
-
-    if session["user"]:
-        return render_template("profile.html", username=username, user=user)
-    return redirect(url_for("log_in"))
 
 
 @app.route("/get_types")
@@ -150,6 +143,19 @@ def edit_type(type_id):
     types = mongo.db.types.find().sort("type_name", 1)
     type = mongo.db.types.find_one({"_id": ObjectId(type_id)})
     return render_template("edit_type.html", type=type, types=types)
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    if request.method == "POST":
+        user = {
+            "username": request.form.get("username"),
+            "fname": request.form.get("fname"),
+        }
+        flash("You have updated your Profile")
+    users = mongo.db.users.find().sort("username", 1)
+    user = mongo.db.types.find_one({"username": username})
+    return render_template("profile.html", user=user, users=users)
 
 
 @app.route("/delete_type/<type_id>", methods=["GET", "POST"])
