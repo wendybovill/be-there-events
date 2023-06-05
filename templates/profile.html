@@ -3,6 +3,8 @@
 {% block content %}
 
     {% for user in users %}
+    {% if (session.user|lower == user.username|lower) %}
+
 <div class="center h1">{{ user.username|capitalize }}'s Profile</div>
 
 
@@ -57,6 +59,7 @@
                 </div>
         </form>
     </div>
+{% endif %}
     {% endfor %}
 
 {% endblock content %}
