@@ -55,7 +55,7 @@ def sign_up():
 
         session["user"] = request.form.get("username").lower()
         flash("Welcome to BeThere Events!")
-        return render_template(url_for("get_events", username=session["user"]))
+        return render_template(url_for("events.html", username=session["user"]))
     return render_template("register.html")
 
 
