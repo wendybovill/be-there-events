@@ -61,9 +61,7 @@ def sign_up():
 
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
-
     if request.method == "POST":
-        logged_in = ""
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -86,10 +84,6 @@ def log_in():
             return redirect(url_for("log_in"))
 
         session["user"] = request.form.get("username").lower()
-
-    if session["user"]:
-        loggedin = True
-
         flash("Welcome to BeThere Events!")
     return render_template("login.html")
 
