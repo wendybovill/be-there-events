@@ -2,11 +2,11 @@
 
 {% block content %}
 
-    <h1 class="center-align">Edit The Event Type</h1>
+<div class="center h1">Edit The Event Type</div>
 
     {% for message in get_flashed_messages() %}
         <h2 class="center">{{ message }}</h2>
-    { % endfor %}
+    {% endfor %}
 
         <div class="row centered">
             <form class="s12 card m8" method="POST" action="{{ url_for('edit_type', type_id=type._id) }}">

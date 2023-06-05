@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1 class="center-align">{{ username|capitalize }}'s Profile</h1>
+<div class="center h1">{{ username|capitalize }}'s Profile</div>
 {{ user_fname|capitalize }}
 
     <div class="section centered row green-text text-darken-6">
@@ -15,50 +15,64 @@
         {% endwith %}
     </div>
 
+    <h3 class="center">You can Edit your profile here:</h3>
 
     <div class="box black-text">
-        <i class="fas fa-user prefix -text text-darken-4"></i>
+        <form class="col s12 m8 offset-m2" method="GET" action="{{ url_for('profile', username=session['user'])}}">
             <!-- Username -->
             <div class="row">
                 <div class="input-field col s12">
-                    <div id="username" name="username" type="text" class="validate" minlength="3" maxlength="15" value="{{ username|capitalize }}">{{ username|capitalize }}</div>
+                    <i class="fas fa-user-plus prefix -text text-darken-4"></i>
+                    <input id="username" name="username" type="text" class="validate" minlength="3" maxlength="15" value="{{ username|capitalize }}" disabled>
                     <label for="username" >Username</label>
+                    <span> * <small>You cannot change your username</small> * </span>
                 </div>
             </div>
             <!-- First name -->
             <div class="row">
                 <div class="input-field col s12">
-                    <div id="fname" name="fname" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" value="{{ username.fname|capitalize }}">{{ user.fname|capitalize }}</div>
+                    <i class="fas fa-user-plus prefix -text text-darken-4"></i>
+                    <input id="fname" name="fname" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.fname|capitalize }}" disabled>
                     <label for="fname" >First Name</label>
+                    <span> * <small>You cannot change your first name</small> * </span>
                 </div>
             </div>
             <!-- Last name -->
             <div class="row">
                 <div class="input-field col s12">
-                    <div id="lname" name="lname" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" value="{{ lname|capitalize }}">{{ username|capitalize }}</div>
+                    <i class="fas fa-user-plus prefix -text text-darken-4"></i>
+                    <input id="lname" name="lname" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" value="{{ lname|capitalize }}" required>
                     <label for="lname" >Last Name</label>
                 </div>
             </div>
             <!-- Email -->
             <div class="row">
                 <div class="input-field col s12">
-                    <div id="email" name="email" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" value="{{ email|lower }}">{{ username|capitalize }}</div>
+                    <i class="fas fa-user-plus prefix -text text-darken-4"></i>
+                    <input id="email" name="email" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" value="{{ email|lower }}" required>
                     <label for="email" >Email Address</label>
                 </div>
             </div>
             <!-- Password -->
             <div class="row">
                 <div class="input-field col s12">
-                    <div id="password" name="password" type="password" class="validate" minlength="5" maxlength="15" pattern="^[a-zA-z0-9]{5,15}$" value="{{ password }}">{{ password }}</div>
+                    <i class="fas fa-user-lock prefix -text text-darken-4"></i>
+                    <input id="password" name="password" type="password" class="validate" minlength="5" maxlength="15" pattern="^[a-zA-z0-9]{5,15}$" value="{{ password }}" required>
                     <label for="password">Password</label>
                 </div>
             </div>
             <!-- Date of Birth - user must be 18 to sign up -->
             <div class="row">
                 <div class="input-field col s12">
-                    <div id="dob" name="dob" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" value="{{ dob }}">{{ dob }}</div>
-                    <label for="dob" >Date of Birth</label>
+                    <i class="fas fa-user-plus prefix -text text-darken-4"></i>
+                    <input id="dob" name="dob" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" disabled value="{{ dob }}">
+                    <label for="dob" >Date of Birth</label><span>* <small>You must be 18</small> *</span>
                 </div>
+            <!-- Submit -->
+            <div class="row">
+                <button type="submit" class="col s12 btn-large  darken-4 test-shadow">Login <i class="fas fa-sign-in-alt"></i></button>
+            </div>
+        </form>
     </div>
 
-{% endblock %}
+{% endblock content %}

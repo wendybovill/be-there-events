@@ -29,10 +29,10 @@ def home():
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
-        existing_username = mongo.db.user.find_one(
+        existing_username = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()}
         )
-        existing_email = mongo.db.user.find_one(
+        existing_email = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()}
         )
         sign_up = {
@@ -51,7 +51,7 @@ def sign_up():
             flash("That email address is already registered")
             return redirect(url_for("sign_up"))
 
-        mongo.db.user.insert_one(sign_up)
+        mongo.db.users.insert_one(sign_up)
 
         session["user"] = request.form.get("username").lower()
         flash("Welcome to BeThere Events!")
@@ -62,7 +62,7 @@ def sign_up():
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
     if request.method == "POST":
-        existing_user = mongo.db.user.find_one(
+        existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
         if existing_user:
@@ -105,7 +105,7 @@ def log_out_confirm():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # retrieve username for session from db
-    username = mongo.db.user.find_one(
+    user_id = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
     user = username
