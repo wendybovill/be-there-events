@@ -150,9 +150,9 @@ def profile(username):
     if request.method == "POST":
         user = {
             "username": request.form.get("username"),
-            "fname": request.form.get("fname"),
+            "user.fname": request.form.get("fname"),
         }
-        flash("You have updated your Profile")
+        flash("Welcome back!")
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.types.find_one({"username": username})
     return render_template("profile.html", user=user, users=users)

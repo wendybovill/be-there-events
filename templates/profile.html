@@ -19,54 +19,42 @@
     <h3 class="center">You can Edit your profile here:</h3>
     
 
-    <div class="centered black-text">
+    <div class="centered box black-text">
         <form class="col s12 " method="GET" action="{{ url_for('profile', username=user.username)}}">
             <!-- Username -->
             <div class="row">
-                <div class="input-field col s12">
-                    <input id="username" name="username" type="text" class="validate" minlength="3" maxlength="15" value="{{ user.username|capitalize }}" disabled>
+                <div class="div-field col s12">
+                    <div id="username" name="username" type="text" class="validate" minlength="3" maxlength="90" value="{{ user.username|capitalize }}" disabled>{{ user.username|capitalize }}</div>
                     <label for="username" >Username</label>
-                    <span> * <small>You cannot change your username</small> * </span>
                 </div>
             </div>
             <!-- First name -->
             <div class="row">
-                <div class="input-field col s12">
-                    <input id="fname" name="fname" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.fname|capitalize }}">
+                <div class="div-field col s12">
+                    <div id="fname" name="fname" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.fname|capitalize }}">{{ user.fname|capitalize }}</div>
                     <label for="fname" >First Name</label>
                 </div>
             </div>
             <!-- Last name -->
             <div class="row">
-                <div class="input-field col s12">
-                    <input id="lname" name="lname" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.lname|capitalize }}" required>
+                <div class="div-field col s12">
+                    <div id="lname" name="lname" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.lname|capitalize }}">{{ user.lname|capitalize }}</div>
                     <label for="lname" >Last Name</label>
                 </div>
             </div>
             <!-- Email -->
             <div class="row">
-                <div class="input-field col s12">
-                    <input id="email" name="email" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.email|lower }}" required>
+                <div class="div-field col s12">
+                    <div id="email" name="email" type="text" class="validate" minlength="3" maxlength="90" value="{{ user.email|lower }}">{{ user.email|lower }}</div>
                     <label for="email" >Email Address</label>
-                </div>
-            </div>
-            <!-- Password -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="password" name="password" type="password" class="validate" minlength="5" maxlength="15" pattern="^[a-zA-z0-9]{5,15}$">
-                    <label for="password">Password</label>
                 </div>
             </div>
             <!-- Date of Birth - user must be 18 to sign up -->
             <div class="row">
-                <div class="input-field col s12">
-                    <input id="dob" name="dob" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" disabled value="{{ user.dob }}">
-                    <label for="dob" >Date of Birth</label><span>* <small>You can't edit your date of birth</small> *</span>
+                <div class="div-field col s12">
+                    <div id="dob" name="dob" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" disabled value="{{ user.dob }}">{{ user.dob }}</div>
+                    <label for="dob" >Date of Birth</label>
                 </div>
-            <!-- Submit -->
-            <div class="row">
-                <button type="submit" class="centered front_button btn-small text-shadow">update <i class="fas fa-sign-in-alt"></i></button>
-            </div>
         </form>
     </div>
     {% endfor %}
