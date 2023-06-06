@@ -2,12 +2,6 @@ import os
 import pathlib
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
-from flask_login import LoginManager
-from flask_login import UserMixin
-from flask_login import current_user
-from flask_login import login_required
-from flask_login import login_user
-from flask_login import logout_user
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
