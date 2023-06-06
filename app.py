@@ -122,14 +122,14 @@ def edit_profile(username):
             {"username": session["user"]})["username"]
 
         update = {
-            "username": existing_username,
-            "fname": request.form.get("fname").lower(),
-            "lname": request.form.get("lname").lower(),
+            "username": request.form.get("username"),
+            "fname": request.form.get("fname").title(),
+            "lname": request.form.get("lname").title(),
             "email": request.form.get("email").lower(),
-            "address_1": request.form.get("address_1").lower(),
-            "address_2": request.form.get("address_2").lower(),
-            "town": request.form.get("town").lower(),
-            "postcode": request.form.get("postcode").lower(),
+            "address_1": request.form.get("address_1").title(),
+            "address_2": request.form.get("address_2").title(),
+            "town": request.form.get("town").title(),
+            "postcode": request.form.get("postcode").upper(),
             "phone": request.form.get("phone").lower()
         }
 

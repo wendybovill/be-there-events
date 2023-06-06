@@ -33,21 +33,56 @@
             <!-- First name -->
             <div class="row">
                 <div class="div-field col s12">
-                    <div id="fname" name="fname" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.fname|capitalize }}">{{ user.fname|capitalize }}</div>
+                    <div id="fname" name="fname" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.fname|title }}">{{ user.fname|title }}</div>
                     <label for="fname" class="grey-text text-darken-2" >First Name</label>
                 </div>
             </div>
             <!-- Last name -->
             <div class="row">
                 <div class="div-field col s12">
-                    <div id="lname" name="lname" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.lname|capitalize }}">{{ user.lname|capitalize }}</div>
+                    <div id="lname" name="lname" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.lname|title }}">{{ user.lname|title }}</div>
                     <label for="lname" class="grey-text text-darken-2" >Last Name</label>
+                </div>
+            </div>
+                        <!-- Address Line 1 -->
+                        <div class="row">
+                            <div class="div-field col s12">
+                                <div id="address_1" name="address_1" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.address_1|title }}">{{ user.address_1|title }}</div>
+                                <label for="address_1" class="grey-text text-darken-2" >Address line 1</label>
+                            </div>
+                        </div>
+                                    <!-- Address Line 2 -->
+            <div class="row">
+                <div class="div-field col s12">
+                    <div id="address_2" name="address_2" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.address_2|title }}">{{ user.address_2|title }}</div>
+                    <label for="address_2" class="grey-text text-darken-2" >Address line 2</label>
+                </div>
+            </div>
+                        <!-- Town -->
+                        <div class="row">
+                            <div class="div-field col s12">
+                                <div id="town" name="town" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.town|title }}">{{ user.town|title }}</div>
+                                <label for="town" class="grey-text text-darken-2" >Town</label>
+                            </div>
+                        </div>
+            <!-- Postcode -->
+            <div class="row">
+                <div class="div-field col s12">
+                    <div id="postcode" name="postcode" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.postcode|upper }}">{{ user.postcode|upper }}</div>
+                    <label for="postcode" class="grey-text text-darken-2" >Postcode</label>
+                </div>
+            </div>
+            <!-- Phone -->
+            <div class="row">
+                <div class="div-field col s12">
+                    <div id="phone" name="phone" type="text" class="validate" minlength="3" maxlength="90" pattern="^[0-9]{3,15}$" value="{{ user.phone|capitalize }}">{{ user.phone }}</div>
+                    <label for="phone" class="grey-text text-darken-2" >Phone</label>
                 </div>
             </div>
             <!-- Email -->
             <div class="row">
                 <div class="div-field col s12">
-                    <div id="email" name="email" type="text" class="validate" minlength="3" maxlength="90" value="{{ user.email|lower }}">{{ user.email|lower }}</div>
+                    <div id="email" name="email" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9@a-zA-z0-]{3,15}$" value="{{ user.email|lower }}">{{ user.email|lower }}</div>
                     <label for="email" class="grey-text text-darken-2" >Email Address</label>
                 </div>
             </div>

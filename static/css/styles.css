@@ -277,6 +277,7 @@ div.bottom {
 
 a.btn-large, a.btn-small, button, .btn-large, .btn-small  {
     border-radius: 5px;
+    margin-bottom: 10px
 }
 
 .box {
@@ -291,7 +292,7 @@ a.btn-large, a.btn-small, button, .btn-large, .btn-small  {
     text-align: center;
     border-top: 2px white solid;
     border-left: 2px white solid;
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(226, 225, 225);
 } 
 
 .box-form {
@@ -304,7 +305,7 @@ a.btn-large, a.btn-small, button, .btn-large, .btn-small  {
     text-align: center;
     border-top: 2px white solid;
     border-left: 2px white solid;
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(225, 225, 225);
 } 
 
 form.no-style, form.no-style.validate {
@@ -318,7 +319,6 @@ input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-d
     border: unset;
     color: black;
     text-align: left;
-    margin: 5px -80rem;
     border-radius: 10px;
     padding: 2px 5px;
 }
@@ -326,9 +326,7 @@ input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-d
 input[type=text]:not(.browser-default), input[type="checkbox"], .select-wrapper.invalid>input.select-dropdown, .select-wrapper.invalid>input.select-dropdown:focus, input.valid[type=password]:not(.browser-default), input.invalid[type=password]:not(.browser-default), input[type=password]:not(.browser-default), input.invalid[type=text]:not(.browser-default) {
     color: black;
     text-align: left;
-    margin: 5px -80rem;
     border-radius: 10px;
-    padding: 2px 5px;
     background-color: white;
 }
 
@@ -336,7 +334,6 @@ input[type=password]:not(.browser-default).validate+label, input[type=password]:
     color: black;
     text-align: left;
     border-radius: 10px;
-    padding: 2px 5px;
     color:black;
 }
 
@@ -344,16 +341,11 @@ input[type=password]:not(.browser-default).validate+label, input[type=password]:
     color: black;
     text-align: left;
     border-radius: 10px;
-    padding: 2px 5px;
     color:black;
 }
 
-input[type=text]:not(.browser-default), input[type="checkbox"], .select-wrapper.invalid>input.select-dropdown, .select-wrapper.invalid>input.select-dropdown:focus, input.valid[type=password]:not(.browser-default), input.invalid[type=password]:not(.browser-default), input[type=password]:not(.browser-default), input.invalid[type=text]:not(.browser-default) {
-    margin: 5 -75rem 5px 10px;
-}
 
 .prefix {
-    margin: 5px 10px;
     font-size: larger;
 }
 
@@ -395,10 +387,12 @@ input[type=text]:not(.browser-default), input[type="checkbox"], .select-wrapper.
 .datepicker-day-button:focus {
     background-color: rgba(43, 49, 161, 0.25);
     }
+
 button:focus {
     outline: none;
     background-color: rgb(87, 65, 207);
     color: white;
+    margin-bottom: 10px;
     }
 
 .front_button {
@@ -411,7 +405,7 @@ input[type=search]:not(.browser-default)::placeholder, textarea.materialize-text
     background-color: rgba(255, 255, 255, 0.541);
     border: none;
     border-bottom: 1px solid #9e9e9e;
-    border-radius: 0;
+    border-radius: 10px;
     outline: none;
     height: 3rem;
     width: 100%;
@@ -428,6 +422,11 @@ input[type=search]:not(.browser-default)::placeholder, textarea.materialize-text
     transition: box-shadow .3s, border .3s, -webkit-box-shadow .3s;
     color: rgba(57, 43, 139, 0.651);
     padding: 15px;
+    }
+
+    input.textarea {
+        border-radius: 10px;
+        padding: 0 10px
     }
 
     .hidden {
