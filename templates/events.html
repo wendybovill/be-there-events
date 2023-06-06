@@ -57,7 +57,7 @@
                                 {% endif %}
                             </div>
                             {% if session.user %}
-                                {% if (session.user|lower == event.added_by|lower) or (session.user|lower == 'admin') %}
+                                {% if (session.user == event.added_by) or (session.user == 'admin') %}
                                 <div class="row">
                                     <div class="col s3">
                                         <a href="{{ url_for('edit_event', event_id=event._id)}}" class="btn-small indigo lighten-3">Edit</a>

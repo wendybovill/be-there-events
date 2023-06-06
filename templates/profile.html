@@ -3,61 +3,70 @@
 {% block content %}
 
     {% for user in users %}
-    {% if (session.user|lower == user.username|lower) %}
+    {% if (session.user == user.username) %}
 
-<div class="center h1">{{ user.username|capitalize }}'s Profile</div>
+<div class="center h1">Your Profile {{ user.username }}</div>
 
 
     <div class="section centered row green-text text-darken-6">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
-                    {{ message }}
+                <h2 class="center green-text">{{ message }}</h2>
                 {% endfor %}
             {% endif%}
         {% endwith %}
     </div>
 
-    <h3 class="center">You can Edit your profile here:</h3>
+    <h3 class="center">You information:</h3>
     
 
-    <div class="centered box black-text">
+    <div class="centered box-form indigo-text text-darken-4">
         <form class="col s12 " method="GET" action="{{ url_for('profile', username=user.username)}}">
             <!-- Username -->
             <div class="row">
                 <div class="div-field col s12">
-                    <div id="username" name="username" type="text" class="validate" minlength="3" maxlength="90" value="{{ user.username|capitalize }}" disabled>{{ user.username|capitalize }}</div>
-                    <label for="username" >Username</label>
+                    <div id="username" name="username" type="text" class="validate" minlength="3" maxlength="90" value="{{ user.username }}" disabled>{{ user.username}}</div>
+                    <label for="username" class="grey-text text-darken-2" >Username</label>
                 </div>
             </div>
             <!-- First name -->
             <div class="row">
                 <div class="div-field col s12">
                     <div id="fname" name="fname" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.fname|capitalize }}">{{ user.fname|capitalize }}</div>
-                    <label for="fname" >First Name</label>
+                    <label for="fname" class="grey-text text-darken-2" >First Name</label>
                 </div>
             </div>
             <!-- Last name -->
             <div class="row">
                 <div class="div-field col s12">
                     <div id="lname" name="lname" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.lname|capitalize }}">{{ user.lname|capitalize }}</div>
-                    <label for="lname" >Last Name</label>
+                    <label for="lname" class="grey-text text-darken-2" >Last Name</label>
                 </div>
             </div>
             <!-- Email -->
             <div class="row">
                 <div class="div-field col s12">
                     <div id="email" name="email" type="text" class="validate" minlength="3" maxlength="90" value="{{ user.email|lower }}">{{ user.email|lower }}</div>
-                    <label for="email" >Email Address</label>
+                    <label for="email" class="grey-text text-darken-2" >Email Address</label>
                 </div>
             </div>
             <!-- Date of Birth - user must be 18 to sign up -->
             <div class="row">
                 <div class="div-field col s12">
                     <div id="dob" name="dob" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" disabled value="{{ user.dob }}">{{ user.dob }}</div>
-                    <label for="dob" >Date of Birth</label>
+                    <label for="dob" class="grey-text text-darken-2" >Date of Birth</label>
                 </div>
         </form>
+        {% if session.user %}
+                                {% if (session.user == user.username) or (session.user|lower == 'admin') %}
+                                <div class="row">
+                                    <div class="col s3">
+                                        <a href="{{ url_for('edit_profile', username=session['user'])}}" class="btn-small indigo lighten-3">Edit</a>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endif %}
     </div>
 {% endif %}
     {% endfor %}

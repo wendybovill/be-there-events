@@ -36,13 +36,13 @@ def home():
 def sign_up():
     if request.method == "POST":
         existing_username = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()}
+            {"username": request.form.get("username")}
         )
         existing_email = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()}
         )
         sign_up = {
-            "username": request.form.get("username").lower(),
+            "username": request.form.get("username"),
             "fname": request.form.get("fname").lower(),
             "lname": request.form.get("lname").lower(),
             "dob": request.form.get("dob").lower(),
@@ -59,7 +59,7 @@ def sign_up():
 
         mongo.db.users.insert_one(sign_up)
 
-        session["user"] = request.form.get("username").lower()
+        session["user"] = request.form.get("username")
         flash("Welcome to BeThere Events!")
         return redirect(url_for("profile", username=session["user"]))
     return render_template("register.html")
@@ -69,15 +69,15 @@ def sign_up():
 def log_in():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": request.form.get("username")})
 
         if existing_user:
             if check_password_hash(
                 existing_user["password"], request.form.get(
                         "password")):
-                session["user"] = request.form.get("username").lower()
+                session["user"] = request.form.get("username")
                 flash("Welcome, {}".format(
-                    request.form.get("username").capitalize()))
+                    request.form.get("username")))
                 return redirect(url_for(
                     "profile", username=session["user"]))
             else:
@@ -89,7 +89,7 @@ def log_in():
             flash("Please check your login details")
             return redirect(url_for("log_in"))
 
-        session["user"] = request.form.get("username").lower()
+        session["user"] = request.form.get("username")
         flash("Welcome to BeThere Events!")
     return render_template("login.html")
 
@@ -106,6 +106,52 @@ def log_out_confirm():
     session.pop("user")
     flash("You are now logged out.")
     return redirect(url_for("get_events"))
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username")})
+
+    users = mongo.db.users.find().sort("username", 1)
+    user = mongo.db.users.find_one({"username": username})
+    return render_template(
+        "profile.html", username=username, user=user, users=users)
+
+
+@app.route("/edit_profile/<username>", methods=["GET", "POST"])
+def edit_profile(username):
+    if request.method == "POST":
+        existing_username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+
+        update = {
+            "username": existing_username,
+            "fname": request.form.get("fname").lower(),
+            "lname": request.form.get("lname").lower(),
+            "email": request.form.get("email").lower(),
+            "address_1": request.form.get("address_1").lower(),
+            "address_2": request.form.get("address_2").lower(),
+            "town": request.form.get("town").lower(),
+            "postcode": request.form.get("postcode").lower(),
+            "phone": request.form.get("phone").lower()
+        }
+
+        mongo.db.users.update_one({"username": username}, {"$set": update})
+
+        session["user"] = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        users = mongo.db.users.find().sort("username", 1)
+        user = mongo.db.users.find_one({"username": username})
+        flash("Your Profile has been updated " + username)
+        return render_template(
+            "profile.html", username=username, user=user, users=users)
+    users = mongo.db.users.find().sort("username", 1)
+    user = mongo.db.users.find_one({"username": username})
+    return render_template(
+        "edit_profile.html", username=username, user=user, users=users)
 
 
 @app.route("/get_types")
@@ -143,19 +189,6 @@ def edit_type(type_id):
     types = mongo.db.types.find().sort("type_name", 1)
     type = mongo.db.types.find_one({"_id": ObjectId(type_id)})
     return render_template("edit_type.html", type=type, types=types)
-
-
-@app.route("/profile/<username>", methods=["GET", "POST"])
-def profile(username):
-    if request.method == "POST":
-        user = {
-            "username": request.form.get("username"),
-            "user.fname": request.form.get("fname"),
-        }
-        flash("Welcome back!")
-    users = mongo.db.users.find().sort("username", 1)
-    user = mongo.db.types.find_one({"username": username})
-    return render_template("profile.html", user=user, users=users)
 
 
 @app.route("/delete_type/<type_id>", methods=["GET", "POST"])
