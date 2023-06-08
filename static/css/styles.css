@@ -401,14 +401,19 @@ button:focus {
     color: white;
 }
 
+
+button.search {
+    display: inline;
+}
+
 input[type=search]:not(.browser-default)::placeholder, textarea.materialize-textarea::placeholder {
-    background-color: rgba(255, 255, 255, 0.541);
+    background-color: rgba(216, 216, 216, 0.541);
     border: none;
     border-bottom: 1px solid #9e9e9e;
     border-radius: 10px;
     outline: none;
-    height: 3rem;
-    width: 100%;
+    height: 1rem;
+    width: 75%;
     font-size: 16px;
     margin: 0 0 8px 0;
     padding: 0;
@@ -422,11 +427,17 @@ input[type=search]:not(.browser-default)::placeholder, textarea.materialize-text
     transition: box-shadow .3s, border .3s, -webkit-box-shadow .3s;
     color: rgba(57, 43, 139, 0.651);
     padding: 15px;
+    display: inline;
     }
+
+input.search {
+    display: inline;
+}
 
     input.textarea {
         border-radius: 10px;
-        padding: 0 10px
+        padding: 0 10px;
+        width: 100%;
     }
 
     .hidden {

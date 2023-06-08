@@ -1,8 +1,11 @@
 import os
 import pathlib
+import requests
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
+from flask_mail import Mail, Message, make_msgid, MIMEText, MIMEBase, MIMEMultipart, message_policy
+from flask_login import FlaskLoginClient, LoginManager, login_user, logout_user, login_remembered, login_manager, login_fresh, login_required, LOGIN_MESSAGE
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
@@ -263,6 +266,13 @@ def edit_event(event_id):
     return render_template("edit_events.html", event=event, types=types)
 
 
+
+@app.route("/search_events")
+def search_events():
+    events = list(mongo.db.events.find())
+    return render_template("events.html", events=events)
+
+
 @app.route("/delete_event/<event_id>", methods=["GET", "POST"])
 def delete_event(event_id):
     types = mongo.db.types.find().sort("type_name", 1)
@@ -276,6 +286,12 @@ def delete_event_confirm(event_id):
     mongo.db.events.delete_one({"_id": ObjectId(event_id)})
     flash("Event Deleted")
     return redirect(url_for("get_events"))
+
+
+@app.errorhandler(404)
+def redirect_http(e):
+    flash("We can't find what you searched for, or it can't be loaded")
+    return render_template("index.html")
 
 
 if __name__ == "__main__":

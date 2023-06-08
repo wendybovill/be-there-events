@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="center h1">Edit your profile</div>
+
+        {% for message in get_flashed_messages() %}
+            <h2 class="center green-text">{{ message }}</h2>
+        {% endfor %}
+
+        {% for user in users %}
+        {% if (session.user == user.username) %}
+
+        <div class="row centered">
+            <form class="s12 box-form card m8" method="POST" action="{{ url_for('edit_profile', username=session['user']) }}">
+                 <!-- Username -->
+                <div class="row white">
+                    <span class="grey-text text-darken-3">{{ username }}</span>
+                    <div class="input-field col s12">
+                    <i class="fas fa-pencil-alt prefix"></i>
+                    <input id="username" name="username" type="text" class="validate hidden" minlength="2" maxlength="85" value="{{ username }}">
+                    <label for="username" class="grey-text text-darken-3">Username - you cannot change your Username</label>
+                </div>
+                </div>
+                <!-- First name -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="fas fa-user prefix"></i>
+                        <input id="fname" name="fname" type="text" class="validate section scrollspy" minlength="2" maxlength="250" value="{{ user.fname|title }}">
+                        <label for="fname">First Name</label>
+                    </div>
+                </div>
+                 <!-- Lastname -->
+                 <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="prefix fa fa-user" aria-hidden="true"></i>
+                    <input id="lname" name="lname" type="text" class="validate" minlength="2" maxlength="85" value="{{ user.lname|title }}">
+                    <label for="lname">Your Lastname</label>
+                    </div>
+                </div>
+                 <!-- Email Address -->
+                 <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="prefix fa fa-mouse-pointer" aria-hidden="true"></i>
+                    <input id="email" name="email" type="text" class="validate" minlength="2" maxlength="85" value="{{ user.email }}">
+                    <label for="email">Email Address</label>
+                    </div>
+                </div>
+                 <!-- User Phone Number -->
+                 <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="prefix fa fa-address-card" aria-hidden="true"></i>
+                    <input id="phone" name="phone" type="text" class="validate" minlength="5" maxlength="100" value="{{ user.phone }}">
+                    <label for="phone">Phone Number</label>
+                    </div>
+                </div>
+                <!-- User Address -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="prefix fa fa-map-marker" aria-hidden="true"></i>
+                        <input id="address_1" name="address_1" type="text" class="validate" minlength="1" maxlength="100" value="{{ user.address_1|title }}">
+                        <label for="address_1">Address Line 1</label>
+                    </div>
+                </div>
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="prefix fa fa-map-marker" aria-hidden="true"></i>
+                        <input id="address_2" name="address_2" type="text" class="validate" minlength="5" maxlength="100" value="{{ user.address_2|title }}">
+                        <label for="address_2">Address Line 2</label>
+                    </div>
+                </div>
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="prefix fa fa-map-signs" aria-hidden="true"></i>
+                        <input id="town" name="town" type="text" class="validate" minlength="5" maxlength="100" value="{{ user.town|title }}">
+                        <label for="town">Your Town</label>
+                    </div>
+                </div>
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="prefix fa fa-map-signs" aria-hidden="true"></i>
+                        <input id="postcode" name="postcode" type="text" class="validate" minlength="5" maxlength="100" value="{{ user.postcode|upper }}">
+                        <label for="postcode">Your Postcode</label>
+                    </div>
+                </div>
+                <!-- Date Picker -->
+                <div class="row white">
+                    <span class="grey-text text-darken-3"><small>You cannot change your Date of Birth</small></span>
+                    <div class="input-field col s12">
+                        <i class="fa fa-calendar prefix"></i>
+                        <input id="dob" name="dob" type="text" class="datepicker validate" minlength="5" maxlength="50" value="{{ user.dob|title }}" disabled>
+                        <label for="dob">Date of Birth</label>
+                    </div>
+                </div>
+                <!-- Submit Button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button type="submit" class="btn-large indigo darken-1 text-white text-shadow">
+                            Update profile <i class="right fa fa-check" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+
+
+
+{% endblock content %}

@@ -5,13 +5,19 @@
 
 {% block content %}
 
+
 <div id="section_one">
     <div class="h1">Welcome to Event Calendar</div>
     <div class="col m8 s12 centered">
-        <form class="form-inline my-2 my-med-0">
-          <input class="col form-control m8 s12" type="search" placeholder="Search">
-          <button class="btn-small btn-outline-success my-2 my-sm-0 front_button" type="submit">Search</button>
-        </form>
+      <div class="section centered row green-text text-darken-6">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <h2 class="center green-text">{{ message }}</h2>
+                {% endfor %}
+            {% endif%}
+        {% endwith %}
+      </div>
         <p>
           This is the site to come to, to find out "Whats On!"
         </p>

@@ -6,9 +6,19 @@
         {% for message in get_flashed_messages() %}
             <h2 class="center">{{ message }}</h2>
         {% endfor %}
+
+        
+        <div class="col m8 s10 centered">
+            <form class="form-inline my-2 my-med-0">
+                <button id="search_button" name="search_button" class="btn-small btn-outline-success my-2 my-sm-0 front_button right search" type="submit"><i class="fas fa-search prefix white-text"></i></button>
+                <input id="search_event" name="search_event" class="col form-control m6 s10" type="search" placeholder="Search">
+            </form>
+        </div>
+
         <div class="row card-pane page-padding ">
-            <ul class="collapsible">
+            <ul id="eventList" class="collapsible" name="event_list" data-event="event_list">
                 {% for event in events %}
+                
                 <li>
                         <div class="event-title indigo lighten-1 collapsible-header ">
                             <i class="fa fa-arrow-right top-spacing" aria-hidden="true"></i> {{ event.event_type }}:&nbsp;&nbsp; 
@@ -71,8 +81,5 @@
                 {% endfor %}
             </ul>
         </div>
-
-
-
 
 {% endblock content %}
