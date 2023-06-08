@@ -9,13 +9,16 @@
 
         
         <div class="col m8 s10 centered">
-            <form class="form-inline my-2 my-med-0">
+            <form class="form-inline my-2 my-med-0" method="POST" action="{{ url_for('search_event') }}">
                 <button id="search_button" name="search_button" class="btn-small btn-outline-success my-2 my-sm-0 front_button right search" type="submit"><i class="fas fa-search prefix white-text"></i></button>
-                <input id="search_event" name="search_event" class="col form-control m6 s10" type="search" placeholder="Search">
+                <input id="search_event" name="search_event" class="col form-control m6 s10" type="search">
+                <label for="search_event">Search Events</label>
+                <a href="{{ url_for('get_events')}}" class="grey-text text-darken-1 right front-button">Clear Search</a>
             </form>
         </div>
 
         <div class="row card-pane page-padding ">
+            {% if events|length > 0 %}
             <ul id="eventList" class="collapsible" name="event_list" data-event="event_list">
                 {% for event in events %}
                 
@@ -80,6 +83,10 @@
                 </li>
                 {% endfor %}
             </ul>
+            {% else %}
+            <h2 class="center green-text">No Events found</h2>
+            {% endif %}
+
         </div>
 
 {% endblock content %}

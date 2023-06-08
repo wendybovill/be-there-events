@@ -266,10 +266,10 @@ def edit_event(event_id):
     return render_template("edit_events.html", event=event, types=types)
 
 
-
-@app.route("/search_events")
-def search_events():
-    events = list(mongo.db.events.find())
+@app.route("/search_event", methods=["GET", "POST"])
+def search_event():
+    search_query = request.form.get("search_event")
+    events = list(mongo.db.events.find({"$text": {"$search": search_query}}))
     return render_template("events.html", events=events)
 
 
@@ -287,6 +287,13 @@ def delete_event_confirm(event_id):
     flash("Event Deleted")
     return redirect(url_for("get_events"))
 
+
+    """Error Handling
+
+    As part of Error handling I have redirected the HPPT 404 Not found request 
+    back to the Index Home page, with a flash message informing the user
+    what they have looked for can't be found
+    """
 
 @app.errorhandler(404)
 def redirect_http(e):

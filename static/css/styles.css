@@ -126,7 +126,7 @@ div.event-title.indigo-text.text-lighten-1.collapsible-header, .collapsible {
 
 #section_one {
     background-color: rgb(208, 218, 223);
-    min-height: 25vh;    
+    min-height: 29vh;    
     padding: 25px;
 }
 
@@ -135,6 +135,7 @@ div#section_one {
     font-weight: 700;
     text-align: center;
     width:100%;
+    min-height: 29vh;
 }
 
 div#section_one p{
@@ -154,7 +155,7 @@ div#section_one p{
     background-repeat: no-repeat;
     background-attachment: fixed;
     width: 100%;
-    min-height: 35vh;
+    min-height: 36vh;
 }
 
 .overlay {
@@ -162,7 +163,7 @@ div#section_one p{
     color: white;
     text-align: justify;
     width: 100%;
-    min-height: 35vh;
+    min-height: 36vh;
     margin:unset;
 }
 
@@ -172,7 +173,7 @@ div#section_one p{
     line-height: 1em;
     text-align: center;
     font-size: 0.75em;
-    min-height: 30px!important;
+    min-height: 50px!important;
     padding: 10px 5px;
 }
 
