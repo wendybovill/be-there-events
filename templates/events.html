@@ -32,7 +32,7 @@
                         </div>
                         <div class="description  white lighten-5 row collapsible-body ">
                             <div class="event-description">
-                                {% if event.event_paid_for == "true" %}
+                                {% if event.event_paid_for == "paid" %}
                                 <h3>Event Entrance Fee: £ {{ event.event_entrance_fee }}</h3>
                                 {% else %}
                                 <h3>Entry is Free</h3>

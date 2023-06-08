@@ -105,7 +105,7 @@
                         <p>
                         <i class="fa fa-credit-card prefix" aria-hidden="true"></i>
                         <label for="event_paid_for">Entry Fee? <span>&nbsp;No</span>
-                            {% if event.event_paid_for == "true" %}
+                            {% if event.event_paid_for == "paid" %}
                                 <input id="event_paid_for" name="event_paid_for" type="checkbox" checked>
                             {% else %}
                                 <input id="event_paid_for" name="event_paid_for" type="checkbox">

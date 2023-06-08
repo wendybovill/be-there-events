@@ -4,8 +4,12 @@ import requests
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
-from flask_mail import Mail, Message, make_msgid, MIMEText, MIMEBase, MIMEMultipart, message_policy
-from flask_login import FlaskLoginClient, LoginManager, login_user, logout_user, login_remembered, login_manager, login_fresh, login_required, LOGIN_MESSAGE
+from flask_mail import (
+    Mail, Message, make_msgid, MIMEText, MIMEBase, MIMEMultipart,
+    message_policy)
+from flask_login import (
+    FlaskLoginClient, LoginManager, login_user, logout_user, login_remembered,
+    login_manager, login_fresh, login_required, LOGIN_MESSAGE)
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
@@ -212,8 +216,8 @@ def get_events():
 @app.route("/add_event", methods=["GET", "POST"])
 def add_event():
     if request.method == "POST":
-        event_paid_for = "true" if request.form.get(
-            "event_paid_for") else "false"
+        event_paid_for = "paid" if request.form.get(
+            "event_paid_for") else "free"
         event = {
             "added_by": session["user"],
             "event_type": request.form.get("event_type"),
@@ -241,8 +245,8 @@ def add_event():
 @app.route("/edit_event/<event_id>", methods=["GET", "POST"])
 def edit_event(event_id):
     if request.method == "POST":
-        event_paid_for = "true" if request.form.get(
-            "event_paid_for") else "false"
+        event_paid_for = "paid" if request.form.get(
+            "event_paid_for") else "free"
         submit = {
             "event_type": request.form.get("event_type"),
             "event_title": request.form.get("event_title"),
@@ -288,12 +292,12 @@ def delete_event_confirm(event_id):
     return redirect(url_for("get_events"))
 
 
-    """Error Handling
+"""Error Handling
+As part of Error handling I have redirected the HPPT 404 Not found request 
+back to the Index Home page, with a flash message informing the user
+what they have looked for can't be found
+"""
 
-    As part of Error handling I have redirected the HPPT 404 Not found request 
-    back to the Index Home page, with a flash message informing the user
-    what they have looked for can't be found
-    """
 
 @app.errorhandler(404)
 def redirect_http(e):
