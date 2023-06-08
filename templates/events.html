@@ -10,10 +10,10 @@
         
         <div class="col m8 s10 centered">
             <form class="form-inline my-2 my-med-0" method="POST" action="{{ url_for('search_event') }}">
-                <button id="search_button" name="search_button" class="btn-small btn-outline-success my-2 my-sm-0 front_button right search" type="submit"><i class="fas fa-search prefix white-text"></i></button>
+                <button id="search_button" name="search_button" class="btn-small btn-outline-success my-2 my-sm-0 front_button right search" type="submit"><i class="fas fa-search prefix white-text"></i> Search </button>
                 <input id="search_event" name="search_event" class="col form-control m6 s10" type="search">
                 <label for="search_event">Search Events</label>
-                <a href="{{ url_for('get_events')}}" class="grey-text text-darken-1 right front-button">Clear Search</a>
+                <a href="{{ url_for('get_events')}}" class="right clear">Clear Search</a>
             </form>
         </div>
 

@@ -318,7 +318,6 @@ form.no-style, form.no-style.validate {
 input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-default):disabled+label, input[type="checkbox"] {
     color:black;
     border: unset;
-    color: black;
     text-align: left;
     border-radius: 10px;
     padding: 2px 5px;
@@ -328,23 +327,30 @@ input[type=text]:not(.browser-default), input[type="checkbox"], .select-wrapper.
     color: black;
     text-align: left;
     border-radius: 10px;
-    background-color: white;
+    background-color: rgb(226, 226, 226);
 }
 
 input[type=password]:not(.browser-default).validate+label, input[type=password]:not(.browser-default).validate+label, input[type=text]:not(.browser-default)+label {
     color: black;
     text-align: left;
     border-radius: 10px;
-    color:black;
 }
 
 input[type=password]:not(.browser-default).validate+label, input[type=password]:not(.browser-default).validate+label {
     color: black;
     text-align: left;
     border-radius: 10px;
-    color:black;
 }
 
+.input-field>label {
+    color: black;
+}
+
+label {
+    font-size: .8rem;
+    color: #000000;
+    text-align: left;
+}
 
 .prefix {
     font-size: larger;
@@ -435,12 +441,34 @@ input.search {
     display: inline;
 }
 
-    input.textarea {
-        border-radius: 10px;
-        padding: 0 10px;
-        width: 100%;
-    }
+input.textarea {
+    border-radius: 10px;
+    padding: 0 10px;
+    width: 100%;
+}
 
-    .hidden {
-        display: none;
-    }
+.hidden {
+    display: none;
+}
+
+label, input[type=text] {
+    padding: 0 5px;
+    text-indent: 10px;
+}
+
+a.clear {
+    background-color: lightgrey;
+    border: 1px solid rgb(197, 197, 197);
+    color: black;
+    text-shadow: white 0.5px 0.5px 1px;
+    border-radius: 3px;
+    font-size: 0.80rem;
+    padding: 2px;
+}
+
+a.clear:hover {
+    background-color: rgb(87, 65, 207);
+    color: white;
+    border: 1px solid rgb(87, 65, 207);
+}
+

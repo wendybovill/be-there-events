@@ -1,15 +1,9 @@
 import os
 import pathlib
 import requests
-from flask import (
-    Flask, flash, render_template, redirect, request, session, url_for)
+from flask import (Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
-from flask_mail import (
-    Mail, Message, make_msgid, MIMEText, MIMEBase, MIMEMultipart,
-    message_policy)
-from flask_login import (
-    FlaskLoginClient, LoginManager, login_user, logout_user, login_remembered,
-    login_manager, login_fresh, login_required, LOGIN_MESSAGE)
+from flask_mail import (Mail, Message, make_msgid, MIMEText, MIMEBase, MIMEMultipart, message_policy)
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
