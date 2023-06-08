@@ -1,6 +1,5 @@
 import os
 import pathlib
-import requests
 from flask import (Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from flask_mail import (Mail, Message, make_msgid, MIMEText, MIMEBase, MIMEMultipart, message_policy)
