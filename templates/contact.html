@@ -8,64 +8,6 @@
             <h2 class="center green-text">{{ message }}</h2>
         {% endfor %}
 
-    {% for user in users %}
-        {% if (session.user == user.username) %}
-
-            <div class="row">
-                <form class="col m18 s12" method="POST" action="{{ url_for('user_contact_page', username=session['user']) }}">    
-                <!-- First name -->
-                <div class="row white">
-                    <span class="grey-text text-darken-3">{{ username }}</span>
-                    <div class="input-field col s12">
-                        <i class="fas fa-user prefix"></i>
-                        <input id="username" name="username" type="text" class="validate hidden section scrollspy" minlength="2" maxlength="250" value="{{ username }}" required>
-                        <label for="username">Username</label>
-                    </div>
-                </div>
-                    <!-- First name -->
-                <div class="row white">
-                    <div class="input-field col s12">
-                        <i class="fas fa-user prefix"></i>
-                        <input id="fname" name="fname" type="text" class="validate section scrollspy" minlength="2" maxlength="250" value="" required>
-                        <label for="fname">First Name</label>
-                    </div>
-                </div>
-                <!-- Lastname -->
-                <div class="row white">
-                    <div class="input-field col s12">
-                    <i class="prefix fa fa-user" aria-hidden="true"></i>
-                    <input id="lname" name="lname" type="text" class="validate" minlength="2" maxlength="85" value="" required>
-                    <label for="lname">Your Lastname</label>
-                    </div>
-                </div>
-                <!-- Email Address -->
-                <div class="row white">
-                    <div class="input-field col s12">
-                    <i class="prefix fa fa-mouse-pointer" aria-hidden="true"></i>
-                    <input id="email" name="email" type="text" class="validate" minlength="2" maxlength="85" value="" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
-                    <label for="email">Email Address</label>
-                    </div>
-                </div>
-                <!-- User Message -->
-                <div class="row white">
-                    <div class="input-field col s12">
-                    <i class="prefix fa fa-pencil" aria-hidden="true"></i>
-                    <textarea id="message" name="message" type="text" class="validate" minlength="2" maxlength="500" value="" pattern="^[a-zA-z0-9a-zA-z0-]{3,15}$" required></textarea>
-                    <label for="message">Message</label>
-                    </div>
-                </div>
-                <!-- Submit Button -->
-                <div class="row">
-                    <div class="col s12 center-align">
-                        <button type="submit" class="btn-large indigo darken-1 text-white text-shadow"> Send Email <i class="right fa fa-check" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-            </div>
-
-    {% else %}
-
             <div class="row centered">
                 <div class="container m8 s12"></div>
 
@@ -115,9 +57,5 @@
 
             <div class="row centered">
                 <div class="container m8 s12"></div>
-
-        {% endif %}
-    {% endfor %}
-
 
 {% endblock content %}

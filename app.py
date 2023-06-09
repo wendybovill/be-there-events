@@ -81,13 +81,43 @@ def sign_up_thankyou(sign_up_email):
     <br>
     The Event Lister Team.
     <br>
-    Say hello 
+    Regards
+    </p>
+    </div>
+
+    """.format(sign_up_email['name'], sign_up_email['email'])
+
+    mail.send(msg)
+
+
+def send_user_email(email):
+    msg = Message("User Contact Form on Event Lister",
+                  sender=("Event List Team", "event_lister@wideworldwebhosting.co.uk"),
+                  recipients=[send_user_email['email']],
+                  bcc=["wendybovill@gmail.com"])
+
+    msg.html = """
+
+    <div>
+    Hi {},
+    <br>
+
+    <p>
+    {} thank you for registering on the Event Lister Website.<br>
+    You can list your events for free. Please login and list your first event!
+    <br>Don't forget to tell your friend about us!
+    <br>
+    Your message: {}
+    <br><br>
+    Kind regards,
+    <br>
+    The Event Lister Team.
     <br>
     Regards
     </p>
     </div>
     
-    """.format(sign_up_email['name'], sign_up_email['email'])
+    """.format(send_user_email['username'], send_user_email['name'],send_user_email['message'])
 
     mail.send(msg)
 
@@ -380,7 +410,7 @@ def user_contact_page(username):
         email["email"] = user.email.lower()
         email["message"] = request.form["message"]
 
-        send_email(email)
+        send_user_email(email)
         flash("Thank you for your email " + username ". We will respond as soon as we can")
 
         session["user"] = mongo.db.users.find_one(
@@ -389,11 +419,11 @@ def user_contact_page(username):
         user = mongo.db.users.find_one({"username": username})
 
         return render_template(
-            "contact.html", username=username, user=user, users=users)
+            "user_contact.html", username=username, user=user, users=users)
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
     return render_template(
-            "contact.html", username=username, user=user, users=users)
+            "user_contact.html", username=username, user=user, users=users)
 
 
 @app.route("/delete_event/<event_id>", methods=["GET", "POST"])
