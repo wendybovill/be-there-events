@@ -406,9 +406,9 @@ def user_contact_page(username):
 
         email = {}
         email["username"] = existing_username
-        email["name"] = request.form.get["fname"] + " " + request.get.form["lname"]
-        email["email"] = request.form.get("email").lower()
-        email["message"] = request.get.form["message"]
+        email["name"] = request.form["fname"] + " " + request.form["lname"]
+        email["email"] = request.form("email").lower()
+        email["message"] = request.form["message"]
 
         send_user_email(email)
         flash("Thank you for your email " + username + ". We will respond as soon as we can")
