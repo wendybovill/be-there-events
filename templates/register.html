@@ -42,22 +42,15 @@
             <!-- Email -->
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="email" name="email" type="text" class="validate white" minlength="3" maxlength="75" required>
+                    <input id="email" name="email" type="text" class="validate white" minlength="3" maxlength="75" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
                     <label for="email" >Email Address</label>
                 </div>
             </div>
             <!-- Password -->
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" name="password" type="password" class="validate white" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+                    <input id="password" name="password" type="password" class="validate white" minlength="5" maxlength="15" pattern="^[a-zA-z0-9]{5,15}$" required>
                     <label for="password">Password</label>
-                </div>
-            </div>
-            <!-- Date of Birth -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="dob" name="dob" type="text" class="datepicker validate white" minlength="3" maxlength="15" required>
-                    <label for="dob" >Date of Birth</label>
                 </div>
             </div>
             <!-- Submit -->
