@@ -116,8 +116,8 @@ def send_user_email(email):
     Regards
     </p>
     </div>
-    
-    """.format(send_user_email['username'], send_user_email['name'],send_user_email['message'])
+
+    """.format(send_user_email['username'], send_user_email['name'], send_user_email['message'])
 
     mail.send(msg)
 
@@ -411,7 +411,7 @@ def user_contact_page(username):
         email["message"] = request.form["message"]
 
         send_user_email(email)
-        flash("Thank you for your email " + username ". We will respond as soon as we can")
+        flash("Thank you for your email " + username + ". We will respond as soon as we can")
 
         session["user"] = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
