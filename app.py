@@ -90,10 +90,10 @@ def sign_up_thankyou(sign_up_email):
     mail.send(msg)
 
 
-def send_user_email(email):
+def send_user_email(user_email):
     msg = Message("User Contact Form on Event Lister",
                   sender=("Event List Team", "event_lister@wideworldwebhosting.co.uk"),
-                  recipients=[send_user_email['email']],
+                  recipients=[user_email['email']],
                   bcc=["wendybovill@gmail.com"])
 
     msg.html = """
@@ -117,7 +117,7 @@ def send_user_email(email):
     </p>
     </div>
 
-    """.format(send_user_email['username'], send_user_email['name'], send_user_email['message'])
+    """.format(user_email['username'], user_email['name'], user_email['message'], user_email['email'])
 
     mail.send(msg)
 
@@ -409,13 +409,13 @@ def user_contact_page(username):
 
     if request.method == "POST":
 
-        email = {}
-        email["username"] = existing_username
-        email["name"] = request.form["fname"] + " " + request.form["lname"]
-        email["email"] = request.form["email"]
-        email["message"] = request.form["message"]
+        user_email = {}
+        user_email["username"] = existing_username
+        user_email["name"] = request.form["fname"] + " " + request.form["lname"]
+        user_email["email"] = request.form["email"]
+        user_email["message"] = request.form["message"]
 
-        send_user_email(email)
+        send_user_email(user_email)
         flash("Thank you for your email " + username + ". We will respond as soon as we can")
 
         return render_template(
