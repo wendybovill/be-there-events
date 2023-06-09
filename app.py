@@ -31,7 +31,7 @@ mongo = PyMongo(app)
 
 
 def send_email(email):
-    msg = Message("You have received email from a customer",
+    msg = Message("Testing",
                   sender="event_lister@wideworldwebhosting.co.uk",
                   recipients=["wendybovill@gmail.com"])
 
@@ -48,13 +48,16 @@ def send_email(email):
     """.format(
         email['name'], email['email'], email['subject'], email['message'])
 
-    msg2 = Message(
-                    "Email from Event Lister",
-                    sender="event_lister@wideworldwebhosting.co.uk",
-                    recipients=[email['email']])
+    mail.send(msg)
 
-    msg2.body = """
-    Hi,
+
+def send_thankyou_email(email):
+    msg = Message("Thank you for contacting Event Lister Team",
+                  sender="event_lister@wideworldwebhosting.co.uk",
+                  recipients=email['email'])
+
+    msg.body = """
+    Hi {},
 
     Thank you for your email.
     We have received it and will respond as soon as possible.
@@ -71,7 +74,7 @@ def send_email(email):
     from Event Lister Team
 
     """.format(
-        email['name'], email['email'], email['subject'], email['message'])
+        email['name'], email['name'], email['email'], email['subject'], email['message'])
 
     mail.send(msg)
 
@@ -339,6 +342,26 @@ def contact_page():
         email["message"] = request.form["message"]
 
         send_email(email)
+
+        return redirect(url_for('contact_thankyou'))
+        return render_template('contact.html')
+
+    return render_template('contact.html')
+
+
+@app.route("/contact_thankyou", methods=["GET", "POST"])
+def contact_thankyou():
+
+    if request.method == "POST":
+
+        email = {}
+
+        email["name"] = request.form["fname"] + " " + request.form["lname"]
+        email["email"] = request.form["email"].replace(" ", "").lower()
+        email["subject"] = request.form["subject"]
+        email["message"] = request.form["message"]
+
+        send_thankyou_email(email)
 
         return render_template('contact.html')
 
