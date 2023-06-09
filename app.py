@@ -60,12 +60,10 @@ def send_email(email):
 
 
 def sign_up_thankyou(sign_up_email):
-    msg = Message("Contact form on Event Lister Website",
+    msg = Message("New Sign Up on Event Lister Website",
                   sender="event_lister@wideworldwebhosting.co.uk",
                   recipients=[sign_up_email['email']],
                   bcc=["wendybovill@gmail.com"])
-
-    msg.subject = "You have registered on the Event Lister Website"
 
     msg.body = """
     Hi {},
@@ -78,7 +76,7 @@ def sign_up_thankyou(sign_up_email):
 
     The Event Lister Team.
 
-    """.format(sign_up_email['name'], sign_up_email['email'], sign_up_email['subject'])
+    """.format(sign_up_email['name'], sign_up_email['email'])
 
     mail.send(msg)
 
@@ -351,7 +349,6 @@ def contact_page():
 
         email["name"] = request.form["fname"] + " " + request.form["lname"]
         email["email"] = request.form["email"].replace(" ", "").lower()
-        email["subject"] = request.form["subject"]
         email["message"] = request.form["message"]
 
         send_email(email)
