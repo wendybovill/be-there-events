@@ -31,52 +31,32 @@ mongo = PyMongo(app)
 
 
 def send_email(email):
-    msg = Message("Testing",
+    msg = Message("Contact form on Event Lister Website",
                   sender="event_lister@wideworldwebhosting.co.uk",
-                  recipients=["wendybovill@gmail.com"])
+                  recipients=[email['email']],
+                  bcc=["wendybovill@gmail.com"])
 
     msg.body = """
     Hi,
 
-    Name: {}
-    Email: {}
-    Subject: {}
-    Message: {}
+    We have received an email from {}.
+    We will respond as soon as we can.
 
-    sent from webforms
-
-    """.format(
-        email['name'], email['email'], email['subject'], email['message'])
-
-    mail.send(msg)
-
-
-def send_thankyou_email(email):
-    msg2 = Message("Thank you for contacting Event Lister Team",
-                  sender="event_lister@wideworldwebhosting.co.uk",
-                  recipients=email['email'])
-
-    msg2.body = """
-    Hi {},
-
-    Thank you for your email.
-    We have received it and will respond as soon as possible.
-
-    The information you have sent us is:
+    The content of the email is below.
 
     Name: {}
     Email: {}
     Subject: {}
     Message: {}
 
-    Regards,
+   Kind regards,
 
-    from Event Lister Team
+   The Event Lister Team.
 
     """.format(
         email['name'], email['name'], email['email'], email['subject'], email['message'])
 
-    mail.send(msg2)
+    mail.send(msg)
 
 
 @app.route("/")
@@ -345,25 +325,6 @@ def contact_page():
         send_email(email)
         send_thankyou_email(email)
         flash("Thank you for your email. We will respond as soon as we can")
-        return render_template('contact.html')
-
-    return render_template('contact.html')
-
-
-@app.route("/contact_thankyou", methods=["GET", "POST"])
-def contact_thankyou():
-
-    if request.method == "POST":
-
-        email = {}
-
-        email["name"] = request.form["fname"] + " " + request.form["lname"]
-        email["email"] = request.form["email"].replace(" ", "").lower()
-        email["subject"] = request.form["subject"]
-        email["message"] = request.form["message"]
-
-        send_thankyou_email(email)
-
         return render_template('contact.html')
 
     return render_template('contact.html')
