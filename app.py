@@ -32,26 +32,27 @@ mongo = PyMongo(app)
 
 def send_email(email):
     msg = Message("Contact form on Event Lister Website",
-                  sender="event_lister@wideworldwebhosting.co.uk",
+                  sender=("Event List Team", "event_lister@wideworldwebhosting.co.uk"),
                   recipients=[email['email']],
                   bcc=["wendybovill@gmail.com"])
 
-    msg.body = """
-    Hi,
+    msg.html = """
 
+    <div>
+    Hi,
+    <br>
+    <p>
     We have received an email from {}.
     We will respond as soon as we can.
-
-    The content of the email is below.
-
-    Name: {}
-    Email: {}
-    Subject: {}
-    Message: {}
-
-   Kind regards,
-
-   The Event Lister Team.
+    <br>The content of the email is below:
+    <br>
+    Name: {}<br>
+    Email: {}<br>
+    Message: {}<br>
+    Kind regards,<br>
+    The Event Lister Team.
+    </p>
+    </div>
 
     """.format(
         email['name'], email['name'], email['email'], email['subject'], email['message'])
@@ -61,21 +62,31 @@ def send_email(email):
 
 def sign_up_thankyou(sign_up_email):
     msg = Message("New Sign Up on Event Lister Website",
-                  sender="event_lister@wideworldwebhosting.co.uk",
+                  sender=("Event List Team", "event_lister@wideworldwebhosting.co.uk"),
                   recipients=[sign_up_email['email']],
                   bcc=["wendybovill@gmail.com"])
 
-    msg.body = """
+    msg.html = """
+
+    <div>
     Hi {},
+    <br>
 
-    Thank you for registering on the Event Lister Website.
+    <p>
+    Thank you for registering on the Event Lister Website.<br>
     You can list your events for free. Please login and list your first event!
-    Don't forget to tell your friend about us!
-
+    <br>Don't forget to tell your friend about us!
+    <br>
     Kind regards,
-
+    <br>
     The Event Lister Team.
-
+    <br>
+    Say hello 
+    <br>
+    Regards
+    </p>
+    </div>
+    
     """.format(sign_up_email['name'], sign_up_email['email'])
 
     mail.send(msg)
@@ -355,6 +366,34 @@ def contact_page():
         return render_template('contact.html')
 
     return render_template('contact.html')
+
+
+@app.route("/user_contact_page/<username>", methods=["GET", "POST"])
+def user_contact_page(username):
+    existing_username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+    if request.method == "POST":
+
+        email = {}
+        email["username"] = existing_username
+        email["name"] = request.form["fname"] + " " + request.form["lname"]
+        email["email"] = user.email.lower()
+        email["message"] = request.form["message"]
+
+        send_email(email)
+        flash("Thank you for your email " + username ". We will respond as soon as we can")
+
+        session["user"] = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        users = mongo.db.users.find().sort("username", 1)
+        user = mongo.db.users.find_one({"username": username})
+
+        return render_template(
+            "contact.html", username=username, user=user, users=users)
+    users = mongo.db.users.find().sort("username", 1)
+    user = mongo.db.users.find_one({"username": username})
+    return render_template(
+            "contact.html", username=username, user=user, users=users)
 
 
 @app.route("/delete_event/<event_id>", methods=["GET", "POST"])
