@@ -412,7 +412,7 @@ def user_contact_page(username):
         email = {}
         email["username"] = existing_username
         email["name"] = request.form["fname"] + " " + request.form["lname"]
-        email["email"] = user.email.lower()
+        email["email"] = request.form["email"]
         email["message"] = request.form["message"]
 
         send_user_email(email)
