@@ -30,35 +30,28 @@ mail = Mail(app)
 mongo = PyMongo(app)
 
 
-def sendTestEmail():
-    msg = Message("Our first Python Email",
+def send_email(email):
+    msg = Message("Testing",
                   sender="event_lister@wideworldwebhosting.co.uk",
                   recipients=["wendybovill@gmail.com"])
 
     msg.body = """
-    Testing
-    """
+    Hi,
 
-    msg.html = """
+    Name: {}
+    Email: {}
+    Subject: {}
+    Message: {}
 
-    <div>
-    <p>Testing</p>
-    <br>
+    sent from webforms
 
-    <p>
-    Just testing
-    </p>
-    </div>
-
-    """
+    """.format(email['name'], email['email'], email['subject'], email['message'])
 
     mail.send(msg)
-
 
 @app.route("/")
 @app.route("/home")
 def home():
-    sendTestEmail()
     return render_template("index.html")
 
 
@@ -310,14 +303,15 @@ def search_event():
 def contact_page():
 
     if request.method == "POST":
-        email_sent = {}
 
-        email_sent["fname"] = request.form["fname"]
-        email_sent["lname"] = request.form["lname"]
-        email_sent["email"] = request.form["email"].replace(" ", "").lower()
-        email_sent["message"] = request.form["message"]
+        email = {}
 
-        sendContactForm(email_sent)
+        email["name"] = request.form["fname"] + " " + request.form["lname"]
+        email["email"] = request.form["email"].replace(" ", "").lower()
+        email["subject"] = request.form["subject"]
+        email["message"] = request.form["message"]
+
+        send_email(email)
 
         return render_template('contact.html')
 
