@@ -18,9 +18,9 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 app.config['MAIL_SERVER'] = 'mail.wideworldwebhosting.co.uk'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USER_TLS'] = True
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USER_TLS'] = False
 app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = 'event_lister@wideworldwebhosting.co.uk'
