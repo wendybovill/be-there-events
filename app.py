@@ -49,6 +49,34 @@ def send_email(email):
 
     mail.send(msg)
 
+
+def send_thankyou_email(email):
+    msg = Message("Testing",
+                  sender="event_lister@wideworldwebhosting.co.uk",
+                  recipients=email['email'])
+
+    msg.body = """
+    Hi,
+
+    Thank you for your email.
+    We have received it and will respond as soon as possible.
+
+    The information you have sent us is:
+
+    Name: {}
+    Email: {}
+    Subject: {}
+    Message: {}
+
+    Regards,
+    
+    from Event Lister Team
+
+    """.format(email['name'], email['email'], email['subject'], email['message'])
+
+    mail.send(msg)
+
+
 @app.route("/")
 @app.route("/home")
 def home():
@@ -312,6 +340,7 @@ def contact_page():
         email["message"] = request.form["message"]
 
         send_email(email)
+        send_thankyou_email(email)
 
         return render_template('contact.html')
 
