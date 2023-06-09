@@ -31,7 +31,7 @@
                 <li><a href="{{ url_for('get_types')}}">View Event Types</a></li>
                 <li><a href="{{ url_for('add_type')}}">Add Event Type</a></li>
                 <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                <li><a href="{{ url_for('user_contact_page')}}">Contact Us</a></li>
+                <li><a href="{{ url_for('user_contact_page', username=session['user']))}}">Contact Us</a></li>
                 <li><a href="{{ url_for('log_out')}}">Logout</a></li>
                 {% else %}
                 <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
@@ -51,7 +51,7 @@
                 <li><a href="{{ url_for('get_types')}}">View Event Types</a></li>
                 <li><a href="{{ url_for('add_type')}}">Add Event Type</a></li>
                 <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                <li><a href="{{ url_for('user_contact_page')}}">Contact Us</a></li>
+                <li><a href="{{ url_for('user_contact_page', username=session['user']))}}">Contact Us</a></li>
                 <li><a href="{{ url_for('log_out')}}">Logout</a></li>
                 {% else %}
                 <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
