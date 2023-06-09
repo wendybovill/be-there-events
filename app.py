@@ -401,7 +401,12 @@ def contact_page():
 @app.route("/user_contact_page/<username>", methods=["GET", "POST"])
 def user_contact_page(username):
     existing_username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
+        {"username": session["user"]})["username"]
+    session["user"] = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    users = mongo.db.users.find().sort("username", 1)
+    user = mongo.db.users.find_one({"username": username})
+
     if request.method == "POST":
 
         email = {}
@@ -412,11 +417,6 @@ def user_contact_page(username):
 
         send_user_email(email)
         flash("Thank you for your email " + username + ". We will respond as soon as we can")
-
-        session["user"] = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
-        users = mongo.db.users.find().sort("username", 1)
-        user = mongo.db.users.find_one({"username": username})
 
         return render_template(
             "user_contact.html", username=username, user=user, users=users)
