@@ -31,7 +31,7 @@ mongo = PyMongo(app)
 
 
 def send_email(email):
-    msg = Message("Testing",
+    msg = Message("You have received email from a customer",
                   sender="event_lister@wideworldwebhosting.co.uk",
                   recipients=["wendybovill@gmail.com"])
 
@@ -45,17 +45,15 @@ def send_email(email):
 
     sent from webforms
 
-    """.format(email['name'], email['email'], email['subject'], email['message'])
+    """.format(
+        email['name'], email['email'], email['subject'], email['message'])
 
-    mail.send(msg)
+    msg2 = Message(
+                    "Email from Event Lister",
+                    sender="event_lister@wideworldwebhosting.co.uk",
+                    recipients=[email['email']])
 
-
-def send_thankyou_email(email):
-    msg = Message("Testing",
-                  sender="event_lister@wideworldwebhosting.co.uk",
-                  recipients=email['email'])
-
-    msg.body = """
+    msg2.body = """
     Hi,
 
     Thank you for your email.
@@ -69,10 +67,11 @@ def send_thankyou_email(email):
     Message: {}
 
     Regards,
-    
+
     from Event Lister Team
 
-    """.format(email['name'], email['email'], email['subject'], email['message'])
+    """.format(
+        email['name'], email['email'], email['subject'], email['message'])
 
     mail.send(msg)
 
@@ -340,7 +339,6 @@ def contact_page():
         email["message"] = request.form["message"]
 
         send_email(email)
-        send_thankyou_email(email)
 
         return render_template('contact.html')
 
