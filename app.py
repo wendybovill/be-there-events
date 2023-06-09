@@ -104,8 +104,6 @@ def sign_up():
             flash("That email address is already registered")
             return redirect(url_for("sign_up"))
 
-        mongo.db.users.insert_one(sign_up)
-
         sign_up = {
             "username": request.form.get("username"),
             "fname": request.form.get("fname").lower(),
@@ -114,6 +112,7 @@ def sign_up():
             "password": generate_password_hash(
                 request.form.get("password")),
         }
+        mongo.db.users.insert_one(sign_up)
 
         sign_up_email = {}
 
