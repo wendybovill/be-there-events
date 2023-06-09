@@ -52,11 +52,11 @@ def send_email(email):
 
 
 def send_thankyou_email(email):
-    msg = Message("Thank you for contacting Event Lister Team",
+    msg2 = Message("Thank you for contacting Event Lister Team",
                   sender="event_lister@wideworldwebhosting.co.uk",
                   recipients=email['email'])
 
-    msg.body = """
+    msg2.body = """
     Hi {},
 
     Thank you for your email.
@@ -76,7 +76,7 @@ def send_thankyou_email(email):
     """.format(
         email['name'], email['name'], email['email'], email['subject'], email['message'])
 
-    mail.send(msg)
+    mail.send(msg2)
 
 
 @app.route("/")
