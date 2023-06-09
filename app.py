@@ -59,6 +59,30 @@ def send_email(email):
     mail.send(msg)
 
 
+def sign_up_thankyou(sign_up_email):
+    msg = Message("Contact form on Event Lister Website",
+                  sender="event_lister@wideworldwebhosting.co.uk",
+                  recipients=[sign_up_email['email']],
+                  bcc=["wendybovill@gmail.com"])
+
+    msg.subject = "You have registered on the Event Lister Website"
+
+    msg.body = """
+    Hi {},
+
+    Thank you for registering on the Event Lister Website.
+    You can list your events for free. Please login and list your first event!
+    Don't forget to tell your friend about us!
+
+    Kind regards,
+
+    The Event Lister Team.
+
+    """.format(sign_up_email['name'], sign_up_email['email'], sign_up_email['subject'])
+
+    mail.send(msg)
+
+
 @app.route("/")
 @app.route("/home")
 def home():
@@ -83,6 +107,15 @@ def sign_up():
             "password": generate_password_hash(
                 request.form.get("password")),
         }
+
+        sign_up_email = {}
+
+        sign_up_email["name"] = request.form["fname"] + " " + request.form["lname"]
+        sign_up_email["email"] = request.form["email"].replace(" ", "").lower()
+
+        sign_up_thankyou(sign_up_email)
+        flash("Thank you for your registering. You can list your first event!")
+
         if existing_username:
             flash("That username is taken")
             return redirect(url_for("sign_up"))
@@ -310,7 +343,6 @@ def search_event():
 
 
 @app.route("/contact_page", methods=["GET", "POST"])
-
 def contact_page():
 
     if request.method == "POST":
