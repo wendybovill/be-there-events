@@ -315,7 +315,7 @@ form.no-style, form.no-style.validate {
     background-color: unset;
 }
 
-input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-default):disabled+label, input[type="checkbox"] {
+input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-default):disabled+label, input[type="checkbox"], .input {
     color:black;
     border: unset;
     text-align: left;
