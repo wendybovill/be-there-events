@@ -323,7 +323,6 @@ def contact_page():
         email["message"] = request.form["message"]
 
         send_email(email)
-        send_thankyou_email(email)
         flash("Thank you for your email. We will respond as soon as we can")
         return render_template('contact.html')
 
