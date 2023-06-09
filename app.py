@@ -330,6 +330,7 @@ def search_event():
 
 
 @app.route("/contact_page", methods=["GET", "POST"])
+
 def contact_page():
 
     if request.method == "POST":
@@ -342,8 +343,8 @@ def contact_page():
         email["message"] = request.form["message"]
 
         send_email(email)
-
-        return redirect(url_for('contact_thankyou'))
+        send_thankyou_email(email)
+        flash("Thank you for your email. We will respond as soon as we can")
         return render_template('contact.html')
 
     return render_template('contact.html')
