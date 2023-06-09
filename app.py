@@ -96,6 +96,16 @@ def sign_up():
         existing_email = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()}
         )
+
+        if existing_username:
+            flash("That username is taken")
+            return redirect(url_for("sign_up"))
+        elif existing_email:
+            flash("That email address is already registered")
+            return redirect(url_for("sign_up"))
+
+        mongo.db.users.insert_one(sign_up)
+
         sign_up = {
             "username": request.form.get("username"),
             "fname": request.form.get("fname").lower(),
@@ -111,18 +121,9 @@ def sign_up():
         sign_up_email["email"] = request.form["email"].replace(" ", "").lower()
 
         sign_up_thankyou(sign_up_email)
-        flash("Thank you for your registering. You can list your first event!")
-
-        if existing_username:
-            flash("That username is taken")
-            return redirect(url_for("sign_up"))
-        elif existing_email:
-            flash("That email address is already registered")
-            return redirect(url_for("sign_up"))
-
-        mongo.db.users.insert_one(sign_up)
 
         session["user"] = request.form.get("username")
+        flash("Thank you for your registering. You can list your first event!")
         flash("Welcome to BeThere Events!")
         return redirect(url_for("profile", username=session["user"]))
     return render_template("register.html")
