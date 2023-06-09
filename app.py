@@ -413,7 +413,7 @@ def user_contact_page(username):
         user_email["username"] = existing_username
         user_email["name"] = request.form["fname"] + " " + request.form["lname"]
         user_email["message"] = request.form["message"]
-        user_email["username"] = existing_username.email
+        user_email["email"] = existing_username.email
 
         send_user_email(user_email)
         flash("Thank you for your email " + username + ". We will respond as soon as we can")
