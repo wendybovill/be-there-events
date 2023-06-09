@@ -100,7 +100,6 @@ def sign_up():
             "username": request.form.get("username"),
             "fname": request.form.get("fname").lower(),
             "lname": request.form.get("lname").lower(),
-            "dob": request.form.get("dob").lower(),
             "email": request.form.get("email").lower(),
             "password": generate_password_hash(
                 request.form.get("password")),
