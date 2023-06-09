@@ -5,6 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_mail import Mail, Message
 if os.path.exists("env.py"):
     import env
 
@@ -16,13 +17,48 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
+app.config['MAIL_SERVER'] = 'mail.wideworldwebhosting.co.uk'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USER_TLS'] = True
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = 'event_lister@wideworldwebhosting.co.uk'
+mail = Mail(app)
+
 
 mongo = PyMongo(app)
+
+
+def sendTestEmail():
+    msg = Message("Our first Python Email",
+                  sender="event_lister@wideworldwebhosting.co.uk",
+                  recipients=["wendybovill@gmail.com"])
+
+    msg.body = """
+    Testing
+    """
+
+    msg.html = """
+
+    <div>
+    <p>Testing</p>
+    <br>
+
+    <p>
+    Just testing
+    </p>
+    </div>
+
+    """
+
+    mail.send(msg)
 
 
 @app.route("/")
 @app.route("/home")
 def home():
+    sendTestEmail()
     return render_template("index.html")
 
 
@@ -270,6 +306,24 @@ def search_event():
     return render_template("events.html", events=events)
 
 
+@app.route("/contact_page", methods=["GET", "POST"])
+def contact_page():
+
+    if request.method == "POST":
+        email_sent = {}
+
+        email_sent["fname"] = request.form["fname"]
+        email_sent["lname"] = request.form["lname"]
+        email_sent["email"] = request.form["email"].replace(" ", "").lower()
+        email_sent["message"] = request.form["message"]
+
+        sendContactForm(email_sent)
+
+        return render_template('contact.html')
+
+    return render_template('contact.html')
+
+
 @app.route("/delete_event/<event_id>", methods=["GET", "POST"])
 def delete_event(event_id):
     types = mongo.db.types.find().sort("type_name", 1)
@@ -286,7 +340,7 @@ def delete_event_confirm(event_id):
 
 
 """Error Handling
-As part of Error handling I have redirected the HPPT 404 Not found request 
+As part of Error handling I have redirected the HPPT 404 Not found request
 back to the Index Home page, with a flash message informing the user
 what they have looked for can't be found
 """

@@ -83,7 +83,7 @@ h1 {
     margin-block-end: unset;
 
     font-weight: bold;
-    }
+}
 
 h1 { 
     font-size: 2em!important;
@@ -321,6 +321,7 @@ input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-d
     text-align: left;
     border-radius: 10px;
     padding: 2px 5px;
+    background-color: rgb(226, 226, 226);
 }
 
 input[type=text]:not(.browser-default), input[type="checkbox"], .select-wrapper.invalid>input.select-dropdown, .select-wrapper.invalid>input.select-dropdown:focus, input.valid[type=password]:not(.browser-default), input.invalid[type=password]:not(.browser-default), input[type=password]:not(.browser-default), input.invalid[type=text]:not(.browser-default) {

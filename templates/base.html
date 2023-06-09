@@ -33,6 +33,7 @@
                 <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                 <li><a href="{{ url_for('log_out')}}">Logout</a></li>
                 {% else %}
+                <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
                 <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
                 <li><a href="{{ url_for('log_in')}}">Log In</a></li>
                 {% endif %}
