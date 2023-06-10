@@ -177,7 +177,6 @@ def sign_up():
     return render_template("register.html")
 
 
-@app.route("/verify_email", methods=["GET", "POST"])
 @app.route("/verify_email/<username>", methods=["GET", "POST"])
 def verify_email(username):
 
