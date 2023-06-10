@@ -187,29 +187,24 @@ def verify_email(username):
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email")})
 
-        if existing_user:
-            if check_password_hash(
-                existing_user["password"], request.form.get(
-                        "password")):
-                session["user"] = request.form.get("username")
+        if check_password_hash(
+            existing_user["password"], request.form.get(
+                    "password")):
+            session["user"] = request.form.get("username")
 
-                update = {
-                    "verified": request.form.get("verify")
-                }
+            update = {
+                "verified": request.form.get("verify")
+            }
 
-                mongo.db.users.find().sort("username", 1)
-                mongo.db.users.find_one(
-                    {"username": request.form.get("username")})
-                mongo.db.users.insert_one(update)
-                flash("You have verified your email address please login")
-                return redirect(url_for(
-                    "profile", username=session["user"]))
-            else:
-                # password not matching
-                flash("Please check your login details")
-
+            mongo.db.users.find().sort("username", 1)
+            mongo.db.users.find_one(
+                {"username": request.form.get("username")})
+            mongo.db.users.upsert_one(update)
+            flash("You have verified your email address please login")
+            return redirect(url_for(
+                "profile", username=session["user"]))
         else:
-            # user is not found in database
+            # password not matching
             flash("Please check your login details")
 
         session["user"] = request.form.get("username")
@@ -222,7 +217,7 @@ def verify_email(username):
     user = mongo.db.users.find_one({"username": username})
     username = mongo.db.users.find_one(
             {"username": request.form.get("username")})
-    return render_template("verify.html", username=username)
+    return render_template("verify.html")
 
 
 @app.route("/log_in", methods=["GET", "POST"])
