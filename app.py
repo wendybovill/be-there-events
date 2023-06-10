@@ -181,7 +181,7 @@ def sign_up():
 def verify_email(username):
     if request.method == "POST":
         existing_username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
+            request.form.get("username"))["username"]
         verified = "yes" if request.form.get("verified") else "no"
 
         update = {
