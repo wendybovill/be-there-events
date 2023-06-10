@@ -168,9 +168,12 @@ def sign_up():
         sign_up_thankyou(sign_up_email)
 
         session["user"] = request.form.get("username")
-        flash("Thank you for your registering. You can list your first event!")
+        flashmessage1 = "Thankyou for registering. Please check "
+        flashmessage2 = "your emails and verify your email address."
+
+        flash(flashmessage1 + flashmessage2)
         flash("Welcome to BeThere Events!")
-        return redirect("verify_email", username=session["user"])
+        return render_template("index.html")
     return render_template("register.html")
 
 
@@ -203,9 +206,9 @@ def verify_email(username):
                         "username")}, {"$set": update})
 
                 flash("You have verified your email address")
-                return redirect(url_for(
-                    "profile", username=session["user"],
-                    user=user, users=users))
+                return render_template(
+                    "profile.html", username=session["user"],
+                    user=user, users=users)
             else:
                 # password not matching
                 flash("Please check your login details")
@@ -222,7 +225,7 @@ def verify_email(username):
     username = mongo.db.users.find_one(
             {"username": request.form.get("username")})
     return render_template(
-        "verify.html", username=username, user=user, users=users)
+        "verify.html", username=username)
 
 
 @app.route("/log_in", methods=["GET", "POST"])
