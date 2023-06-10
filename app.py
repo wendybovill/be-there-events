@@ -198,8 +198,8 @@ def verify_email(username):
                     "verified": "yes"
                 }
 
-                users = mongo.db.users.find().sort("username", 1)
-                user = mongo.db.users.find_one(
+                mongo.db.users.find().sort("username", 1)
+                mongo.db.users.find_one(
                     {"username": request.form.get("username")})
                 mongo.db.users.update_one(
                     {"username": request.form.get(
