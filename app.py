@@ -266,14 +266,17 @@ def log_in():
                 flashmessage1 = "Please check your emails"
                 flashmessage2 = " and verify your email address"
                 flash(flashmessage1 + flashmessage2)
-
         else:
             # user is not found in database
             flash("Please check your login details")
             return redirect(url_for("log_in"))
 
-        session["user"] = request.form.get("username")
-        flash("Welcome to BeThere! Events")
+        return render_template("profile.html",
+                               username=username,
+                               user=user, users=users)
+
+    session["user"] = request.form.get("username")
+    flash("Welcome to BeThere! Events")
     return render_template("login.html")
 
 
