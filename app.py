@@ -260,15 +260,20 @@ def log_in():
     return render_template("login.html")
 
 
-@app.route("/log_out")
-def log_out():
+@app.route("/log_out/<username>")
+def log_out(username):
+    users = mongo.db.users.find().sort("username", 1)
+    user = mongo.db.users.find_one({"username": username})
     # redirect to confirmation page
     flash("Are you sure you want to log out?")
-    return render_template("log_out_confirm.html")
+    return render_template(
+        "log_out_confirm.html", username=username, user=user, users=users)
 
 
-@app.route("/log_out_confirm")
-def log_out_confirm():
+@app.route("/log_out_confirm/<username>")
+def log_out_confirm(username):
+    users = mongo.db.users.find().sort("username", 1)
+    user = mongo.db.users.find_one({"username": username})
     session.pop("user")
     flash("You are now logged out.")
     return redirect(url_for("get_events"))
