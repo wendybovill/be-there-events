@@ -178,51 +178,30 @@ def sign_up():
 
 
 @app.route("/verify_email/<username>", methods=["GET", "POST"])
-def verify_email(username):
-
+def verify(username):
     if request.method == "POST":
+        existing_username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        verified = "yes" if request.form.get("verified") else "no"
+
+        update = {
+            "verified": verified
+        }
+
+        mongo.db.users.update_one({"username": username}, {"$set": update})
+
+        session["user"] = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one({"username": username})
-        username = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
-        existing_email = mongo.db.users.find_one(
-            {"email": request.form.get("email")})["email"]
-        existing_user: mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
-
-        if existing_email == existing_user.email:
-
-            if check_password_hash(
-                existing_user["password"], request.form.get(
-                        "password")):
-                session["user"] = request.form.get("username")["username"]
-
-                data = {
-                    "verified": "yes"
-                }
-
-                mongo.db.users.find().sort("username", 1)
-                mongo.db.users.find_one(
-                    {"username": request.form.get("username")})
-                mongo.db.users.update_one(data)
-                flash("You have verified your email address please login")
-                return redirect(url_for(
-                    "profile", username=username))
-            else:
-                # password not matching
-                flash("Please check your login details")
-
-        session["user"] = request.form.get("username")
-        username = session["user"]
-        flash("Please Verify Your Email Address")
-        flash("Welcome to BeThere! Events")
-        return redirect(url_for("verify_email", username=username))
+        flash("Your Profile has been updated " + username)
+        return render_template(
+            "profile.html", username=username, user=user, users=users)
 
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
-    username = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
-    return render_template("verify.html")
+    return render_template(
+        "verify.html", username=username, user=user, users=users)
 
 
 @app.route("/log_in", methods=["GET", "POST"])

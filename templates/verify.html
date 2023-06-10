@@ -44,14 +44,18 @@
                 <label for="password">Password</label>
             </div>
         </div>
-        <!-- Username -->
-        <div class="row hidden">
-            <div class="input-field col s12">
-                <i class="fas fa-user-plus prefix"></i>
-                <input id="verify" name="verify" type="text" class="validate white" minlength="3" maxlength="75" value="yes">
-                <label for="verify" >Verify</label>
+            <!-- Verified email checkbox -->
+        <div class="row white">
+            <div class="input-field  col s12 switch">
+                <p>
+                <i class="fa fa-credit-card prefix" aria-hidden="true"></i>
+                <label for="verified">Email Verify<span>Yes</span>
+                        <input id="verified" name="verified" type="checkbox" checked>
+                </label>
+            </p>
             </div>
         </div>
+
         <!-- Submit -->
         <div class="">
             <button type="submit" class="col s6 btn-large indigo white-text text-shadow centered">Login <i class="fas fa-sign-in-alt"></i></button>
