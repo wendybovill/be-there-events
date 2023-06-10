@@ -47,8 +47,12 @@
             <!-- Verified email checkbox -->
         <div class="row col s12 ">
             <div class="switch">
+            {% if user.verified == "yes" %}
+                <input id="verified" name="verified" type="checkbox">
+            {% else %}
                 <input id="verified" name="verified" type="checkbox" checked>
-                <label for="verified">Email Verify</label><span>Yes</span>
+            {% endif%}
+            <span class="lever"></span>Yes <small>Verify Email</small></label>
             </div>
         </div>
 
