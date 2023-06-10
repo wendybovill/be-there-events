@@ -13,30 +13,33 @@
 
         <div class="row centered">
             <div class="row">
+                <p>Hello {{ username }},<br><br>
+                If you have any queries, please send us an email by filling in your message below.<br><br>
+                Your message will use the name and email that you have registered with us.</p>
                 <form class="col m18 s12" method="POST" action="{{ url_for('user_contact_page', username=session['user']) }}">    
                 <!-- First name -->
-                <div class="row white">
+                <div class="row white hidden">
                     <div class="input-field col s12">
                         <i class="fas fa-user prefix"></i>
-                        <span class="grey-text text-darken-3 input">{{ username }}</span>
+                        <div class="grey-text text-darken-3 input">{{ username }}</div>
                         <input id="username" name="username" type="text" class="validate section scrollspy hidden" minlength="2" maxlength="250" value="{{ username }}">
                         <label for="username">Username</label>
                     </div>
                 </div>
                     <!-- First name -->
-                <div class="row white">
+                <div class="row white hidden">
                     <div class="input-field col s12">
                         <i class="fas fa-user prefix"></i>
-                        <span class="grey-text text-darken-3 input">{{ user.fname|title }}</span>
+                        <div class="grey-text text-darken-3 input">{{ user.fname|title }}</div>
                         <input id="fname" name="fname" type="text" class="validate section scrollspy hidden" minlength="2" maxlength="250" value="{{ user.fname|title }}" >
                         <label for="fname">First Name</label>
                     </div>
                 </div>
                 <!-- Lastname -->
-                <div class="row white">
+                <div class="row white hidden">
                     <div class="input-field col s12">
                     <i class="prefix fa fa-user" aria-hidden="true"></i>
-                    <span class="grey-text text-darken-3 input">{{ user.lname|title }}</span>
+                    <div class="grey-text text-darken-3 input">{{ user.lname|title }}</div>
                     <input id="lname" name="lname" type="text" class="validate hidden" minlength="2" maxlength="85" value="{{ user.lname|title }}" >
                     <label for="lname">Your Lastname</label>
                     </div>
@@ -45,7 +48,7 @@
                 <div class="row white hidden">
                     <div class="input-field col s12">
                     <i class="prefix fa fa-mouse-pointer" aria-hidden="true"></i>
-                    <span class="grey-text text-darken-3 input">{{ user.email }}</span>
+                    <div class="grey-text text-darken-3 input">{{ user.email }}</div>
                     <input id="email" name="email" type="text" class="validate hidden" minlength="2" maxlength="85" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="{{ user.email }}" >
                     <label for="email">Email Address</label>
                     </div>

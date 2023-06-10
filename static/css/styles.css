@@ -315,7 +315,7 @@ form.no-style, form.no-style.validate {
     background-color: unset;
 }
 
-input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-default):disabled+label, input[type="checkbox"], .input {
+input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-default):disabled+label, input[type="checkbox"] {
     color:black;
     border: unset;
     text-align: left;
@@ -345,6 +345,20 @@ input[type=password]:not(.browser-default).validate+label, input[type=password]:
 
 .input-field>label {
     color: black;
+}
+
+div.input {
+    color:rgb(53, 53, 53);
+    border: unset;
+    text-align: left;
+    border-radius: 20px;
+    padding: 8px 10px;
+    background-color: rgb(233, 233, 233);
+    height: 47px;
+    width: 100%;
+    text-indent: 50px;
+    margin-top:10px;
+    vertical-align: middle;
 }
 
 label {
@@ -424,7 +438,6 @@ input[type=search]:not(.browser-default)::placeholder, textarea.materialize-text
     width: 75%;
     font-size: 16px;
     margin: 0 0 8px 0;
-    padding: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
     -webkit-box-sizing: content-box;
@@ -442,10 +455,15 @@ input.search {
     display: inline;
 }
 
-input.textarea {
-    border-radius: 10px;
-    padding: 0 10px;
+.input-field .prefix ~ textarea {
+    border-radius: 20px;
+    padding: 10px;
     width: 100%;
+    text-indent: 25px;
+    margin: 12px 40px 0 0;
+    height: 80px;
+    background-color: rgb(243, 243, 243);
+    border: 1px solid rgb(216, 216, 216);
 }
 
 .hidden {
@@ -453,7 +471,7 @@ input.textarea {
 }
 
 label, input[type=text] {
-    padding: 0 5px;
+    padding: 5px;
     text-indent: 10px;
 }
 
