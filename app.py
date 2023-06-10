@@ -186,7 +186,7 @@ def verify_email(username):
         verified = mongo.db.users.find_one(
             {"username": request.form.get("username")})
         existing_username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
+            {"username": request.form.get("username")})["username"]
         verify == "yes" if request.form.get("verified") else "no"
 
         update = {
