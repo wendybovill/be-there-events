@@ -229,6 +229,8 @@ def log_in():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
+        verified = mongo.db.users.find_one(
+            {"username": verified})
 
         if existing_user:
             if check_password_hash(
