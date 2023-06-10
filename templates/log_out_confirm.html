@@ -15,7 +15,7 @@
                             <!-- cancel button -->
                                 <a href="{{ url_for('get_events') }}" class="btn-small grey darken-3 text-shadow white-text">Cancel</a>
                             <!-- logout confirm button -->
-                                <a href="{{ url_for('log_out_confirm')}}" class="btn-small grey darken 1 accent-4">Yes Logout</a>
+                                <a href="{{ url_for('log_out_confirm', username=session['user'])}}" class="btn-small grey darken 1 accent-4">Yes Logout</a>
                             </p>
                         </div>
                     </div>
