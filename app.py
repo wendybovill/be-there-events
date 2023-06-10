@@ -227,12 +227,17 @@ def verify_email(username):
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
     if request.method == "POST":
+        users = mongo.db.users.find().sort("username", 1)
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
-        verified = mongo.db.users.find_one(
-            {"username": verified})
 
         if existing_user:
+
+            if existing_user({"username": verified}) == "yes":
+                verified = "yes"
+            else:
+                verified = "no"
+
             if check_password_hash(
                 existing_user["password"], request.form.get(
                         "password")):
