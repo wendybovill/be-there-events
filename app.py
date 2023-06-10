@@ -205,32 +205,30 @@ def verify_email(username):
                     {"username": request.form.get(
                         "username")}, {"$set": update})
 
-                flash("You have verified your email address")
-                return render_template(
-                    "profile.html", username=session["user"])
+                flash("You have verified your email address please login")
+                return redirect(url_for(
+                    "profile", username=session["user"]))
             else:
                 # password not matching
                 flash("Please check your login details")
                 return render_template(
-                                       "verify.html", username=username)
-
+                    "verify.html", username=session["user"])
         else:
             # user is not found in database
             flash("Please check your login details")
-            return render_template(
-                                   "verify.html", username=username)
+            return render_template("verify.html", username=session["user"])
 
+        session["user"] = request.form.get("username")
+        username = session["user"]
         flash("Please Verify Your Email Address")
         flash("Welcome to BeThere! Events")
-        return render_template(
-        "verify.html", username=username)
+        return render_template("verify.html", username=session["user"])
 
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
     username = mongo.db.users.find_one(
             {"username": request.form.get("username")})
-    return render_template(
-        "verify.html", username=username)
+    return render_template("verify.html", username=username)
 
 
 @app.route("/log_in", methods=["GET", "POST"])
