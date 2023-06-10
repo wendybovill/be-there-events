@@ -272,9 +272,7 @@ def log_in():
             return redirect(url_for("log_in"))
 
         users = mongo.db.users.find().sort("username", 1)
-        user = mongo.db.users.find_one({"username": username})
         session["user"] = request.form.get("username")
-        session_user = session["user"]
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
         return render_template("profile.html",
