@@ -179,35 +179,39 @@ def sign_up():
 
 @app.route("/verify_email", methods=["GET", "POST"])
 @app.route("/verify_email/<username>", methods=["GET", "POST"])
-def verify_email():
+def verify_email(username):
 
     if request.method == "POST":
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one({"username": username})
         username = mongo.db.users.find_one(
             {"username": request.form.get("username")})
-        existing_user = mongo.db.users.find_one(
-            {"email": request.form.get("email")})
+        existing_email = mongo.db.users.find_one(
+            {"email": request.form.get("email")})["email"]
+        existing_user: mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
 
-        if check_password_hash(
-            existing_user["password"], request.form.get(
-                    "password")):
-            session["user"] = request.form.get("username")[username]
+        if existing_email == existing_user.email:
 
-            data = {
-                "verified": "yes"
-            }
+            if check_password_hash(
+                existing_user["password"], request.form.get(
+                        "password")):
+                session["user"] = request.form.get("username")["username"]
 
-            mongo.db.users.find().sort("username", 1)
-            mongo.db.users.find_one(
-                {"username": request.form.get("username")})
-            mongo.db.users.update_one(data)
-            flash("You have verified your email address please login")
-            return redirect(url_for(
-                "profile", username=session["user"]))
-        else:
-            # password not matching
-            flash("Please check your login details")
+                data = {
+                    "verified": "yes"
+                }
+
+                mongo.db.users.find().sort("username", 1)
+                mongo.db.users.find_one(
+                    {"username": request.form.get("username")})
+                mongo.db.users.update_one(data)
+                flash("You have verified your email address please login")
+                return redirect(url_for(
+                    "profile", username=session["user"]))
+            else:
+                # password not matching
+                flash("Please check your login details")
 
         session["user"] = request.form.get("username")
         username = session["user"]
