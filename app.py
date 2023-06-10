@@ -195,7 +195,7 @@ def verify_email(username):
                 session["user"] = request.form.get("username")
 
                 update = {
-                    "verified": "yes"
+                    "verified": request.form.get("verify")
                 }
 
                 mongo.db.users.find().sort("username", 1)
