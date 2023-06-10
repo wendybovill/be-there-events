@@ -154,7 +154,6 @@ def sign_up():
             "email": request.form.get("email").lower(),
             "password": generate_password_hash(
                 request.form.get("password")),
-            "verified": "no",
         }
         mongo.db.users.insert_one(sign_up)
         fullname = request.form["fname"] + " " + request.form["lname"]
@@ -181,10 +180,10 @@ def sign_up():
 def verify_email(username):
 
     if request.method == "POST":
-        username = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one({"username": username})
+        username = mongo.db.users.find_one(
+            {"username": request.form.get("username")})
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email")})
 
@@ -201,28 +200,23 @@ def verify_email(username):
                 mongo.db.users.find().sort("username", 1)
                 mongo.db.users.find_one(
                     {"username": request.form.get("username")})
-                mongo.db.users.update_one(
-                    {"username": request.form.get(
-                        "username")}, {"$set": update})
-
+                mongo.db.users.insert_one(update)
                 flash("You have verified your email address please login")
                 return redirect(url_for(
                     "profile", username=session["user"]))
             else:
                 # password not matching
                 flash("Please check your login details")
-                return render_template(
-                    "verify.html", username=session["user"])
+
         else:
             # user is not found in database
             flash("Please check your login details")
-            return render_template("verify.html", username=session["user"])
 
         session["user"] = request.form.get("username")
         username = session["user"]
         flash("Please Verify Your Email Address")
         flash("Welcome to BeThere! Events")
-        return render_template("verify.html", username=session["user"])
+        return redirect(url_for("verify_email", username=session["user"]))
 
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
