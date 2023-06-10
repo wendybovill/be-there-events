@@ -32,7 +32,7 @@
                 <li><a href="{{ url_for('add_type')}}">Add Event Type</a></li>
                 <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                 <li><a href="{{ url_for('user_contact_page', username=session['user'])}}">Contact Us</a></li>
-                <li><a href="{{ url_for('log_out')}}">Logout</a></li>
+                <li><a href="{{ url_for('log_out', username=session['user'])}}">Logout</a></li>
                 {% else %}
                 <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
                 <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
