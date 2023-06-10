@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="center h1">Login</div>
+<div class="center h1">Email Verification</div>
 
 <div class="section">
     {% with messages = get_flashed_messages() %}
@@ -17,7 +17,8 @@
 </div>
 
 <div class="box-form black-text">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('log_in')}}">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('verify_email', username=session['user'])}}">
+        <p>Please Verify Your Email Address</p>
         <!-- Username -->
         <div class="row">
             <div class="input-field col s12">
@@ -27,12 +28,28 @@
                 <span>* <small>Your username is case sensitive</small> *</span>
             </div>
         </div>
+        <!-- email -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-user-plus prefix"></i>
+                <input id="email" name="email" type="text" class="validate white" minlength="3" maxlength="75" pattern="^[a-zA-Z0-9._^$%£*;/=&`{|}~]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+                <label for="email" >Email Address</label>
+            </div>
+        </div>
         <!-- Password -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-user-lock prefix"></i>
                 <input id="password" name="password" type="password" class="validate white" minlength="5" maxlength="50" required>
                 <label for="password">Password</label>
+            </div>
+        </div>
+        <!-- Username -->
+        <div class="row hidden">
+            <div class="input-field col s12">
+                <i class="fas fa-user-plus prefix"></i>
+                <input id="verify" name="verify" type="text" class="validate white" minlength="3" maxlength="75" value="yes">
+                <label for="verify" >Verify</label>
             </div>
         </div>
         <!-- Submit -->
