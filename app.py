@@ -240,11 +240,12 @@ def log_in():
             existing_user = user
             session["user"] = request.form.get("username")
             session_user = session["user"]
-            verify = mongo.db.users.find_one(
-                                            {"username": request.form.get("username")},
-                                            {"verified": ""}
+            user_verified = mongo.db.users.find_one(
+                                            {"username": request.form.get(
+                                                "username")},
+                                            {"verified": "yes"}
                                             )
-            if verify == "yes":
+            if user_verfied:
                 verified = "yes"
             else:
                 verified = "no"
