@@ -208,7 +208,7 @@ def verify_email(username):
                 mongo.db.users.update_one(data)
                 flash("You have verified your email address please login")
                 return redirect(url_for(
-                    "profile", username=session["user"]))
+                    "profile", username=username))
             else:
                 # password not matching
                 flash("Please check your login details")
@@ -217,13 +217,13 @@ def verify_email(username):
         username = session["user"]
         flash("Please Verify Your Email Address")
         flash("Welcome to BeThere! Events")
-        return redirect(url_for("verify_email", username=session["user"]))
+        return redirect(url_for("verify_email", username=username))
 
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
     username = mongo.db.users.find_one(
             {"username": request.form.get("username")})
-    return render_template("verify.html")
+    return render_template("verify.html", username=username)
 
 
 @app.route("/log_in", methods=["GET", "POST"])
