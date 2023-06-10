@@ -180,9 +180,12 @@ def sign_up():
 @app.route("/verify_email/<username>", methods=["GET", "POST"])
 def verify_email(username):
     if request.method == "POST":
+        user = mongo.db.users.find_one(
+            {"username": request.form.get("username")})
+        verify = mongo.db.users.find_one({"username": "verified"})
         existing_username = mongo.db.users.find_one(
             request.form.get("username"))["username"]
-        verified = "yes" if request.form.get("verified") else "no"
+        verified == "yes" if request.form.get("verified") else "no"
 
         update = {
             "verified": verified
