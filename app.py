@@ -234,7 +234,7 @@ def log_in():
 
         if existing_user:
             users = mongo.db.users.find().sort("username", 1)
-            user = mongo.db.users.find_one({"username": username})
+            user = mongo.db.users.find_one({"username": request.form.get("username")})
             existing_user = mongo.db.users.find_one(
                 {"username": request.form.get("username")})
             if existing_user({"username": verified}) == "yes":
