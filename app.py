@@ -170,7 +170,8 @@ def sign_up():
         session["user"] = request.form.get("username")
         flash("Thank you for your registering. You can list your first event!")
         flash("Welcome to BeThere Events!")
-        return redirect(url_for("profile", username=session["user"]))
+        return redirect("verify_email", username=session["user"],
+                        user=user, users=users)
     return render_template("register.html")
 
 
@@ -204,7 +205,8 @@ def verify_email(username):
 
                 flash("You have verified your email address please login")
                 return redirect(url_for(
-                    "profile", username=session["user"]))
+                    "profile", username=session["user"],
+                    user=user, users=users))
             else:
                 # password not matching
                 flash("Please check your login details")
