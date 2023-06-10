@@ -240,33 +240,32 @@ def log_in():
             existing_user = user
             session["user"] = request.form.get("username")
             session_user = session["user"]
-            user_verified = mongo.db.users.find_one(
+            verify = mongo.db.users.find_one(
                                             {"username": request.form.get(
-                                                "username")},
+                                                        "username")},
                                             {"verified": "yes"}
                                             )
-            if user_verfied:
+            if verify == "yes":
                 verified = "yes"
-            else:
-                verified = "no"
-
-            if check_password_hash(
-                existing_user["password"], request.form.get(
-                        "password")):
-                session["user"] = request.form.get("username")
-                flash("Welcome, {}".format(
-                    request.form.get("username")))
-                if verified == "yes":
+                
+                if check_password_hash(
+                    existing_user["password"], request.form.get(
+                            "password")):
+                    session["user"] = request.form.get("username")
+                    flash("Welcome, {}".format(
+                        request.form.get("username")))
                     return redirect(url_for(
-                        "profile", username=session["user"]))
+                            "profile", username=session["user"]))
                 else:
-                    flashmessage1 = "Please check your emails"
-                    flashmessage2 = " and verify your email address"
-                    flash(flashmessage1 + flashmessage2)
+                    # password not matching
+                    flash("Please check your login details")
+                    return redirect(url_for(("log_in")))
+
             else:
-                # password not matching
-                flash("Please check your login details")
-                return redirect(url_for(("log_in")))
+                flashmessage1 = "Please check your emails"
+                flashmessage2 = " and verify your email address"
+                flash(flashmessage1 + flashmessage2)
+
         else:
             # user is not found in database
             flash("Please check your login details")
