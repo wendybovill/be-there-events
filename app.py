@@ -232,6 +232,7 @@ def log_in():
             {"username": request.form.get("username")})
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
+        session["user"] = request.form.get("username")
 
         if existing_user:
             users = mongo.db.users.find().sort("username", 1)
@@ -239,8 +240,12 @@ def log_in():
                 {"username": request.form.get("username")})
             existing_user = mongo.db.users.find_one(
                 {"username": request.form.get("username")})
-            if existing_user(
-                {username: "username", verified: "british"}) == "yes":
+            session_user = session["user"]
+            verify = mongo.db.users.find_one(
+                                            {"user.username": user},
+                                            {"user.verfied": "yes"}
+                                            )
+            if verify == "yes":
                 verified = "yes"
             else:
                 verified = "no"
