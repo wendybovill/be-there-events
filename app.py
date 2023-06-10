@@ -208,11 +208,10 @@ def verify_email(username):
             else:
                 # password not matching
                 flash("Please check your login details")
-                return redirect(url_for(("verify_email")))
+
         else:
             # user is not found in database
             flash("Please check your login details")
-            return redirect(url_for("verify_email"))
 
         flash("Please Verify Your Email Address")
         flash("Welcome to BeThere! Events")
