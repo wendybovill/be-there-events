@@ -180,15 +180,16 @@ def sign_up():
 @app.route("/verify_email/<username>", methods=["GET", "POST"])
 def verify_email(username):
     if request.method == "POST":
+        users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
-        verify = mongo.db.users.find_one({"username": "verified"})
+        verified = mongo.db.users.find_one({"username": verified})
         existing_username = mongo.db.users.find_one(
-            request.form.get("username"))["username"]
-        verified == "yes" if request.form.get("verified") else "no"
+            {"username": session["user"]})["username"]
+        verify = "yes" if request.form.get("verified") else "no"
 
         update = {
-            "verified": verified
+            "verified": verify
         }
 
         mongo.db.users.update_one({"username": username}, {"$set": update})
@@ -213,8 +214,8 @@ def log_in():
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
-        verified = mongo.db.users.find_one({"username": "verified"})
-
+        verified = mongo.db.users.find_one({"username": verified})
+        
         if "verified" == "yes":
             users = mongo.db.users.find().sort("username", 1)
             user = mongo.db.users.find_one(
@@ -245,7 +246,7 @@ def log_in():
             flashmessage1 = "Please check your emails"
             flashmessage2 = " and verify your email address"
             flash(flashmessage1 + flashmessage2)
-
+        
         users = mongo.db.users.find().sort("username", 1)
         session["user"] = request.form.get("username")
         username = mongo.db.users.find_one(
