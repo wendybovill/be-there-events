@@ -154,6 +154,7 @@ def sign_up():
             "email": request.form.get("email").lower(),
             "password": generate_password_hash(
                 request.form.get("password")),
+            "verified": "no"
         }
         mongo.db.users.insert_one(sign_up)
         fullname = request.form["fname"] + " " + request.form["lname"]
@@ -176,8 +177,9 @@ def sign_up():
     return render_template("register.html")
 
 
+@app.route("/verify_email", methods=["GET", "POST"])
 @app.route("/verify_email/<username>", methods=["GET", "POST"])
-def verify_email(username):
+def verify_email():
 
     if request.method == "POST":
         users = mongo.db.users.find().sort("username", 1)
@@ -190,16 +192,16 @@ def verify_email(username):
         if check_password_hash(
             existing_user["password"], request.form.get(
                     "password")):
-            session["user"] = request.form.get("username")
+            session["user"] = request.form.get("username")[username]
 
-            update = {
-                "verified": request.form.get("verify")
+            data = {
+                "verified": "yes"
             }
 
             mongo.db.users.find().sort("username", 1)
             mongo.db.users.find_one(
                 {"username": request.form.get("username")})
-            mongo.db.users.upsert_one(update)
+            mongo.db.users.update_one(data)
             flash("You have verified your email address please login")
             return redirect(url_for(
                 "profile", username=session["user"]))
