@@ -228,11 +228,15 @@ def verify_email(username):
 def log_in():
     if request.method == "POST":
         users = mongo.db.users.find().sort("username", 1)
+        user = mongo.db.users.find_one({"username": username})
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
 
         if existing_user:
-
+            users = mongo.db.users.find().sort("username", 1)
+            user = mongo.db.users.find_one({"username": username})
+            existing_user = mongo.db.users.find_one(
+                {"username": request.form.get("username")})
             if existing_user({"username": verified}) == "yes":
                 verified = "yes"
             else:
