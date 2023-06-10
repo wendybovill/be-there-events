@@ -247,21 +247,22 @@ def log_in():
                                             )
             if verify == "yes":
                 verified = "yes"
-                
+
                 if check_password_hash(
                     existing_user["password"], request.form.get(
                             "password")):
                     session["user"] = request.form.get("username")
                     flash("Welcome, {}".format(
                         request.form.get("username")))
-                    return redirect(url_for(
-                            "profile", username=session["user"]))
+                    return render_template("profile.html",
+                                           username=username,
+                                           user=user, users=users)
                 else:
                     # password not matching
                     flash("Please check your login details")
                     return redirect(url_for(("log_in")))
 
-            else:
+            elif verify == "no":
                 flashmessage1 = "Please check your emails"
                 flashmessage2 = " and verify your email address"
                 flash(flashmessage1 + flashmessage2)
