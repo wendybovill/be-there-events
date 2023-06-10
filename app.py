@@ -230,20 +230,19 @@ def log_in():
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
+        existing_user = user
         session["user"] = request.form.get("username")
 
         if existing_user:
             users = mongo.db.users.find().sort("username", 1)
             user = mongo.db.users.find_one(
                 {"username": request.form.get("username")})
-            existing_user = mongo.db.users.find_one(
-                {"username": request.form.get("username")})
+            existing_user = user
+            session["user"] = request.form.get("username")
             session_user = session["user"]
             verify = mongo.db.users.find_one(
-                                            {"username": user},
-                                            {"verfied": "yes"}
+                                            {"username": request.form.get("username")},
+                                            {"verified": ""}
                                             )
             if verify == "yes":
                 verified = "yes"
