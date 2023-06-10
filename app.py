@@ -55,7 +55,7 @@ def send_email(email):
     </div>
 
     """.format(
-        email['name'], email['name'], email['email'], email['subject'], email['message'])
+        email['name'], email['name'], email['email'], email['message'])
 
     mail.send(msg)
 
