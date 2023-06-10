@@ -5,7 +5,7 @@
     {% for user in users %}
     {% if (session.user == user.username) %}
 
-<div class="center h1">Your Profile {{ user.username }}</div>
+<div class="center h1">Your Profile, {{ user.username }}</div>
 
 
     <div class="section centered row green-text text-darken-6">
@@ -18,7 +18,7 @@
         {% endwith %}
     </div>
 
-    <h3 class="center">You information:</h3>
+    <h3 class="center">Your Information:</h3>
     
 
     <div class="centered box-form indigo-text text-darken-4">

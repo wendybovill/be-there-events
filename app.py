@@ -217,9 +217,10 @@ def verify_email(username):
         flash("Please Verify Your Email Address")
         flash("Welcome to BeThere! Events")
 
-    username = session["user"]
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
+    username = mongo.db.users.find_one(
+            {"username": request.form.get("username")})
     return render_template(
         "verify.html", username=username, user=user, users=users)
 
