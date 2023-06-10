@@ -178,7 +178,7 @@ def sign_up():
 
 
 @app.route("/verify_email/<username>", methods=["GET", "POST"])
-def verify(username):
+def verify_email(username):
     if request.method == "POST":
         existing_username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
