@@ -270,7 +270,8 @@ def log_in():
             # user is not found in database
             flash("Please check your login details")
             return redirect(url_for("log_in"))
-
+            
+        session["user"] = request.form.get("username")
         return render_template("profile.html",
                                username=username,
                                user=user, users=users)
