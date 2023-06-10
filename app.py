@@ -207,18 +207,23 @@ def verify_email(username):
 
                 flash("You have verified your email address")
                 return render_template(
-                    "profile.html", username=session["user"],
-                    user=user, users=users)
+                    "profile.html", username=session["user"])
             else:
                 # password not matching
                 flash("Please check your login details")
+                return render_template(
+                                       "verify.html", username=username)
 
         else:
             # user is not found in database
             flash("Please check your login details")
+            return render_template(
+                                   "verify.html", username=username)
 
         flash("Please Verify Your Email Address")
         flash("Welcome to BeThere! Events")
+        return render_template(
+        "verify.html", username=username)
 
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
