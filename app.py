@@ -222,7 +222,7 @@ def verify_email(username):
     user = mongo.db.users.find_one({"username": username})
     username = mongo.db.users.find_one(
             {"username": request.form.get("username")})
-    return render_template("verify.html")
+    return render_template("verify.html", username=username)
 
 
 @app.route("/log_in", methods=["GET", "POST"])
