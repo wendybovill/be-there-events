@@ -203,7 +203,7 @@ def verify_email(username):
                     {"username": request.form.get(
                         "username")}, {"$set": update})
 
-                flash("You have verified your email address please login")
+                flash("You have verified your email address")
                 return redirect(url_for(
                     "profile", username=session["user"],
                     user=user, users=users))
