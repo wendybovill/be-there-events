@@ -166,14 +166,11 @@ def sign_up():
         sign_up_email["username"] = request.form["username"]
 
         sign_up_thankyou(sign_up_email)
-        users = mongo.db.users.find().sort("username", 1)
-        user = mongo.db.users.find_one({"username": username})
 
         session["user"] = request.form.get("username")
         flash("Thank you for your registering. You can list your first event!")
         flash("Welcome to BeThere Events!")
-        return redirect("verify_email", username=session["user"],
-                        user=user, users=users)
+        return redirect("verify_email", username=session["user"])
     return render_template("register.html")
 
 
