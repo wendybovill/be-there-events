@@ -163,6 +163,7 @@ def sign_up():
 
         sign_up_email["name"] = fullname
         sign_up_email["email"] = request.form["email"].replace(" ", "").lower()
+        sign_up_email["username"] = request.form["username"]
 
         sign_up_thankyou(sign_up_email)
 
