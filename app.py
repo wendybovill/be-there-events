@@ -45,7 +45,7 @@ def send_email(email):
     <p>
     We have received an email from {}.
     We will respond as soon as we can.
-    <br>The content of the email is below:
+    <br>The content of the contact form is below:
     <br>
     Name: {}<br>
     Email: {}<br>
@@ -71,15 +71,19 @@ def sign_up_thankyou(sign_up_email):
     msg.html = """
 
     <div>
-    Hi {},
-    <br>
-
+    <p>Hi {},</p>
+    <p>{} thank you for registering on the Event Lister Website.<br>
+    You can list your events for free. But first you need to verify<br>
+    your email address, then you can login and list your first event!
+    <p>You will not be able to login unless you have verified your<br>
+    email address first.<br>
+    Click the link below to verify your email.</p>
     <p>
-    Thank you for registering on the Event Lister Website.<br>
-    You can list your events for free. Please login and list your first event!
-    <br>Don't forget to tell your friend about us!
-    <br>
-    Kind regards,
+    <a href="https://event-lister.herokuapp.com/verify_email/{}" target="_blank">Verify Email</a>
+    <p>Don't forget to tell your friends about us!</p>
+    <p>The information below is what we received when you signed up:<br>
+    Your message: {}</p>
+    <p>Kind regards,
     <br>
     The Event Lister Team.
     <br>
@@ -87,7 +91,8 @@ def sign_up_thankyou(sign_up_email):
     </p>
     </div>
 
-    """.format(sign_up_email['name'], sign_up_email['email'])
+    """.format(sign_up_email['username'], sign_up_email['name'],
+               sign_up_email['username'], sign_up_email['email'])
 
     mail.send(msg)
 
@@ -102,20 +107,9 @@ def send_user_email(user_email):
     msg.html = """
 
     <div>
-    
-
-    <p>Hi {},</p>
-    <p>{} thank you for registering on the Event Lister Website.<br>
-    You can list your events for free. But first you need to verify<br>
-    your email address, then you can login and list your first event!
-    <p>You will not be able to login unless you have verified your<br>
-    email address first.<br>
-    Click the link below to verify your email.</p>
-    <p>
-    <a href="https://5000-wendybovill-milestonepr-yy0lqox0jjz.ws-eu99.gitpod.io/verify_email/{}" target="_blank">Verify Email</a>
-    <p>Don't forget to tell your friends about us!</p>
-    <p>The information below is what we received when you signed up:<br>
-    Your message: {}</p>
+    <p>Hi {},<br>
+    <br>The information below is what we received from our contact form:<p>
+    <p>Your message: {}</p>
     <p>Kind regards,
     <br>
     The Event Lister Team.
@@ -125,8 +119,7 @@ def send_user_email(user_email):
     </div>
 
     """.format(user_email['username'], user_email['name'],
-               user_email['username'], user_email['message'],
-               user_email['email'])
+               user_email['message'], user_email['email'])
 
     mail.send(msg)
 
