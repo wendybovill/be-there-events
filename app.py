@@ -194,7 +194,7 @@ def verify_email(username):
             {"username": session["user"]})["username"]
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one({"username": username})
-        flash("Your Profile has been updated " + username)
+        flash("Your email has been verified " + username)
         return render_template(
             "profile.html", username=username, user=user, users=users)
 
@@ -210,42 +210,31 @@ def log_in():
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
-        existing_user = user
-        session["user"] = request.form.get("username")
-
-        if existing_user:
+        if user.verified == "yes":
             users = mongo.db.users.find().sort("username", 1)
             user = mongo.db.users.find_one(
                 {"username": request.form.get("username")})
             existing_user = user
             session["user"] = request.form.get("username")
             session_user = session["user"]
-            verify = mongo.db.users.find_one(
-                                            {"username": request.form.get(
-                                                        "username")},
-                                            {"verified": "yes"}
-                                            )
-            if verify == "yes":
-                verified = "yes"
 
-                if check_password_hash(
-                    existing_user["password"], request.form.get(
-                            "password")):
-                    session["user"] = request.form.get("username")
-                    flash("Welcome, {}".format(
-                        request.form.get("username")))
-                    return render_template("profile.html",
-                                           username=username,
-                                           user=user, users=users)
-                else:
-                    # password not matching
-                    flash("Please check your login details")
-                    return redirect(url_for(("log_in")))
+            if check_password_hash(existing_user["password"],
+                                   request.form.get("password")):
+                session["user"] = request.form.get("username")
+                flash("Welcome, {}".format(
+                    request.form.get("username")))
+                return render_template("profile.html",
+                                       username=username,
+                                       user=user, users=users)
+            else:
+                # password not matching
+                flash("Please check your login details")
+                return redirect(url_for(("log_in")))
 
-            elif verify == "no":
-                flashmessage1 = "Please check your emails"
-                flashmessage2 = " and verify your email address"
-                flash(flashmessage1 + flashmessage2)
+        elif user.verified == "no":
+            flashmessage1 = "Please check your emails"
+            flashmessage2 = " and verify your email address"
+            flash(flashmessage1 + flashmessage2)
         else:
             # user is not found in database
             flash("Please check your login details")
