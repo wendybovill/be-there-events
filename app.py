@@ -218,14 +218,16 @@ def log_in():
                                request.form.get("password")):
             session["user"] = request.form.get("username")
             user_password == "matches"
-            verified = mongo.db.users.find_one(
-                                              {"verified": "yes"})
-            if "verified" == "yes":
+            verify = mongo.db.users.find_one(
+                                              {"verified": verified})
+            if verify == "yes":
                 users = mongo.db.users.find().sort("username", 1)
                 user = mongo.db.users.find_one(
                     {"username": request.form.get("username")})
                 session["user"] = request.form.get("username")
                 session_user = session["user"]
+                flash("Welcome, {}".format(request.form.get("username")))
+                return redirect(url_for('profile', username=session['user']))
 
             else:
                 flashmessage1 = "Please check your emails"
