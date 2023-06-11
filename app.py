@@ -203,6 +203,7 @@ def verify_email(username):
     return render_template(
         "verify.html", username=username, user=user, users=users)
 
+
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
     if request.method == "POST":
