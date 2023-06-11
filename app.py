@@ -195,8 +195,8 @@ def verify_email(username):
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one({"username": username})
         flash("Your email has been verified " + username)
-        return render_template(
-            "profile.html", username=username, user=user, users=users)
+        return redirect(url_for(
+            "profile.html", username=username, user=user, users=users))
 
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
@@ -211,7 +211,7 @@ def log_in():
         user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
         verified = mongo.db.users.find_one({"username": verified})
-        
+
         if "verified" == "yes":
             users = mongo.db.users.find().sort("username", 1)
             user = mongo.db.users.find_one(
@@ -226,9 +226,7 @@ def log_in():
                 user_password == "matches"
                 flash("Welcome, {}".format(
                     request.form.get("username")))
-                return render_template("profile.html",
-                                       username=username,
-                                       user=user, users=users)
+                return redirect(url_for('profile', username=session['user']))
             elif user_password == "":
                 # password not matching
                 flash("Please check your login details")
