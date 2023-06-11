@@ -219,7 +219,7 @@ def log_in():
             {"username": request.form.get("email")})
         form_email = request.form.get("email")
         user_list = list(mongo.db.users.find())
-        verified_fields = user_list.sort("verified", 1)
+        verified_fields = user_list.sort("verified")
         verified_field = mongo.db.users.find(
             "verified") and mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
