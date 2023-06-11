@@ -196,7 +196,7 @@ def verify_email(username):
         user = mongo.db.users.find_one({"username": username})
         flash("Your email has been verified " + username)
         return redirect(url_for(
-            "profile.html", username=username, user=user, users=users))
+            "profile", username=username, user=user, users=users))
 
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
