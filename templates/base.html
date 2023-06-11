@@ -24,7 +24,7 @@
               <a href="#" class="sidenav-trigger right" data-target="mobile" ><i class="material-icons right">menu</i></a>
               
               <ul class="right hide-on-med-and-down">
-                {% for user in user %}
+                {% for user in users %}
                 <li><a href="{{ url_for('home')}}">Home</a></li>
                 <li><a href="{{ url_for('get_events')}}">Events</a></li>
                 <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
@@ -48,7 +48,7 @@
           </nav>
         
           <ul class="sidenav right white-text" id="mobile">
-            {% for user in user %}
+            {% for user in users %}
             <li><a href="{{ url_for('home')}}">Home</a></li>
             <li><a href="{{ url_for('get_events')}}">Events</a></li>
             <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
