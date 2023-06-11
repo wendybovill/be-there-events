@@ -224,7 +224,7 @@ def log_in():
 
         if existing_username:
             
-            for k, v in verify_query.items():
+            for k, v in verify_query:
                 if k == "verfied":
                     verify_value == v
                 return verify_value
