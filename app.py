@@ -218,8 +218,9 @@ def log_in():
         db_email = mongo.db.users.find_one(
             {"username": request.form.get("email")})
         form_email = request.form.get("email")
-        verified_field = mongo.db.users.find_one({"username": existing_username,
-                                                  "verified": "yes"})
+        verified_field = mongo.db.users.find_one(
+                                                {"username": existing_username,
+                                                 "verified": "yes"})
 
         if existing_username:
             if verified_field:
@@ -304,7 +305,7 @@ def profile(username):
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
 
-    if username == user:
+    if session["user"]:
 
         return render_template(
             "profile.html", username=username, user=user, users=users)
