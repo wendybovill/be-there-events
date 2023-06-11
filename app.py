@@ -134,7 +134,7 @@ def home():
 def sign_up():
     if request.method == "POST":
         existing_username = mongo.db.users.find_one(
-            {"username": request.form.get("username")}
+            {"username": request.form.get("username").lower()}
         )
         existing_email = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()}
@@ -148,7 +148,7 @@ def sign_up():
             return redirect(url_for("sign_up"))
 
         sign_up = {
-            "username": request.form.get("username"),
+            "username": request.form.get("username").lower(),
             "fname": request.form.get("fname").lower(),
             "lname": request.form.get("lname").lower(),
             "email": request.form.get("email").lower(),
@@ -167,7 +167,7 @@ def sign_up():
 
         sign_up_thankyou(sign_up_email)
 
-        session["user"] = request.form.get("username")
+        session["user"] = request.form.get("username").lower()
         flashmessage1 = "Thankyou for registering. Please check "
         flashmessage2 = "your emails and verify your email address."
 
@@ -182,9 +182,10 @@ def verify_email(username):
     if request.method == "POST":
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
+            {"username": request.form.get("username").lower()})
 
-        verify = "yes" if request.form.get("verified") else "no"
+        verify = "yes" if request.form.get(
+            "verified") else "no"
 
         update = {
             "verified": verify
@@ -206,37 +207,46 @@ def verify_email(username):
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
     if request.method == "POST":
-        user_password = ""
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
-        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+        existing_username = mongo.db.users.find_one(
                                                 {"username": request.form.get(
-                                                 "username")})
+                                                 "username").lower()})
+        db_username = mongo.db.users.find_one({"username": username})
+        form_email = mongo.db.users.find_one(
+            {"username": request.form.get("email").lower()})
+        db_email = mongo.db.users.find_one({"username": email})
+        db_verify = mongo.db.users.find_one({"verified": verified})
 
-        if check_password_hash(existing_user["password"],
-                               request.form.get("password")):
-            session["user"] = request.form.get("username")
-            user_password == "matches"
-            users = mongo.db.users.find().sort("username", 1)
-            user = mongo.db.users.find_one(
-                {"username": request.form.get("username")})
-            verified = "yes" if mongo.db.users.find_one(
-                {"username": request.form.get("username")},
-                {"verified": "yes"}) else "no"
+        if existing_username:
 
-            if verified == "yes":
-                users = mongo.db.users.find().sort("username", 1)
-                user = mongo.db.users.find_one(
-                    {"username": request.form.get("username")})
-                flash("Welcome, {}".format(request.form.get("username")))
-                return redirect(url_for('profile', username=user))
+            if (form_email == db_email) and (
+                    db_username == existing_username) and (db_verify == "yes"):
+                verified == "yes"
 
+                if check_password_hash(
+                    existing_username["password"], request.form.get(
+                        "password")):
+                    session["user"] = request.form.get("username").lower()
+                    username = mongo.db.users.find_one(
+                        {"username": session["user"]}.lower())["username"]
+                    flash("Welcome, {}".format("username").title())
+                    return redirect(url_for('profile', username=username))
+
+                else:
+                    # user is not found in database or passwords don't match
+                    flash("Please check your login details")
+                    return redirect(url_for("log_in"))
             else:
+                verfied == "no"
                 flashmessage1 = "Please check your emails"
                 flashmessage2 = " and verify your email address"
                 flash(flashmessage1 + flashmessage2)
-                return redirect(url_for("log_in"))
+                return redirect(url_for("home"))
+
+            session["user"] = request.form.get("username")
+            return redirect(url_for("log_in"))
 
         else:
             # user is not found in database or passwords don't match
@@ -246,12 +256,9 @@ def log_in():
         users = mongo.db.users.find().sort("username", 1)
         session["user"] = request.form.get("username")
         username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
+            {"username": session["user"]}.lower())["username"]
         flash("Welcome, {}".format(request.form.get("username")))
         return redirect(url_for('profile', username=session['user']))
-
-    session["user"] = request.form.get("username")
-    return render_template("login.html")
 
 
 @app.route("/log_out/<username>")
@@ -276,24 +283,28 @@ def log_out_confirm(username):
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
 
-    if request.method == "POST":
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
-
+    username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
-    return render_template(
-        "profile.html", username=username, user=user, users=users)
+
+    if username == user:
+
+        return render_template(
+            "profile.html", username=username, user=user, users=users)
+
+    flash("You are not logged in, please log in")
+    return redirect(url_for("home"))
 
 
 @app.route("/edit_profile/<username>", methods=["GET", "POST"])
 def edit_profile(username):
     if request.method == "POST":
         existing_username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
+            {"username": session["user"]}.lower())["username"]
 
         update = {
-            "username": request.form.get("username"),
+            "username": request.form.get("username").lower(),
             "fname": request.form.get("fname").title(),
             "lname": request.form.get("lname").title(),
             "email": request.form.get("email").lower(),
