@@ -209,37 +209,37 @@ def log_in():
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
-        verified = mongo.db.users.find_one(
-            {"username": request.form.get("username"), "verified": "yes"})
+        existing_user = mongo.db.users.find_one(
+                                                {"username": request.form.get(
+                                                 "username")})
 
-        if "verified" == "yes":
-            users = mongo.db.users.find().sort("username", 1)
-            user = mongo.db.users.find_one(
-                {"username": request.form.get("username")})
-            existing_user = user
+        if check_password_hash(existing_user["password"],
+                               request.form.get("password")):
             session["user"] = request.form.get("username")
-            session_user = session["user"]
-
-            if check_password_hash(existing_user["password"],
-                                   request.form.get("password")):
+            user_password == "matches"
+            verified = mongo.db.users.find_one(
+                                              {"username": request.form.get(
+                                               "username"), "verified": "yes"})
+            if "verified" == "yes":
+                users = mongo.db.users.find().sort("username", 1)
+                user = mongo.db.users.find_one(
+                    {"username": request.form.get("username")})
+                existing_user = user
                 session["user"] = request.form.get("username")
-                user_password == "matches"
-                flash("Welcome, {}".format(
-                    request.form.get("username")))
+                session_user = session["user"]
+
+                flash("Welcome, {}".format(request.form.get("username")))
                 return redirect(url_for('profile', username=session['user']))
-            elif user_password == "":
-                # password not matching
-                flash("Please check your login details")
-                return redirect(url_for(("log_in")))
+
             else:
-                # user is not found in database
-                flash("Please check your login details")
-                return redirect(url_for("log_in"))
+                flashmessage1 = "Please check your emails"
+                flashmessage2 = " and verify your email address"
+                flash(flashmessage1 + flashmessage2)
 
         else:
-            flashmessage1 = "Please check your emails"
-            flashmessage2 = " and verify your email address"
-            flash(flashmessage1 + flashmessage2)
+            # user is not found in database or passwords don't match
+            flash("Please check your login details")
+            return redirect(url_for("log_in"))
 
         users = mongo.db.users.find().sort("username", 1)
         session["user"] = request.form.get("username")
