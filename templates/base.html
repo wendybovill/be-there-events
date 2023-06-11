@@ -26,7 +26,7 @@
                 <li><a href="{{ url_for('home')}}">Home</a></li>
                 <li><a href="{{ url_for('get_events')}}">Events</a></li>
                 <!-- Check if a user is logged then show profile link -->
-                {% with user in users %}
+                {% for user in users %}
                 {% if session.user and user.verified == "yes" %}
                 <li><a href="{{ url_for('add_event')}}">Add Event</a></li>
                 <li><a href="{{ url_for('get_types')}}">View Event Types</a></li>
@@ -39,7 +39,7 @@
                 <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
                 <li><a href="{{ url_for('log_in')}}">Log In</a></li>
                 {% endif %}
-                {% endwith %}
+                {% endfor %}
               </ul>
             </div>
           </nav>
@@ -48,7 +48,7 @@
                 <li><a href="{{ url_for('home')}}">Home</a></li>
                 <li><a href="{{ url_for('get_events')}}">Events</a></li>
                 <!-- Check if a user is logged then show profile link -->
-                {% with user in users %}
+                {% for user in users %}
                 {% if session.user and user.verified == "yes" %}
                 <li><a href="{{ url_for('add_event')}}">Add Event</a></li>
                 <li><a href="{{ url_for('get_types')}}">View Event Types</a></li>
@@ -61,7 +61,7 @@
                 <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
                 <li><a href="{{ url_for('log_in')}}">Log In</a></li>
                 {% endif %}
-                {% endwith %}
+                {% endfor %}
           </ul>
         {% endblock navigation %}
     </header>
