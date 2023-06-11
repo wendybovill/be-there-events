@@ -29,7 +29,7 @@
                 <li><a href="{{ url_for('get_events')}}">Events</a></li>
                 <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
                 <!-- Check if a user is logged then show profile link -->
-                {% if session.user and user.verified == "yes" %}
+                {% if session.user and verified.user == "yes" %}
                 <li><a href="{{ url_for('add_event')}}">Add Event</a></li>
                 <li><a href="{{ url_for('get_types')}}">View Event Types</a></li>
                 <li><a href="{{ url_for('add_type')}}">Add Event Type</a></li>
@@ -37,7 +37,7 @@
                 <li><a href="{{ url_for('user_contact_page', username=session['user'])}}">Contact Us</a></li>
                 <li><a href="{{ url_for('log_out', username=session['user'])}}">Logout</a></li>
                 {% else: %}
-                 {% if session.user and verified == none or "" %}
+                 {% if session.user and verified.user == none or "" %}
                 <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
                 <li><a href="{{ url_for('log_in')}}">Log In</a></li>
                 {% endif %}
@@ -53,7 +53,7 @@
             <li><a href="{{ url_for('get_events')}}">Events</a></li>
             <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
             <!-- Check if a user is logged then show profile link -->
-            {% if session.user and user.verified == "yes" %}
+            {% if session.user and verified.user == "yes" %}
             <li><a href="{{ url_for('add_event')}}">Add Event</a></li>
             <li><a href="{{ url_for('get_types')}}">View Event Types</a></li>
             <li><a href="{{ url_for('add_type')}}">Add Event Type</a></li>
@@ -61,7 +61,7 @@
             <li><a href="{{ url_for('user_contact_page', username=session['user'])}}">Contact Us</a></li>
             <li><a href="{{ url_for('log_out', username=session['user'])}}">Logout</a></li>
             {% else: %}
-             {% if session.user and verified == none or "" %}
+             {% if session.user and verified.user == none or "" %}
             <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
             <li><a href="{{ url_for('log_in')}}">Log In</a></li>
             {% endif %}
