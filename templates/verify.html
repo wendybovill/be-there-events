@@ -48,9 +48,9 @@
         <div class="row col s12 ">
             <div class="switch">
             {% if user.verified == "yes" %}
-                <input id="verified" name="verified" type="checkbox">
-            {% else %}
                 <input id="verified" name="verified" type="checkbox" checked>
+            {% else %}
+                <input id="verified" name="verified" type="checkbox">
             {% endif%}
             <span class="lever"></span>Yes <small>Verify Email</small></label>
             </div>
