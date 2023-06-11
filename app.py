@@ -195,8 +195,6 @@ def verify_email(username):
 
         mongo.db.users.update_one({"username": username}, {"$set": update})
 
-        session["user"] = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one({"username": username})
         flash("Your email has been verified " + username)
