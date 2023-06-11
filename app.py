@@ -218,14 +218,18 @@ def log_in():
         db_email = mongo.db.users.find_one(
             {"username": request.form.get("email")})
         form_email = request.form.get("email")
-        verify_query = mongo.db.users.find().sort("verified", 1)
-        verify = mongo.db.users.find_one(
-            {"username": request.form.get(
-             "username").lower(), "verified": verified.lower()})
+
+        verify_query = mongo.db.users.find(
+            {"username": request.form.get("email")}).sort("verified", 1)
 
         if existing_username:
+            
+            for k, v in verify_query.items():
+                if k == "verfied":
+                    verify_value == v
+                return verify_value
 
-            if db_email and db_username and (db_verify == "yes"):
+            if verify_value == "yes":
                 verified == "yes"
 
                 if check_password_hash(
