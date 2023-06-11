@@ -224,7 +224,6 @@ def log_in():
                 users = mongo.db.users.find().sort("username", 1)
                 user = mongo.db.users.find_one(
                     {"username": request.form.get("username")})
-                existing_user = user
                 session["user"] = request.form.get("username")
                 session_user = session["user"]
 
@@ -250,7 +249,6 @@ def log_in():
                                user=user, users=users)
 
     session["user"] = request.form.get("username")
-    flash("Please log in")
     return render_template("login.html")
 
 
