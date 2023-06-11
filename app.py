@@ -215,15 +215,14 @@ def log_in():
                                                  "username").lower()})
         db_username = mongo.db.users.find_one({"username": request.form.get(
                                                  "username").lower()})
-        form_email = mongo.db.users.find_one(
+        db_email = mongo.db.users.find_one(
             {"username": request.form.get("email").lower()})
-        db_email = mongo.db.users.find_one({"username": email})
+        form_email = request.form.get("email").lower()
         db_verify = mongo.db.users.find_one({"verified": verified})
 
         if existing_username:
 
-            if (form_email == db_email) and (
-                    db_username == existing_username) and (db_verify == "yes"):
+            if db_email and db_username and (db_verify == "yes"):
                 verified == "yes"
 
                 if check_password_hash(
