@@ -13,6 +13,7 @@
                 <!-- Type Selector -->
                 <div class="row white">
                     <div class="input-field col s12 m10">
+                        <label for="event_type">What is it?</label>
                         <i class="prefix fa fa-calendar-plus" aria-hidden="true" ></i>
                             <select id="event_type" name="event_type" class="validate" required>
                                 <option value="{{ types.type_name }}" selected>Choose type</option>
@@ -24,7 +25,6 @@
                                         {% endif %}
                                     {% endfor %}
                             </select>
-                        <label for="event_type">What is it?</label>
                     </div>
                 </div>
                  <!-- Event Name -->
