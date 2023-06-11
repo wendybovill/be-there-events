@@ -242,19 +242,19 @@ def log_in():
                         flash("Welcome, {}".format("username").title())
                         return redirect(url_for('profile', username=username))
 
-                        else:
-                            # user is not found in database or passwords don't match
-                            flash("Please check your login details")
-                            return redirect(url_for("log_in"))
                     else:
-                        verfied == "no"
-                        flashmessage1 = "Please check your emails"
-                        flashmessage2 = " and verify your email address"
-                        flash(flashmessage1 + flashmessage2)
-                        return redirect(url_for("home"))
+                        # user is not found in database or passwords don't match
+                        flash("Please check your login details")
+                        return redirect(url_for("log_in"))
+                else:
+                    verfied == "no"
+                    flashmessage1 = "Please check your emails"
+                    flashmessage2 = " and verify your email address"
+                    flash(flashmessage1 + flashmessage2)
+                    return redirect(url_for("home"))
 
-                session["user"] = request.form.get("username")
-                return redirect(url_for("log_in"))
+            session["user"] = request.form.get("username")
+            return redirect(url_for("log_in"))
 
         else:
             # user is not found in database or passwords don't match
