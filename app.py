@@ -208,6 +208,9 @@ def verify_email(username):
 def log_in():
     if request.method == "POST":
         user_list = list(mongo.db.users.find())
+        user = mongo.db.users.find_one(
+                                                {"username": request.form.get(
+                                                 "username").lower()})
         existing_username = mongo.db.users.find_one(
                                                 {"username": request.form.get(
                                                  "username").lower()})
@@ -241,8 +244,8 @@ def log_in():
                         username = mongo.db.users.find_one(
                             {"username": session["user"]}.lower())["username"]
                         flash("Welcome, {}".format("username").title())
-                        return redirect(url_for('profile',
-                                        username=session["user"]))
+                        return redirect(url_for(
+                            "profile", username=session["user"], user=user, users=users))
 
                     else:
                         # user is not found in database
@@ -269,7 +272,7 @@ def log_in():
         username = mongo.db.users.find_one(
             {"username": session["user"]}.lower())["username"]
         flash("Welcome, {}".format(request.form.get("username")))
-        return redirect(url_for('profile', username=session['user']))
+        return redirect(url_for("profile", username=session["user"], user=user, users=users))
 
     return render_template("login.html")
 
