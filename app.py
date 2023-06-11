@@ -218,7 +218,10 @@ def log_in():
         db_email = mongo.db.users.find_one(
             {"username": request.form.get("email")})
         form_email = request.form.get("email")
-        db_verify = mongo.db.users.find_one({"verified": verified})
+        verify_query = mongo.db.users.find().sort("verified", 1)
+        verify = mongo.db.users.find_one(
+            {"username": request.form.get(
+             "username").lower(), "verified": verified.lower()})
 
         if existing_username:
 
