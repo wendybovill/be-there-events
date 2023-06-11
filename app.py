@@ -218,42 +218,43 @@ def log_in():
         db_email = mongo.db.users.find_one(
             {"username": request.form.get("email")})
         form_email = request.form.get("email")
-
-        verify_query = mongo.db.users.find_one(
-            {"username": request.form.get("username"), "verfied": "yes"})
+        verified_fields = mongo.db.users.find().sort("verified", 1)
+        verified_field = mongo.db.users.find("verified")
 
         if existing_username:
+            if verified_field:
+                verify_query = mongo.db.users.find_one(
+                    {"username": request.form.get("username"), "verfied": "yes"})
+                for k, v in verify_query:
+                    if k == "verfied":
+                        verify_value == v
+                    return verify_value
 
-            for k, v in verify_query:
-                if k == "verfied":
-                    verify_value == v
-                return verify_value
+                if verify_value == "yes":
+                    verified == "yes"
 
-            if verify_value == "yes":
-                verified == "yes"
+                    if check_password_hash(
+                        existing_username["password"], request.form.get(
+                            "password")):
+                        session["user"] = request.form.get("username").lower()
+                        username = mongo.db.users.find_one(
+                            {"username": session["user"]}.lower())["username"]
+                        flash("Welcome, {}".format("username").title())
+                        return redirect(url_for('profile', username=username))
 
-                if check_password_hash(
-                    existing_username["password"], request.form.get(
-                        "password")):
-                    session["user"] = request.form.get("username").lower()
-                    username = mongo.db.users.find_one(
-                        {"username": session["user"]}.lower())["username"]
-                    flash("Welcome, {}".format("username").title())
-                    return redirect(url_for('profile', username=username))
+                        else:
+                            # user is not found in database or passwords don't match
+                            flash("Please check your login details")
+                            return redirect(url_for("log_in"))
+                    else:
+                        verfied == "no"
+                        flashmessage1 = "Please check your emails"
+                        flashmessage2 = " and verify your email address"
+                        flash(flashmessage1 + flashmessage2)
+                        return redirect(url_for("home"))
 
-                else:
-                    # user is not found in database or passwords don't match
-                    flash("Please check your login details")
-                    return redirect(url_for("log_in"))
-            else:
-                verfied == "no"
-                flashmessage1 = "Please check your emails"
-                flashmessage2 = " and verify your email address"
-                flash(flashmessage1 + flashmessage2)
-                return redirect(url_for("home"))
-
-            session["user"] = request.form.get("username")
-            return redirect(url_for("log_in"))
+                session["user"] = request.form.get("username")
+                return redirect(url_for("log_in"))
 
         else:
             # user is not found in database or passwords don't match
