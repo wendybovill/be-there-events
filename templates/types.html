@@ -4,9 +4,16 @@
 
 <div class="center h1">The Event Types Available</div>
 
-        {% for message in get_flashed_messages() %}
-            <h2 class="center">{{ message }}</h2>
-        {% endfor %}
+<div class="section centered row green-text text-darken-6">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <h2 class="center green-text">{{ message }}</h2>
+            {% endfor %}
+        {% endif%}
+    {% endwith %}
+</div>
+
 <div class="centered">
     <table class="row xl10 m8 s12">
         <thead>

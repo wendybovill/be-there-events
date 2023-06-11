@@ -4,9 +4,15 @@
 
 <div class="center h1">Contact Us</div>
 
-        {% for message in get_flashed_messages() %}
+<div class="section centered row green-text text-darken-6">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
             <h2 class="center green-text">{{ message }}</h2>
-        {% endfor %}
+            {% endfor %}
+        {% endif%}
+    {% endwith %}
+</div>
 
     {% for user in users %}
         {% if (session.user == user.username) %}

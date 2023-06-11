@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
-{% if messages %}
-    {% if messages|length > 0 %}
-    {{ type.type_name }}
-    {% endif %}
-    {% if messages != [] %}
-    {% endif %}
-{% endif %}
+<div class="section centered row green-text text-darken-6">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <h2 class="center green-text">{{ message }}</h2>
+            {% endfor %}
+        {% endif%}
+    {% endwith %}
+</div>
 
 {% block content %}
 
@@ -14,7 +16,7 @@
 <div class="center h1">Add A New Event</div>
 
         <div class="row centered">
-            <form class="s12 card noshadow-card m8" method="POST" action="{{ url_for('add_event') }}">
+            <form class="s12 m8 card noshadow-card " method="POST" action="{{ url_for('add_event') }}">
                 <!-- Type Selector -->
                 <div class="row white">
                     <div class="input-field col s12">
