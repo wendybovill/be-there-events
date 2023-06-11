@@ -220,10 +220,10 @@ def log_in():
         form_email = request.form.get("email")
 
         verify_query = mongo.db.users.find_one(
-            {"username": request.form.get("username")}).sort("verified", 1)
+            {"username": request.form.get("username")})
 
         if existing_username:
-            
+   
             for k, v in verify_query:
                 if k == "verfied":
                     verify_value == v
