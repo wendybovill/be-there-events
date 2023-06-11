@@ -216,7 +216,7 @@ def log_in():
         db_username = mongo.db.users.find_one({"username": request.form.get(
                                                  "username").lower()})
         db_email = mongo.db.users.find_one(
-            {"username": request.form.get("email").lower()})
+            {"username": request.form.get("email")})
         form_email = request.form.get("email").lower()
         db_verify = mongo.db.users.find_one({"verified": verified})
 
