@@ -209,7 +209,8 @@ def log_in():
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
-        verified = mongo.db.users.find_one({"username": verified})
+        verified = mongo.db.users.find_one(
+        {"username": request.form.get("username")})
 
         if "verified" == "yes":
             users = mongo.db.users.find().sort("username", 1)
@@ -249,7 +250,7 @@ def log_in():
                                user=user, users=users)
 
     session["user"] = request.form.get("username")
-    flash("Welcome to BeThere! Events")
+    flash("Please log in")
     return render_template("login.html")
 
 
