@@ -219,9 +219,8 @@ def log_in():
             {"username": request.form.get("email")})
         form_email = request.form.get("email")
         user_list = list(mongo.db.users.find())
-        verified_field = mongo.db.users.find(
-            "verified") and mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+        verified_field = mongo.db.users.find_one({"username": user,
+                                                  "verified": "yes"})
 
         if existing_username:
             if verified_field:
@@ -230,7 +229,7 @@ def log_in():
                             user.value == "verfied"):
                         verify_query = mongo.db.users.find_one(
                             {"username": request.form.get("username"),
-                            "verfied": "yes"})
+                             "verfied": "yes"})
                         for k, v in verified_fields:
                             if k == "verfied":
                                 verify_value == v
@@ -249,7 +248,8 @@ def log_in():
                         return redirect(url_for('profile', username=username))
 
                     else:
-                        # user is not found in database or passwords don't match
+                        # user is not found in database
+                        # or passwords don't match
                         flash("Please check your login details")
                         return redirect(url_for("log_in"))
                 else:
