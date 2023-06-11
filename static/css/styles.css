@@ -122,6 +122,7 @@ p {
 div.event-title.indigo-text.text-lighten-1.collapsible-header, .collapsible {
     border:unset;
     box-shadow: unset;
+    font-size: 1.1rem;
 }
 
 #section_one {
@@ -182,11 +183,11 @@ div#section_one p{
 }
 
 .event-title, .event-title a {
-    color: white;
-    font-size: 1.2em;
+    color:rgb(214, 252, 255);
+    font-size: 1.1em;
     font-weight: 700;
-    padding: 7px 25px;
-    text-shadow: 2px 2px 2px rgba(55, 70, 73, 0.411);
+    padding: 8px;
+    text-shadow: 2px 2px 2px rgba(15, 7, 58, 0.493);
 }
 
 .event-description {
@@ -241,10 +242,16 @@ table.table-centered {
     padding: 7px;
 }
 
-.event-time, .event-date, .event-heading, .event-type {
+.event-time, .event-date, .event-heading {
     display: inline-flex;
     padding: 0 5px;
-    color:bisque;
+    color:rgb(255, 255, 255);
+}
+
+.event-type {
+    display: inline-flex;
+    padding: 0 5px;
+    color:rgb(255, 255, 255);
 }
 
 .address {
@@ -345,15 +352,35 @@ input[type=password]:not(.browser-default).validate+label, input[type=password]:
 
 .input-field>label {
     color: black;
+    margin-top: -10px;
+}
+
+label.event {
+    color: black;
+    margin-top: -50px;
 }
 
 div.input {
     color:rgb(53, 53, 53);
     border: unset;
     text-align: left;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 8px 10px;
     background-color: rgb(233, 233, 233);
+    height: 47px;
+    width: 100%;
+    text-indent: 50px;
+    margin-top:10px;
+    vertical-align: middle;
+}
+
+div.input-disabled {
+    color:rgb(255, 255, 255);
+    border: 0.6px rgb(173, 173, 173) inset;
+    text-align: left;
+    border-radius: 10px;
+    padding: 8px 10px;
+    background-color: rgba(0, 0, 0, 0.452);
     height: 47px;
     width: 100%;
     text-indent: 50px;
@@ -386,7 +413,6 @@ label {
     flex: 1 auto;
     background-color: rgb(87, 65, 207);
     color: #fff;
-    padding: 20px 22px;
     font-weight: 500;
 }
 
@@ -397,7 +423,7 @@ label {
 
 .datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done {
     color: rgb(87, 65, 207);
-    padding: 0 1rem;
+
 }
 
 .datepicker-table td.is-today, .datepicker-day-button.is-today {
@@ -408,6 +434,28 @@ label {
 
 .datepicker-day-button:focus {
     background-color: rgba(43, 49, 161, 0.25);
+    }
+
+.datepicker-controls .select-month input {
+    width: 70px;
+    background-color: unset;
+    }
+
+.datepicker-controls .select-year input {
+    width: 50px;
+    background-color: unset;
+    }
+
+.datepicker-day-button {
+    background-color: transparent;
+    border: none;
+    line-height: 35px;
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+    padding: 0 5px;
+    cursor: pointer;
+    color: inherit;
     }
 
 button:focus {
@@ -456,11 +504,8 @@ input.search {
 }
 
 .input-field .prefix ~ textarea {
-    border-radius: 20px;
-    padding: 10px;
-    width: 100%;
-    text-indent: 25px;
-    margin: 12px 40px 0 0;
+    border-radius: 10px;
+    padding: 10px 10px;
     height: 80px;
     background-color: rgb(243, 243, 243);
     border: 1px solid rgb(216, 216, 216);
@@ -491,3 +536,16 @@ a.clear:hover {
     border: 1px solid rgb(87, 65, 207);
 }
 
+
+.noshadow-card {
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+}
+
+
+
+
+
+
+
+/*================== MEDIA QUERIES ===================*/

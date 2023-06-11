@@ -10,16 +10,17 @@
 
         {% for user in users %}
         {% if (session.user == user.username) %}
-
+        
         <div class="row centered">
-            <form class="s12 box-form card m8" method="POST" action="{{ url_for('edit_profile', username=session['user']) }}">
+            <div class="row">
+            <form class="s12 card noshadow-card m8" method="POST" action="{{ url_for('edit_profile', username=session['user']) }}">
                  <!-- Username -->
                 <div class="row white">
-                    <span class="grey-text text-darken-3">{{ username|title }}</span>
                     <div class="input-field col s12">
                     <i class="fas fa-pencil-alt prefix"></i>
-                    <input id="username" name="username" type="text" class="validate hidden" minlength="2" maxlength="85" value="{{ username|lower }}">
-                    <label for="username" class="grey-text text-darken-3">Username - you cannot change your Username</label>
+                    <div class="center input-disabled">Your Username: {{ username|title }}<br></div>
+                    <input id="username" name="username" type="text" class="validate scrollspy hidden" minlength="2" maxlength="85" value="{{ username|lower }}">
+                    <label for="username" class="grey-text text-darken-3 center username">Username - you cannot change your Username</label>
                 </div>
                 </div>
                 <!-- First name -->
@@ -92,6 +93,7 @@
                     </div>
                 </div>
             </form>
+            </div>
         </div>
         {% endif %}
         {% endfor %}
