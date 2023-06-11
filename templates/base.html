@@ -37,6 +37,7 @@
                 {% else %}
                 <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
                 <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
+                {% elif if session.user and user.verified == "no" or none%}
                 <li><a href="{{ url_for('log_in')}}">Log In</a></li>
                 {% endif %}
                 {% endfor %}
@@ -59,6 +60,7 @@
                 {% else %}
                 <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
                 <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
+                {% elif if session.user and user.verified == "no" or none%}
                 <li><a href="{{ url_for('log_in')}}">Log In</a></li>
                 {% endif %}
                 {% endfor %}
