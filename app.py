@@ -231,6 +231,7 @@ def log_in():
                 flashmessage1 = "Please check your emails"
                 flashmessage2 = " and verify your email address"
                 flash(flashmessage1 + flashmessage2)
+                return redirect(url_for("log_in"))
 
         else:
             # user is not found in database or passwords don't match
