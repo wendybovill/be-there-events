@@ -218,8 +218,10 @@ def log_in():
         db_email = mongo.db.users.find_one(
             {"username": request.form.get("email")})
         form_email = request.form.get("email")
-        verified_fields = mongo.db.users.find().sort("verified", 1)
-        verified_field = mongo.db.users.find("verified")
+        verified_fields = list(mongo.db.users.find()).sort("verified", 1)
+        verified_field = mongo.db.users.find(
+            "verified") and mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
 
         if existing_username:
             if verified_field:
