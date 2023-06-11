@@ -260,6 +260,8 @@ def log_in():
         flash("Welcome, {}".format(request.form.get("username")))
         return redirect(url_for('profile', username=session['user']))
 
+    return render_template("login.html")
+
 
 @app.route("/log_out/<username>")
 def log_out(username):
