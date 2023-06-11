@@ -210,7 +210,7 @@ def log_in():
         user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
         verified = mongo.db.users.find_one(
-        {"username": request.form.get("username")})
+                                {"username": request.form.get("username")})
 
         if "verified" == "yes":
             users = mongo.db.users.find().sort("username", 1)
@@ -236,11 +236,11 @@ def log_in():
                 flash("Please check your login details")
                 return redirect(url_for("log_in"))
 
-        else:
+        elif "verified" == "no":
             flashmessage1 = "Please check your emails"
             flashmessage2 = " and verify your email address"
             flash(flashmessage1 + flashmessage2)
-        
+
         users = mongo.db.users.find().sort("username", 1)
         session["user"] = request.form.get("username")
         username = mongo.db.users.find_one(
