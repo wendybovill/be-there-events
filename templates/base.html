@@ -22,51 +22,42 @@
             <div class="nav-wrapper">
               <a href="{{ url_for('home')}}" class="brand-logo">BeThere! Events</a>
               <a href="#" class="sidenav-trigger right" data-target="mobile" ><i class="material-icons right">menu</i></a>
-              
               <ul class="right hide-on-med-and-down">
-                {% for user in users %}
                 <li><a href="{{ url_for('home')}}">Home</a></li>
                 <li><a href="{{ url_for('get_events')}}">Events</a></li>
-                <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
                 <!-- Check if a user is logged then show profile link -->
-                {% if session.user and verified.user == "yes" %}
+                {% if session.user %}
                 <li><a href="{{ url_for('add_event')}}">Add Event</a></li>
                 <li><a href="{{ url_for('get_types')}}">View Event Types</a></li>
                 <li><a href="{{ url_for('add_type')}}">Add Event Type</a></li>
                 <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                 <li><a href="{{ url_for('user_contact_page', username=session['user'])}}">Contact Us</a></li>
                 <li><a href="{{ url_for('log_out', username=session['user'])}}">Logout</a></li>
-                {% else: %}
-                 {% if session.user and verified.user == none or "" %}
+                {% else %}
+                <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
                 <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
                 <li><a href="{{ url_for('log_in')}}">Log In</a></li>
                 {% endif %}
-                {% endif %}
-                {% endfor %}
               </ul>
             </div>
           </nav>
         
           <ul class="sidenav right white-text" id="mobile">
-            {% for user in users %}
-            <li><a href="{{ url_for('home')}}">Home</a></li>
-            <li><a href="{{ url_for('get_events')}}">Events</a></li>
-            <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
-            <!-- Check if a user is logged then show profile link -->
-            {% if session.user and verified.user == "yes" %}
-            <li><a href="{{ url_for('add_event')}}">Add Event</a></li>
-            <li><a href="{{ url_for('get_types')}}">View Event Types</a></li>
-            <li><a href="{{ url_for('add_type')}}">Add Event Type</a></li>
-            <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-            <li><a href="{{ url_for('user_contact_page', username=session['user'])}}">Contact Us</a></li>
-            <li><a href="{{ url_for('log_out', username=session['user'])}}">Logout</a></li>
-            {% else: %}
-             {% if session.user and verified.user == none or "" %}
-            <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
-            <li><a href="{{ url_for('log_in')}}">Log In</a></li>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
+                <li><a href="{{ url_for('home')}}">Home</a></li>
+                <li><a href="{{ url_for('get_events')}}">Events</a></li>
+                <!-- Check if a user is logged then show profile link -->
+                {% if session.user %}
+                <li><a href="{{ url_for('add_event')}}">Add Event</a></li>
+                <li><a href="{{ url_for('get_types')}}">View Event Types</a></li>
+                <li><a href="{{ url_for('add_type')}}">Add Event Type</a></li>
+                <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                <li><a href="{{ url_for('user_contact_page', username=session['user'])}}">Contact Us</a></li>
+                <li><a href="{{ url_for('log_out', username=session['user'])}}">Logout</a></li>
+                {% else %}
+                <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
+                <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
+                <li><a href="{{ url_for('log_in')}}">Log In</a></li>
+                {% endif %}
           </ul>
         {% endblock navigation %}
     </header>
