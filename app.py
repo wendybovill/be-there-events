@@ -213,7 +213,8 @@ def log_in():
         existing_username = mongo.db.users.find_one(
                                                 {"username": request.form.get(
                                                  "username").lower()})
-        db_username = mongo.db.users.find_one({"username": username})
+        db_username = mongo.db.users.find_one({"username": request.form.get(
+                                                 "username").lower()})
         form_email = mongo.db.users.find_one(
             {"username": request.form.get("email").lower()})
         db_email = mongo.db.users.find_one({"username": email})
