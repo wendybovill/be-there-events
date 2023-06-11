@@ -224,7 +224,7 @@ def log_in():
             verified = mongo.db.users.find_one(
                 {"username": request.form.get("username")})
 
-            if "verified" == "yes":
+            if verified == "yes":
                 users = mongo.db.users.find().sort("username", 1)
                 user = mongo.db.users.find_one(
                     {"username": request.form.get("username")})
