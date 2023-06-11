@@ -227,9 +227,6 @@ def log_in():
                 session["user"] = request.form.get("username")
                 session_user = session["user"]
 
-                flash("Welcome, {}".format(request.form.get("username")))
-                return redirect(url_for('profile', username=session['user']))
-
             else:
                 flashmessage1 = "Please check your emails"
                 flashmessage2 = " and verify your email address"
@@ -244,9 +241,8 @@ def log_in():
         session["user"] = request.form.get("username")
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
-        return render_template("profile.html",
-                               username=username,
-                               user=user, users=users)
+        flash("Welcome, {}".format(request.form.get("username")))
+        return redirect(url_for('profile', username=session['user']))
 
     session["user"] = request.form.get("username")
     return render_template("login.html")
