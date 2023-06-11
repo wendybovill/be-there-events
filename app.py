@@ -219,8 +219,7 @@ def log_in():
             session["user"] = request.form.get("username")
             user_password == "matches"
             verified = mongo.db.users.find_one(
-                                              {"username": request.form.get(
-                                               "username"), "verified": "yes"})
+                                              {"verified": "yes"})
             if "verified" == "yes":
                 users = mongo.db.users.find().sort("username", 1)
                 user = mongo.db.users.find_one(
