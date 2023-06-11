@@ -222,6 +222,7 @@ def log_in():
             user = mongo.db.users.find_one(
                 {"username": request.form.get("username")})
             verified = "yes" if mongo.db.users.find_one(
+                {"username": request.form.get("username")},
                 {"verified": "yes"}) else "no"
 
             if verified == "yes":
