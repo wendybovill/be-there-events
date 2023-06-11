@@ -25,6 +25,7 @@
               <ul class="right hide-on-med-and-down">
                 <li><a href="{{ url_for('home')}}">Home</a></li>
                 <li><a href="{{ url_for('get_events')}}">Events</a></li>
+                <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
                 <!-- Check if a user is logged then show profile link -->
                 {% for user in users %}
                 {% if session.user and user.verified == "yes" %}
@@ -35,9 +36,7 @@
                 <li><a href="{{ url_for('user_contact_page', username=session['user'])}}">Contact Us</a></li>
                 <li><a href="{{ url_for('log_out', username=session['user'])}}">Logout</a></li>
                 {% else %}
-                <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
                 <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
-                {% elif if session.user and user.verified == "no" or none%}
                 <li><a href="{{ url_for('log_in')}}">Log In</a></li>
                 {% endif %}
                 {% endfor %}
@@ -48,6 +47,7 @@
           <ul class="sidenav right white-text" id="mobile">
                 <li><a href="{{ url_for('home')}}">Home</a></li>
                 <li><a href="{{ url_for('get_events')}}">Events</a></li>
+                <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
                 <!-- Check if a user is logged then show profile link -->
                 {% for user in users %}
                 {% if session.user and user.verified == "yes" %}
@@ -58,9 +58,7 @@
                 <li><a href="{{ url_for('user_contact_page', username=session['user'])}}">Contact Us</a></li>
                 <li><a href="{{ url_for('log_out', username=session['user'])}}">Logout</a></li>
                 {% else %}
-                <li><a href="{{ url_for('contact_page')}}">Contact Us</a></li>
                 <li><a href="{{ url_for('sign_up')}}">Sign Up</a></li>
-                {% elif if session.user and user.verified == "no" or none%}
                 <li><a href="{{ url_for('log_in')}}">Log In</a></li>
                 {% endif %}
                 {% endfor %}
