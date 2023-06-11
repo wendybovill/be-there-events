@@ -24,6 +24,8 @@ app.config['MAIL_USER_TLS'] = False
 app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = 'event_lister@wideworldwebhosting.co.uk'
+
+
 mail = Mail(app)
 
 
