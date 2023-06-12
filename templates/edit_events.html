@@ -37,7 +37,7 @@
                 <div class="row white">
                     <div class="input-field col s12">
                     <i class="fas fa-pencil-alt prefix"></i>
-                    <input id="event_title" name="event_title" type="text" class="validate" minlength="5" maxlength="85" value="{{ event.event_title }}" required>
+                    <input id="event_title" name="event_title" type="text" class="validate" minlength="5" maxlength="100" value="{{ event.event_title }}" required>
                     <label for="event_title">Event Title</label>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                 <div class="row white">
                     <div class="input-field col s12">
                         <i class="fas fa-align-left prefix"></i>
-                        <textarea id="event_description" name="event_description" type="text" class="validate section scrollspy" minlength="5" maxlength="250" required>{{- event.event_description -}}</textarea>
+                        <textarea id="event_description" name="event_description" type="text" class="validate section scrollspy" minlength="5" maxlength="500" required>{{- event.event_description -}}</textarea>
                         <label for="event_description">Event Description</label>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                  <div class="row white">
                     <div class="input-field col s12">
                     <i class="prefix fa fa-mouse-pointer" aria-hidden="true"></i>
-                    <input id="event_url" name="event_url" type="text" class="validate" minlength="5" maxlength="85" value="{{ event.event_url }}">
+                    <input id="event_url" name="event_url" type="text" class="validate" minlength="5" maxlength="200" value="{{ event.event_url }}">
                     <label for="event_url">Website Address to book or pay, or for more info</label>
                     </div>
                 </div>
