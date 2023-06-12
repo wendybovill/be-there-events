@@ -316,7 +316,7 @@ def edit_profile(username):
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one({"username": username})
         username = user
-        flash("Your Profile has been updated " + username)
+        flash("Your Profile has been updated " + request.form.get("username"))
         return render_template(
             "profile.html", username=username, user=user, users=users)
 
