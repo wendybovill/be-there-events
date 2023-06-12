@@ -150,7 +150,7 @@ def sign_up():
             return redirect(url_for("sign_up"))
 
         sign_up = {
-            "username": request.form.get("username").lower(),
+            "username": request.form.get("username"),
             "fname": request.form.get("fname").lower(),
             "lname": request.form.get("lname").lower(),
             "email": request.form.get("email").lower(),
@@ -184,7 +184,7 @@ def verify_email(username):
     if request.method == "POST":
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": request.form.get("username")})
 
         verify = "yes"
 
@@ -208,8 +208,8 @@ def verify_email(username):
                 session["user"] = request.form.get("username")
                 flash("Welcome, {}".format(
                     request.form.get("username")))
-                return redirect(url_for(
-                    "profile", username=session["user"]))
+                return render_template(
+            "profile.html", username=username, user=user, users=users)
 
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
@@ -230,8 +230,8 @@ def log_in():
                 session["user"] = request.form.get("username")
                 flash("Welcome, {}".format(
                     request.form.get("username")))
-                return redirect(url_for(
-                    "profile", username=session["user"]))
+                return render_template(
+            "profile.html", username=username, user=user, users=users)
             else:
                 # password not matching
                 flash("Please check your login details")
@@ -286,10 +286,10 @@ def profile(username):
 def edit_profile(username):
     if request.method == "POST":
         existing_username = mongo.db.users.find_one(
-            {"username": session["user"]}.lower())["username"]
+            {"username": session["user"]})["username"]
 
         update = {
-            "username": request.form.get("username").lower(),
+            "username": request.form.get("username"),
             "fname": request.form.get("fname").title(),
             "lname": request.form.get("lname").title(),
             "email": request.form.get("email").lower(),
@@ -381,16 +381,16 @@ def add_event():
             "event_paid_for") else "free"
         event = {
             "added_by": session["user"],
-            "event_type": request.form.get("event_type"),
-            "event_title": request.form.get("event_title"),
+            "event_type": request.form.get("event_type").title(),
+            "event_title": request.form.get("event_title").title(),
             "event_date": request.form.get("event_date"),
             "event_time": request.form.get("event_time"),
             "event_description": request.form.get("event_description"),
-            "event_location_town": request.form.get("event_location_town"),
+            "event_location_town": request.form.get("event_location_town").title(),
             "event_location_postcode": request.form.get(
-                "event_location_postcode"),
-            "event_organiser": request.form.get("event_organiser"),
-            "event_contact_details": request.form.get("event_contact_details"),
+                "event_location_postcode").upper(),
+            "event_organiser": request.form.get("event_organiser").title(),
+            "event_contact_details": request.form.get("event_contact_details").title(),
             "event_url": request.form.get("event_url"),
             "event_entrance_fee": request.form.get("event_entrance_fee"),
             "event_paid_for": event_paid_for
@@ -409,16 +409,16 @@ def edit_event(event_id):
         event_paid_for = "paid" if request.form.get(
             "event_paid_for") else "free"
         submit = {
-            "event_type": request.form.get("event_type"),
-            "event_title": request.form.get("event_title"),
+            "event_type": request.form.get("event_type").title(),
+            "event_title": request.form.get("event_title").title(),
             "event_date": request.form.get("event_date"),
             "event_time": request.form.get("event_time"),
             "event_description": request.form.get("event_description"),
-            "event_location_town": request.form.get("event_location_town"),
+            "event_location_town": request.form.get("event_location_town").title(),
             "event_location_postcode": request.form.get(
-                "event_location_postcode"),
-            "event_organiser": request.form.get("event_organiser"),
-            "event_contact_details": request.form.get("event_contact_details"),
+                "event_location_postcode").upper(),
+            "event_organiser": request.form.get("event_organiser").title(),
+            "event_contact_details": request.form.get("event_contact_details").title(),
             "event_url": request.form.get("event_url"),
             "event_entrance_fee": request.form.get("event_entrance_fee"),
             "event_paid_for": event_paid_for,
