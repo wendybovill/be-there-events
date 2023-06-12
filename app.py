@@ -197,7 +197,7 @@ def verify_email(username):
 
         mongo.db.users.update_one({"username": request.form.get("username")}, {"$set": update})
 
-        flash("Your email has been verified " + session["user"])
+        flash("Your email has been verified " + request.form.get("username"))
 
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
