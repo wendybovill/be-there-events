@@ -218,7 +218,7 @@ def verify_email(username):
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
     username = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
+                    {"username": session["user"]})["username"]
     return render_template(
         "verify.html", username=username, user=user, users=users)
 
