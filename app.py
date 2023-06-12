@@ -467,7 +467,7 @@ def search_event():
             return render_template("events.html", events=events)
 
         if search_completed is True:
-        drop_index("events", search_index_name)
+            drop_index("events", search_index_name)
     return
 
 
