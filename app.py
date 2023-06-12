@@ -184,7 +184,7 @@ def sign_up():
 def verify_email(username):
 
     users = mongo.db.users.find().sort("username", 1)
-  
+    user = mongo.db.users.find_one({"username": username})
     if request.method == "POST":
         user = mongo.db.users.find_one(
                     {"username": request.form.get("username")})
@@ -217,8 +217,7 @@ def verify_email(username):
 
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
-    username = mongo.db.users.find_one(
-                    {"username": session["user"]})["username"]
+    username = user
     return render_template(
         "verify.html", username=username, user=user, users=users)
 
