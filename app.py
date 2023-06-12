@@ -407,8 +407,9 @@ def add_event():
         flash("You have added an Event: " + request.form.get(
             "event_title").title())
         return redirect(url_for("get_events"))
+
     types = mongo.db.types.find().sort("type_name", 1)
-    return render_template("add_event.html", types=types)
+    return render_template("add_event.html", types=types, events=events)
 
 
 @app.route("/edit_event/<event_id>", methods=["GET", "POST"])
