@@ -137,7 +137,7 @@ def home():
 def sign_up():
     if request.method == "POST":
         existing_username = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()}
+            {"username": request.form.get("username")}
         )
         existing_email = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()}
@@ -170,7 +170,7 @@ def sign_up():
 
         sign_up_thankyou(sign_up_email)
 
-        session["user"] = request.form.get("username").lower()
+        session["user"] = request.form.get("username")
         flashmessage1 = "Thankyou for registering. Please check "
         flashmessage2 = "your emails and verify your email address."
 
@@ -196,7 +196,7 @@ def verify_email(username):
 
         mongo.db.users.update_one({"username": username}, {"$set": update})
 
-        flash("Your email has been verified " + username)
+        flash("Your email has been verified " + session["user"])
 
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
