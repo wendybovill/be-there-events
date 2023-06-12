@@ -446,11 +446,11 @@ def search_event():
     if request.method == "POST":
 
         search_index_name = mongo.db.tasks.create_index([("event_title","text"),("event_type","text"),("event_date","text"),("event_paid_for","text"),("event_time","text"),("event_description","text"),("event_location_town","text"),("event_location_postcode","text")])
-        return search_index_name
 
     events = list(mongo.db.events.find({"$text": {"$search": input_name}}))
+    
     return render_template("events.html", events=events)
-    return drop_search_index(search_index_name)
+    return mongo.db.tasks.drop_index(search_index_name)
 
 
 @app.route("/contact_page", methods=["GET", "POST"])
