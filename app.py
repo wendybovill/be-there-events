@@ -442,15 +442,25 @@ def edit_event(event_id):
 @app.route("/search_event", methods=["GET", "POST"])
 def search_event():
     input_name = request.form.get("search_event")
-
+    drop_index(search_index_name)
     if request.method == "POST":
 
-        search_index_name = mongo.db.tasks.create_index([("event_title","text"),("event_type","text"),("event_date","text"),("event_paid_for","text"),("event_time","text"),("event_description","text"),("event_location_town","text"),("event_location_postcode","text")])
+        search_index_name = mongo.db.tasks.create_index(
+            [("event_title","text"),("event_type","text"),("event_date","text"),("event_paid_for","text"),("event_time","text"),("event_description","text"),("event_location_town","text"),("event_location_postcode","text")])
+        mongo.db.tasks.create_index([("event_title","text"),(
+            "event_type","text"),("event_date","text"),("event_paid_for","text"),("event_time","text"),("event_description","text"),("event_location_town","text"),("event_location_postcode","text")])
 
-    events = list(mongo.db.events.find({"$text": {"$search": input_name}}))
-    
+        events = list(mongo.db.events.find({"$text": {"$search": input_name}}))
+        list(mongo.db.events.find({"$text": {"$search": input_name}}))
+
+        if events <= 0:
+            flash("There are no results for that search")
+            search_completed = False
+        else:
+            events > 0
+            search_completed = True
+            mongo.db.tasks.drop_index(search_index_name)
     return render_template("events.html", events=events)
-    return mongo.db.tasks.drop_index(search_index_name)
 
 
 @app.route("/contact_page", methods=["GET", "POST"])
