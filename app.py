@@ -223,8 +223,7 @@ def log_in():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
-        username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
+        username = existing_user
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one({"username": username})
 
