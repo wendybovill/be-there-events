@@ -32,6 +32,10 @@ mail = Mail(app)
 mongo = PyMongo(app)
 
 
+def drop_index(self, dbname, index):
+    mongo.db.dbname.drop_index(index)
+
+
 def send_email(email):
     msg = Message("Contact form on Event Lister Website",
                   sender=("Event List Team",
@@ -442,7 +446,7 @@ def edit_event(event_id):
 @app.route("/search_event", methods=["GET", "POST"])
 def search_event():
     input_name = request.form.get("search_event")
-    drop_index(search_index_name)
+    drop_index("events", search_index_name)
     if request.method == "POST":
 
         search_index_name = mongo.db.tasks.create_index(
