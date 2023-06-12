@@ -182,12 +182,14 @@ def sign_up():
 
 @app.route("/verify_email/<username>", methods=["GET", "POST"])
 def verify_email(username):
+
+    users = mongo.db.users.find().sort("username", 1)
+  
     if request.method == "POST":
-        users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
+                    {"username": request.form.get("username")})
         username = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
+                    {"username": request.form.get("username")})
 
         update = {
 
@@ -213,10 +215,10 @@ def verify_email(username):
                 return render_template(
                     "profile.html", username=username, user=user, users=users)
 
-    username = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
+    username = mongo.db.users.find_one(
+            {"username": request.form.get("username")})
     return render_template(
         "verify.html", username=username, user=user, users=users)
 
@@ -452,39 +454,27 @@ def search_event():
 
         search_term = request.form.get("search_event")
 
-        if search_index is False:
+        mongo.db.events.create_index(
+            [("event_title","text"),("event_type","text"),("event_date","text"),("event_paid_for","text"),("event_time","text"),("event_description","text"),("event_location_town","text"),("event_location_postcode","text")])
 
-            mongo.db.events.create_index(
-                [("event_title","text"),("event_type","text"),("event_date","text"),("event_paid_for","text"),("event_time","text"),("event_description","text"),("event_location_town","text"),("event_location_postcode","text")])
+        events = list(
+            mongo.db.events.find({"$text": {"$search": search_term}}))
 
-            events = list(
-                mongo.db.events.find({"$text": {"$search": search_term}}))
-
-            if events is None:
-                flash("There are no results for that search")
-                search_completed = False
-                return render_template("events.html", events=events)
-            else:
-                if events:
-                    search_completed = True
-                    search_index is True
-                return render_template("events.html", events=events)
-
-            if search_completed:
-                time.sleep(120)
-                mongo.db.events.drop_index(
-                    'event_title_text_event_type_text_event_date_text_event_paid_for_text_event_time_text_event_description_text_event_location_town_text_event_location_postcode_text')
-                search_index is False
+        if events is None:
+            flash("There are no results for that search")
+            search_completed = False
+            return render_template("events.html", events=events)
         else:
-            search_term = request.form.get("search_event")
-            if events is None:
-                flash("There are no results for that search")
-                search_completed = False
-                return render_template("events.html", events=events)
-            else:
-                if events:
-                    search_completed = True
-                return render_template("events.html", events=events)
+            if events:
+                search_completed = True
+            return render_template("events.html", events=events)
+
+        if search_completed:
+            time.sleep(120)
+            mongo.db.events.drop_index(
+                'event_title_text_event_type_text_event_date_text_event_paid_for_text_event_time_text_event_description_text_event_location_town_text_event_location_postcode_text')
+
+        return render_template("events.html", events=events)
     return
 
 
