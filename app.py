@@ -453,13 +453,13 @@ def search_event():
         events = list(
             mongo.db.events.find({"$text": {"$search": search_term}}))
 
-        if events:
+        if events is None:
             flash("There are no results for that search")
             search_completed = False
             return render_template("events.html", events=events)
         else:
-            events is None
-            search_completed = True
+            if events:
+                search_completed = True
             return render_template("events.html", events=events)
 
         if search_completed is True:
