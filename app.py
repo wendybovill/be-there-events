@@ -456,10 +456,15 @@ def search_event():
         if events <= 0:
             flash("There are no results for that search")
             search_completed = False
+            return render_template("events.html", events=events)
         else:
             events > 0
             search_completed = True
-            mongo.db.tasks.drop_index(search_index_name)
+            return render_template("events.html", events=events)
+
+    if search_completed is True:
+        mongo.db.tasks.drop_index(search_index_name)
+
     return render_template("events.html", events=events)
 
 
