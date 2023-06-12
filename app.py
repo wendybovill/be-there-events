@@ -1,5 +1,6 @@
 import os
 import pathlib
+import time
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
@@ -30,10 +31,6 @@ mail = Mail(app)
 
 
 mongo = PyMongo(app)
-
-
-def drop_index(self, dbname, index):
-    mongo.db.dbname.drop_index(index)
 
 
 def send_email(email):
@@ -445,17 +442,16 @@ def edit_event(event_id):
 
 @app.route("/search_event", methods=["GET", "POST"])
 def search_event():
-    input_name = request.form.get("search_event")
 
     if request.method == "POST":
 
-        search_index_name = mongo.db.tasks.create_index(
-            [("event_title","text"),("event_type","text"),("event_date","text"),("event_paid_for","text"),("event_time","text"),("event_description","text"),("event_location_town","text"),("event_location_postcode","text")])
-        mongo.db.tasks.create_index([("event_title","text"),(
-            "event_type","text"),("event_date","text"),("event_paid_for","text"),("event_time","text"),("event_description","text"),("event_location_town","text"),("event_location_postcode","text")])
+        search_term = request.form.get("search_event")
 
-        events = list(mongo.db.events.find({"$text": {"$search": input_name}}))
-        list(mongo.db.events.find({"$text": {"$search": input_name}}))
+        mongo.db.events.create_index(
+            [("event_title","text"),("event_type","text"),("event_date","text"),("event_paid_for","text"),("event_time","text"),("event_description","text"),("event_location_town","text"),("event_location_postcode","text")])
+
+        events = list(
+            mongo.db.events.find({"$text": {"$search": search_term}}))
 
         if events <= 0:
             flash("There are no results for that search")
@@ -467,7 +463,9 @@ def search_event():
             return render_template("events.html", events=events)
 
         if search_completed is True:
-            drop_index("events", search_index_name)
+            time.sleep(120)
+            mongo.db.events.drop_index(
+                'event_title_text_event_type_text_event_date_text_event_paid_for_text_event_time_text_event_description_text_event_location_town_text_event_location_postcode_text')
     return
 
 
