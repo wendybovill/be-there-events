@@ -391,11 +391,14 @@ def add_event():
             "event_date": request.form.get("event_date"),
             "event_time": request.form.get("event_time"),
             "event_description": request.form.get("event_description"),
-            "event_location_town": request.form.get("event_location_town").title(),
+            "event_location_town": request.form.get(
+                "event_location_town").title(),
             "event_location_postcode": request.form.get(
                 "event_location_postcode").upper(),
-            "event_organiser": request.form.get("event_organiser").title(),
-            "event_contact_details": request.form.get("event_contact_details").title(),
+            "event_organiser": request.form.get(
+                "event_organiser").title(),
+            "event_contact_details": request.form.get(
+                "event_contact_details").title(),
             "event_url": request.form.get("event_url"),
             "event_entrance_fee": request.form.get("event_entrance_fee"),
             "event_paid_for": event_paid_for
@@ -419,11 +422,13 @@ def edit_event(event_id):
             "event_date": request.form.get("event_date"),
             "event_time": request.form.get("event_time"),
             "event_description": request.form.get("event_description"),
-            "event_location_town": request.form.get("event_location_town").title(),
+            "event_location_town": request.form.get(
+                "event_location_town").title(),
             "event_location_postcode": request.form.get(
                 "event_location_postcode").upper(),
             "event_organiser": request.form.get("event_organiser").title(),
-            "event_contact_details": request.form.get("event_contact_details").title(),
+            "event_contact_details": request.form.get(
+                "event_contact_details").title(),
             "event_url": request.form.get("event_url"),
             "event_entrance_fee": request.form.get("event_entrance_fee"),
             "event_paid_for": event_paid_for,
@@ -438,13 +443,16 @@ def edit_event(event_id):
 
 @app.route("/search_event", methods=["GET", "POST"])
 def search_event():
-    search_query = request.form.get("search_event")
+    input_name = request.form.get("search_event")
+
     if request.method == "POST":
 
+        mongo.db.tasks.create_index([("event_title","text"),("event_type","text"),("event_date","text"),("event_paid_for","text"),("event_time","text"),("event_description","text"),("event_location_town","text"),("event_location_postcode","text")])
+        return search_index_name
 
-
-    events = list(mongo.db.events.find({"$text": {"$search": search_query}}))
+    events = list(mongo.db.events.find({"$text": {"$search": input_name}}))
     return render_template("events.html", events=events)
+    return drop_search_index(search_index_name)
 
 
 @app.route("/contact_page", methods=["GET", "POST"])
