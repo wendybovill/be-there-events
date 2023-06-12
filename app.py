@@ -306,10 +306,9 @@ def edit_profile(username):
 
         mongo.db.users.update_one({"username": username}, {"$set": update})
 
-        session["user"] = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
         users = mongo.db.users.find().sort("username", 1)
         user = mongo.db.users.find_one({"username": username})
+        username = user
         flash("Your Profile has been updated " + username)
         return render_template(
             "profile.html", username=username, user=user, users=users)
