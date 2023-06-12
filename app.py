@@ -446,7 +446,7 @@ def edit_event(event_id):
 @app.route("/search_event", methods=["GET", "POST"])
 def search_event():
     input_name = request.form.get("search_event")
-    drop_index("events", search_index_name)
+
     if request.method == "POST":
 
         search_index_name = mongo.db.tasks.create_index(
@@ -466,10 +466,9 @@ def search_event():
             search_completed = True
             return render_template("events.html", events=events)
 
-    if search_completed is True:
-        mongo.db.tasks.drop_index(search_index_name)
-
-    return render_template("events.html", events=events)
+        if search_completed is True:
+        drop_index("events", search_index_name)
+    return
 
 
 @app.route("/contact_page", methods=["GET", "POST"])
