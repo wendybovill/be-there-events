@@ -404,7 +404,8 @@ def add_event():
         }
 
         mongo.db.events.insert_one(event)
-        flash("You have added an Event: {{ event_title }}")
+        flash("You have added an Event: " + request.form.get(
+            "event_title").title())
         return redirect(url_for("get_events"))
     types = mongo.db.types.find().sort("type_name", 1)
     return render_template("add_event.html", types=types)
@@ -447,25 +448,39 @@ def search_event():
 
         search_term = request.form.get("search_event")
 
-        mongo.db.events.create_index(
-            [("event_title","text"),("event_type","text"),("event_date","text"),("event_paid_for","text"),("event_time","text"),("event_description","text"),("event_location_town","text"),("event_location_postcode","text")])
+        if search_index is False:
 
-        events = list(
-            mongo.db.events.find({"$text": {"$search": search_term}}))
+            mongo.db.events.create_index(
+                [("event_title","text"),("event_type","text"),("event_date","text"),("event_paid_for","text"),("event_time","text"),("event_description","text"),("event_location_town","text"),("event_location_postcode","text")])
 
-        if events is None:
-            flash("There are no results for that search")
-            search_completed = False
-            return render_template("events.html", events=events)
+            events = list(
+                mongo.db.events.find({"$text": {"$search": search_term}}))
+
+            if events is None:
+                flash("There are no results for that search")
+                search_completed = False
+                return render_template("events.html", events=events)
+            else:
+                if events:
+                    search_completed = True
+                    search_index is True
+                return render_template("events.html", events=events)
+
+            if search_completed:
+                time.sleep(120)
+                mongo.db.events.drop_index(
+                    'event_title_text_event_type_text_event_date_text_event_paid_for_text_event_time_text_event_description_text_event_location_town_text_event_location_postcode_text')
+                search_index is False
         else:
-            if events:
-                search_completed = True
-            return render_template("events.html", events=events)
-
-        if search_completed is True:
-            time.sleep(120)
-            mongo.db.events.drop_index(
-                'event_title_text_event_type_text_event_date_text_event_paid_for_text_event_time_text_event_description_text_event_location_town_text_event_location_postcode_text')
+            search_term = request.form.get("search_event")
+            if events is None:
+                flash("There are no results for that search")
+                search_completed = False
+                return render_template("events.html", events=events)
+            else:
+                if events:
+                    search_completed = True
+                return render_template("events.html", events=events)
     return
 
 
