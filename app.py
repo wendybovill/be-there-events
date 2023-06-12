@@ -219,7 +219,7 @@ def verify_email(username):
         username = mongo.db.users.find_one(
                 {"username": session["user"]})["username"]
     return render_template(
-        "verify.html", username=username, user=user, users=users)
+        "verify.html", username=username)
 
 
 @app.route("/log_in", methods=["GET", "POST"])
