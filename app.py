@@ -65,7 +65,7 @@ def send_email(email):
 
 
 def sign_up_thankyou(sign_up_email):
-    msg = Message("New Sign Up on Event Lister Website",
+    msg = Message("New Sign Up on BeThere! Events",
                   sender=("Event List Team",
                           "event_lister@wideworldwebhosting.co.uk"),
                   recipients=[sign_up_email['email']],
@@ -75,17 +75,16 @@ def sign_up_thankyou(sign_up_email):
 
     <div>
     <p>Hi {},</p>
-    <p>{} thank you for registering on the Event Lister Website.<br>
+    <p>{} thank you for registering on BeThere! Events Website.<br>
     You can list your events for free. But first you need to verify<br>
     your email address, then you can login and list your first event!
-    <p>You will not be able to login unless you have verified your<br>
-    email address first.<br>
+    </p>
+    <p><em>Please remember your username and password.</em><br>
+    <br>These are Case Sensitive. eg. Username must match {}<br>
     Click the link below to verify your email.</p>
     <p>
     <a href="https://event-lister.herokuapp.com/verify_email/{}" target="_blank">Verify Email</a>
     <p>Don't forget to tell your friends about us!</p>
-    <p>The information below is what we received when you signed up:<br>
-    Your message: {}</p>
     <p>Kind regards,
     <br>
     The Event Lister Team.
@@ -95,7 +94,8 @@ def sign_up_thankyou(sign_up_email):
     </div>
 
     """.format(sign_up_email['username'], sign_up_email['name'],
-               sign_up_email['username'], sign_up_email['email'])
+               sign_up_email['username'], sign_up_email['username'],
+               sign_up_email['email'])
 
     mail.send(msg)
 
@@ -188,14 +188,14 @@ def verify_email(username):
                     {"username": request.form.get("username")})
         username = mongo.db.users.find_one(
                     {"username": request.form.get("username")})
-        verified = "yes" if request.form.get(
-            "verified") else "no"
+        verify = "yes" if request.form.get("verified") else "no"
+
         update = {
 
-            "verified": verified
+            "verified": verify
         }
 
-        mongo.db.users.update_one({"username": username}, {"$set": update})
+        mongo.db.users.update_one({"username": request.form.get("username")}, {"$set": update})
 
         flash("Your email has been verified " + session["user"])
 
