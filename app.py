@@ -408,7 +408,8 @@ def add_event():
         return redirect(url_for("get_events"))
 
     types = mongo.db.types.find().sort("type_name", 1)
-    return render_template("add_event.html", types=types, events=events)
+    return render_template("add_event.html", types=types
+    )
 
 
 @app.route("/edit_event/<event_id>", methods=["GET", "POST"])
