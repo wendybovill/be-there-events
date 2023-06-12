@@ -185,6 +185,9 @@ def verify_email(username):
 
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
+        session["user"] = request.form.get("username")
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
     if request.method == "POST":
         user = mongo.db.users.find_one(
                     {"username": request.form.get("username")})
@@ -215,9 +218,11 @@ def verify_email(username):
                 return render_template(
                     "profile.html", username=username, user=user, users=users)
 
-    users = mongo.db.users.find().sort("username", 1)
-    user = mongo.db.users.find_one({"username": username})
-    username = user
+        users = mongo.db.users.find().sort("username", 1)
+        user = mongo.db.users.find_one({"username": username})
+        session["user"] = request.form.get("username")
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
     return render_template(
         "verify.html", username=username, user=user, users=users)
 
