@@ -194,8 +194,6 @@ def verify_email(username):
 
         mongo.db.users.update_one({"username": username}, {"$set": update})
 
-        users = mongo.db.users.find().sort("username", 1)
-        user = mongo.db.users.find_one({"username": username})
         flash("Your email has been verified " + username)
 
         existing_user = mongo.db.users.find_one(
@@ -208,9 +206,12 @@ def verify_email(username):
                 session["user"] = request.form.get("username")
                 flash("Welcome, {}".format(
                     request.form.get("username")))
+                username = mongo.db.users.find_one(
+                    {"username": session["user"]})["username"]
                 return render_template(
-            "profile.html", username=username, user=user, users=users)
-
+                    "profile.html", username=username, user=user, users=users)
+    username = mongo.db.users.find_one(
+                {"username": session["user"]})["username"]
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
     return render_template(
@@ -222,6 +223,10 @@ def log_in():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        users = mongo.db.users.find().sort("username", 1)
+        user = mongo.db.users.find_one({"username": username})
 
         if existing_user:
             if check_password_hash(
@@ -231,7 +236,7 @@ def log_in():
                 flash("Welcome, {}".format(
                     request.form.get("username")))
                 return render_template(
-            "profile.html", username=username, user=user, users=users)
+                    "profile.html", username=username, user=user, users=users)
             else:
                 # password not matching
                 flash("Please check your login details")
@@ -434,6 +439,10 @@ def edit_event(event_id):
 @app.route("/search_event", methods=["GET", "POST"])
 def search_event():
     search_query = request.form.get("search_event")
+    if request.method == "POST":
+
+
+
     events = list(mongo.db.events.find({"$text": {"$search": search_query}}))
     return render_template("events.html", events=events)
 
