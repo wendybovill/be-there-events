@@ -188,10 +188,11 @@ def verify_email(username):
                     {"username": request.form.get("username")})
         username = mongo.db.users.find_one(
                     {"username": request.form.get("username")})
-
+        verified = "yes" if request.form.get(
+            "verified") else "no"
         update = {
 
-            "verified": request.form.get("verified"),
+            "verified": verified
         }
 
         mongo.db.users.update_one({"username": username}, {"$set": update})
@@ -208,6 +209,8 @@ def verify_email(username):
                 session["user"] = request.form.get("username")
                 flash("Welcome, {}".format(
                     request.form.get("username")))
+                users = mongo.db.users.find().sort("username", 1)
+                user = mongo.db.users.find_one({"username": username})
                 username = mongo.db.users.find_one(
                     {"username": session["user"]})["username"]
                 return render_template(
