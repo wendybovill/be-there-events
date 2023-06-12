@@ -187,10 +187,9 @@ def verify_email(username):
         user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
 
-        verify = "yes"
-
         update = {
-            "verified": "yes"
+
+            "verified": request.form.get("verified"),
         }
 
         mongo.db.users.update_one({"username": username}, {"$set": update})
