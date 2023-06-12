@@ -463,7 +463,6 @@ def search_event():
             return render_template("events.html", events=events)
 
         if search_completed is True:
-            time.sleep(120)
             mongo.db.events.drop_index(
                 'event_title_text_event_type_text_event_date_text_event_paid_for_text_event_time_text_event_description_text_event_location_town_text_event_location_postcode_text')
     return
