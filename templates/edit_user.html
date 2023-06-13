@@ -15,7 +15,7 @@
 </div>
 
         <div class="row centered">
-            <form class="s12 card noshadow-card m8" method="POST" action="{{ url_for('edit_user', username=user.username) }}">
+            <form class="s12 card noshadow-card m8" method="POST" action="{{ url_for('edit_user', username=user.username, user=user, users=users) }}">
             <!-- Username -->
             <div class="row">
                 <div class="div-field col s12">
@@ -37,14 +37,14 @@
                     <label for="lname" class="grey-text text-darken-2" >Last Name</label>
                 </div>
             </div>
-                        <!-- Address Line 1 -->
-                        <div class="row">
-                            <div class="div-field col s12">
-                                <div id="address_1" name="address_1" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.address_1|title }}">{{ user.address_1|title }}</div>
-                                <label for="address_1" class="grey-text text-darken-2" >Address line 1</label>
-                            </div>
-                        </div>
-                                    <!-- Address Line 2 -->
+            <!-- Address Line 1 -->
+            <div class="row">
+                <div class="div-field col s12">
+                    <div id="address_1" name="address_1" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.address_1|title }}">{{ user.address_1|title }}</div>
+                    <label for="address_1" class="grey-text text-darken-2" >Address line 1</label>
+                </div>
+            </div>
+            <!-- Address Line 2 -->
             <div class="row">
                 <div class="div-field col s12">
                     <div id="address_2" name="address_2" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.address_2|title }}">{{ user.address_2|title }}</div>
@@ -86,7 +86,7 @@
                     <label for="dob" class="grey-text text-darken-2" >Date of Birth</label>
                 </div>
             </div>
-                    <!-- Verified email -->
+            <!-- Verified email -->
             <div class="row">
                 <div class="input-field  col s12 switch">
                     <label for="verified">Verify? <span>No</span> 
@@ -94,15 +94,15 @@
                     <span class="lever"></span> Yes<small>[Tick if Yes]</small></label>
                 </div>
             </div>
-                <!-- Submit Button -->
-                <div class="row">
-                    <div class="col s12 center-align">
-                        <a href="{{ url_for('get_users') }}" class="btn-large grey darken-1 text-shadow white-text">Cancel</a>    
-                        <button user="submit" class="btn-large indigo darken-1 text-white text-shadow">
-                            Update Member <i class="right fa fa-check" aria-hidden="true"></i>
-                        </button>
-                    </div>
+            <!-- Submit Button -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <a href="{{ url_for('get_users') }}" class="btn-large grey darken-1 text-shadow white-text">Cancel</a>    
+                    <button user="submit" class="btn-large indigo darken-1 text-white text-shadow">
+                        Update Member <i class="right fa fa-check" aria-hidden="true"></i>
+                    </button>
                 </div>
+            </div>
             </form>
         </div>
 

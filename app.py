@@ -547,7 +547,8 @@ def delete_event_confirm(event_id):
 @app.route("/view_members")
 def view_members():
     users = list(mongo.db.users.find().sort("username", 1))
-    return render_template("view_members.html", users=users)
+    return render_template(
+        "view_members.html", username=username, users=users, user=user)
 
 
 @app.route("/edit_user/<username>", methods=["GET", "POST"])
@@ -583,6 +584,28 @@ def edit_user(username):
     user = mongo.db.users.find_one({"username": username})
     return render_template(
         "edit_user.html", username=username, user=user, users=users)
+
+
+@app.route("/delete_member/<username>")
+def delete_member(username):
+    users = mongo.db.users.find().sort("username", 1)
+    user = mongo.db.users.find_one({"username": username})
+    user_id = user._id
+    mongo.db.user.find_one({"_id": ObjectId(user_id)})
+    flash("Are you sure you want to delete this member?")
+    return render_template(
+        "delete_user.html", username=username, users=users, user=user)
+
+
+@app.route("/delete_user_confirm/<username>")
+def delete_user_confirm(username):
+    users = mongo.db.users.find().sort("username", 1)
+    user = mongo.db.users.find_one({"username": username})
+    user_id = user._id
+    mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    flash("Member Deleted")
+    return redirect(url_for(
+        "view_members", username=username, users=users, user=user))
 
 
 """Error Handling
