@@ -548,7 +548,7 @@ def delete_event_confirm(event_id):
 def view_members():
     users = list(mongo.db.users.find().sort("username", 1))
     return render_template(
-        "view_members.html", username=username, users=users, user=user)
+        "view_members.html", users=users, user=user)
 
 
 @app.route("/edit_user/<username>", methods=["GET", "POST"])
