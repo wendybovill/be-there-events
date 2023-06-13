@@ -618,14 +618,7 @@ div.bottom {
     background-color: rgb(226, 225, 225);
 } 
 
-a.member-link {
-    color:grey;
-    font-size: 1rem;
-}
 
-a.member-link:hover {
-    color: indigo;
-}
 
 
 
@@ -634,13 +627,15 @@ a.member-link:hover {
 .member-description {
     width: auto;
     padding: 5px 0 0 0;
-    display: inline-flex;
     margin-bottom: 10px;
-
+}
+a.member-description {
+    color:grey;
+    font-size: 1rem;
 }
 
-.member-description a {
-    color: black;
+a.member-description:hover {
+    color: indigo;
 }
 
 .member-description a:hover, h3 a:hover {
