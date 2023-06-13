@@ -554,12 +554,6 @@ def view_members():
 @app.route("/edit_member/<user_id>", methods=["GET", "POST"])
 def edit_member(user_id):
     if request.method == "POST":
-        existing_username = mongo.db.users.find_one(
-            {"username": request.form.get("username")})["username"]
-        username = mongo.db.users.find_one(
-            {"username": request.form.get("username")})["username"]
-        user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-        user_id = mongo.db.user.find_one({"_id": ObjectId(user_id)})
         verify = "yes" if request.form.get("verified") else "no"
 
         update = {
@@ -576,41 +570,27 @@ def edit_member(user_id):
         }
 
         mongo.db.users.update_one({"_id": ObjectId(user_id)}, {"$set": submit})
-        username = mongo.db.users.find_one(
-            {"username": request.form.get("username")})["username"]
-        users = mongo.db.users.find().sort("username", 1)
-        user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-        user_id = mongo.db.user.find_one({"_id": ObjectId(user_id)})
-        flash("The member " + request.form.get("username") + " is updated")
-        return render_template(
-            "edit_member.html", user_id=user._id, user=user, users=users)
 
-    users = mongo.db.users.find().sort("username", 1)
+        flash("The member " + request.form.get("username") + " is updated")
+
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-    return render_template(
-        "edit_member.html", user_id=user._id, user=user, users=users)
+    return render_template("edit_member.html", user=user)
 
 
 @app.route("/delete_member/<user_id>")
 def delete_member(user_id):
-    users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-    user_id = user._id
-    mongo.db.user.find_one({"_id": ObjectId(user_id)})
     flash("Are you sure you want to delete this member?")
     return render_template(
-        "delete_member.html", user_id=user._id, users=users, user=user)
+        "delete_member.html", user=user)
 
 
 @app.route("/delete_member_confirm/<user_id>")
 def delete_member_confirm(user_id):
-    users = mongo.db.users.find().sort("username", 1)
-    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-    user_id = user._id
     mongo.db.users.delete_one({"_id": ObjectId(user_id)})
     flash("Member Deleted")
     return redirect(url_for(
-        "view_members", user_id=user._id, users=users, user=user))
+        "view_members"))
 
 
 """Error Handling
