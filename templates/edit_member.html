@@ -15,7 +15,7 @@
 </div>
 
         <div class="row centered">
-            <form class="s12 card noshadow-card m8" method="POST" action="{{ url_for('edit_member', username=user.username, user=user, users=users) }}">
+            <form class="s12 card noshadow-card m8" method="POST" action="{{ url_for('edit_member', user_id=user._id, username=user.username, user=user, users=users) }}">
                 <!-- Username -->
                 <div class="row white">
                     <div class="input-field col s12">
@@ -84,6 +84,13 @@
                         <i class="prefix fa fa-map-signs" aria-hidden="true"></i>
                         <input id="postcode" name="postcode" type="text" class="validate" minlength="5" maxlength="100" value="{{ user.postcode|upper }}">
                         <label for="postcode">Postcode</label>
+                    </div>
+                </div>
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="prefix fa fa-map-signs" aria-hidden="true"></i>
+                        <input id="user_id" name="user_id" type="text" class="validate" minlength="5" maxlength="100" value="{{ user._id }}" disabled>
+                        <label for="user_id">User ID</label>
                     </div>
                 </div>
             <!-- Verified email -->

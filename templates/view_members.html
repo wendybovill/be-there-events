@@ -25,17 +25,19 @@
                         <td class="col xl12 l12 m12 s12 user-background">
                             <div class="user-table ">
                                 <div class="left col xl8 l10 m12 s12">
-                                    <h3><a href="{{ url_for('edit_member', username=user.username, user=user, users=users) }}">Member Username {{ user.username }}</a></h3>
+                                    <h3><a href="{{ url_for('edit_member', username=user.username, user_id=user._id, user=user, users=users) }}">Member Username:  {{ user.username }}</a></h3>
                                 </div>
                                 <div class="col l12 m8 s12">
                                     <div class="left user-description xl8 l6 m9 s12">
-                                        <a href="{{ url_for('edit_member', username=user.username, user=user, users=users) }}">Member Email {{ user.email }}</a>
+                                        <a href="{{ url_for('edit_member', username=user.username, user_id=user._id, user=user, users=users) }}">Member Email:  {{ user.email }}</a>
                                         <br><br>
-                                        <a href="{{ url_for('edit_member', username=user.username, user=user, users=users) }}">Member Verified? {{ user.verified }}</a>
+                                        <a href="{{ url_for('edit_member', username=user.username, user_id=user._id, user=user, users=users) }}">Member Verified?:  {{ user.verified }}</a>
+                                        <br><br>
+                                        <a href="{{ url_for('edit_member', username=user.username, user_id=user._id, user=user, users=users) }}">Member User ID:  {{ user._id }}</a>
                                     </div>
                                     <div class="col xl2 l3 m3 s12 right user-buttons">
-                                        <a href="{{ url_for('edit_member', username=user.username, user=user, users=users) }}" class="btn-small indigo center">Edit</a> &nbsp; &nbsp; &nbsp;
-                                        <a href="{{ url_for('delete_member', username=user.username, user=user, users=users) }}" class="btn-small red darken-4 white-text center">Delete</a>
+                                        <a href="{{ url_for('edit_member', username=user.username, user_id=user._id, user=user, users=users) }}" class="btn-small indigo center">Edit</a> &nbsp; &nbsp; &nbsp;
+                                        <a href="{{ url_for('delete_member', username=user.username, user_id=user._id, user=user, users=users) }}" class="btn-small red darken-4 white-text center">Delete</a>
                                     </div>
                                 </div>
                             </div>           
