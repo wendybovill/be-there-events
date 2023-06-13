@@ -20,9 +20,8 @@
                 <div class="row white">
                     <div class="input-field col s12">
                     <i class="fas fa-pencil-alt prefix"></i>
-                    <div class="center input-disabled ">{{ user.username }}<br></div>
-                    <input id="username" name="username" type="text" class="validate scrollspy hidden" minlength="2" maxlength="85" value="{{ user.username }}">
-                    <label for="username" class="grey-text text-darken-3 center username profile-label">Username - you cannot change your Username</label>
+                    <input id="username" name="username" type="text" class="validate scrollspy" minlength="2" maxlength="85" value="{{ user.username }}">
+                    <label for="username" class="grey-text text-darken-3 center username profile-label">Nofiy the user before changing username</label>
                 </div>
                 </div>
                 <!-- First name -->
@@ -90,19 +89,20 @@
                     <div class="input-field col s12">
                         <i class="prefix fa fa-map-signs" aria-hidden="true"></i>
                         <input id="user_id" name="user_id" type="text" class="validate" minlength="5" maxlength="100" value="{{ user._id }}" disabled>
-                        <label for="user_id">User ID</label>
+                        <label for="user_id" class="white">User ID</label>
                     </div>
                 </div>
             <!-- Verified email -->
             <div class="row">
-                <span>Was the Member verfied? {{ user.verfied }}</span>
                 {% if user.verified == "yes" %}
+                <span>Was the Member verfied? {{ user.verfied }}</span>
                 <div class="input-field  col s12 switch">
                     <label for="verified">Verify? <span>&nbsp;No</span>
                     <input id="verified" name="verified" type="checkbox" checked>
                     <span class="lever"></span> <span>Yes <small>[Tick if Yes]</small></span></label>
                 </div>
                 {% else %}
+                <span>Was the Member verfied? {{ user.verfied }}</span>
                 <div class="input-field  col s12 switch">
                     <label for="verified">Verify? <span>&nbsp;No</span>
                     <input id="verified" name="verified" type="checkbox">
