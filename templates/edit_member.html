@@ -95,14 +95,14 @@
             <!-- Verified email -->
             <div class="row">
                 {% if user.verified == "yes" %}
-                <span>Was the Member verfied? {{ user.verfied }}</span>
+                <span>Was the Member verified? {{ user.verified }}</span>
                 <div class="input-field  col s12 switch">
                     <label for="verified">Verify? <span>&nbsp;No</span>
                     <input id="verified" name="verified" type="checkbox" checked>
                     <span class="lever"></span> <span>Yes <small>[Tick if Yes]</small></span></label>
                 </div>
                 {% else %}
-                <span>Was the Member verfied? {{ user.verfied }}</span>
+                <span>Was the Member verified? {{ user.verified }}</span>
                 <div class="input-field  col s12 switch">
                     <label for="verified">Verify? <span>&nbsp;No</span>
                     <input id="verified" name="verified" type="checkbox">
