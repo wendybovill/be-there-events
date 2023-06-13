@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="center h1">Edit The Event user</div>
+<div class="center h1">Edit Member</div>
 
 <div class="section centered row green-text text-darken-6">
     {% with messages = get_flashed_messages() %}
@@ -15,7 +15,7 @@
 </div>
 
         <div class="row centered">
-            <form class="s12 card noshadow-card m8" method="POST" action="{{ url_for('edit_user', username=user.username, user=user, users=users) }}">
+            <form class="s12 card noshadow-card m8" method="POST" action="{{ url_for('edit_member', username=user.username, user=user, users=users) }}">
             <!-- Username -->
             <div class="row">
                 <div class="div-field col s12">
@@ -97,7 +97,7 @@
             <!-- Submit Button -->
             <div class="row">
                 <div class="col s12 center-align">
-                    <a href="{{ url_for('get_users') }}" class="btn-large grey darken-1 text-shadow white-text">Cancel</a>    
+                    <a href="{{ url_for('view_members') }}" class="btn-large grey darken-1 text-shadow white-text">Cancel</a>    
                     <button user="submit" class="btn-large indigo darken-1 text-white text-shadow">
                         Update Member <i class="right fa fa-check" aria-hidden="true"></i>
                     </button>

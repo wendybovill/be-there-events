@@ -551,8 +551,8 @@ def view_members():
         "view_members.html", users=users)
 
 
-@app.route("/edit_user/<username>", methods=["GET", "POST"])
-def edit_user(username):
+@app.route("/edit_member/<username>", methods=["GET", "POST"])
+def edit_member(username):
     if request.method == "POST":
         existing_username = mongo.db.users.find_one(
             {"username": request.form.get("username")})["username"]
@@ -578,12 +578,12 @@ def edit_user(username):
         username = user
         flash("The member " + request.form.get("username") + " is updated")
         return render_template(
-            "edit_user.html", username=username, user=user, users=users)
+            "edit_member.html", username=username, user=user, users=users)
 
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
     return render_template(
-        "edit_user.html", username=username, user=user, users=users)
+        "edit_member.html", username=username, user=user, users=users)
 
 
 @app.route("/delete_member/<username>")
@@ -594,11 +594,11 @@ def delete_member(username):
     mongo.db.user.find_one({"_id": ObjectId(user_id)})
     flash("Are you sure you want to delete this member?")
     return render_template(
-        "delete_user.html", username=username, users=users, user=user)
+        "delete_member.html", username=username, users=users, user=user)
 
 
-@app.route("/delete_user_confirm/<username>")
-def delete_user_confirm(username):
+@app.route("/delete_member_confirm/<username>")
+def delete_member_confirm(username):
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
     user_id = user._id
