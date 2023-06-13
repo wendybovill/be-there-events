@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="col xl2 l3 m3 s12 right user-buttons">
                                         <a href="{{ url_for('edit_member', username=user.username, user=user, users=users) }}" class="btn-small indigo center">Edit</a> &nbsp; &nbsp; &nbsp;
-                                        <a href="{{ url_for('delete_user', username=user.username, user=user, users=users) }}" class="btn-small red darken-4 white-text center">Delete</a>
+                                        <a href="{{ url_for('delete_member', username=user.username, user=user, users=users) }}" class="btn-small red darken-4 white-text center">Delete</a>
                                     </div>
                                 </div>
                             </div>           
