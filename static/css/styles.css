@@ -58,17 +58,23 @@ main {
     overflow-y: hidden;
 }
 
+.section {
+    padding-top: unset; 
+    padding-bottom: unset;
+    }
+
 section {
     padding: 25px;
     margin: 0;
     width: 100%;
 }
 
-#logo {
+.brand-logo {
     color: white;
     font-size: 2em;
     float: left;
     padding: 10px 25px 5px 25px;
+    margin-left: 25px;
 }
 
 nav {
@@ -123,6 +129,7 @@ div.event-title.indigo-text.text-lighten-1.collapsible-header, .collapsible {
     border:unset;
     box-shadow: unset;
     font-size: 1.1rem;
+    padding: unset;
 }
 
 #section_one {
@@ -182,16 +189,49 @@ div#section_one p{
     padding: 0 35px;
 }
 
+.collapsible-header i {
+    padding: 0;
+    width: 1rem;
+    font-size: 1.6rem;
+    display: inline-block;
+    text-align: center;
+    margin-right: 0;
+    }
+
+i.right {
+    float: right;
+    margin-left: unset;
+    }
+
 .event-title, .event-title a {
-    color:rgb(214, 252, 255);
-    font-size: 1.1em;
+    color:rgb(255, 254, 214);
+    font-size: 1.1rem;
     font-weight: 700;
-    padding: 8px;
     text-shadow: 2px 2px 2px rgba(15, 7, 58, 0.493);
+    width: 100%;
+    margin-left: unset;
+    margin-right: unset;
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
-.event-description {
-    padding: 7px 35px;
+
+.event-align, .event-align a, .event-align p {
+    color:rgb(214, 255, 255);
+    font-size: 1rem;
+    line-height: 1.1rem!important;
+    font-weight: 600;
+    text-shadow: 2px 2px 2px rgba(15, 7, 58, 0.493);
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    margin-block-start: 0;
+    margin-block-end: 0;
+
+}
+
+p.event-description {
+    padding: 7px 2%;
 }
 
 .type-description {
@@ -239,11 +279,9 @@ table.table-centered {
 
 .event-town, .top-spacing {
     display: inline-flex;
-    padding: 7px;
 }
 
-.event-time, .event-date, .event-heading {
-    display: inline-flex;
+a.event-time, a.event-date, a.event-heading {
     padding: 0 5px;
     color:rgb(255, 255, 255);
 }
@@ -252,6 +290,15 @@ table.table-centered {
     display: inline-flex;
     padding: 0 5px;
     color:rgb(255, 255, 255);
+}
+
+.hightlight1, .hightlight1 a {
+    color: lavender!important;
+    line-height: 1.2em!important;
+    font-weight: 700;
+    text-shadow: 2px 2px 2px rgba(15, 7, 58, 0.493);
+    width: 100%;
+    display: inline-block;
 }
 
 .address {
@@ -543,9 +590,477 @@ a.clear:hover {
 }
 
 
+div.spacer {
+    height: 25px;
+    width: 100%;
+    background-color: white;
+}
 
 
+
+
+
+
+/*====================================================*/
 
 
 
 /*================== MEDIA QUERIES ===================*/
+
+
+@media only screen and (min-width: 1921px) {
+
+
+    body {
+      font-size: 2rem;
+    }
+    nav.nav-extended .nav-wrapper {
+        height: 3rem!important;
+    }
+    nav .brand-logo {
+        display: inline;
+        white-space: nowrap;
+        font-size: 3rem;
+        position: absolute;
+        color: #fff;
+        display: inline-block;
+        padding-left: 1rem;
+        margin: unset;
+    }
+
+    nav ul a {
+        -webkit-transition: background-color .3s;
+        transition: background-color .3s;
+        float: left;
+        padding: 0;
+        font-size: 2rem;
+        padding-left: 1.5rem;
+        padding-right: 0.5rem;
+     }
+
+    div.h1 {
+        font-size: 2em!important;
+        text-align: center!important;
+        margin: 25px 0!important;
+        display: inline-block!important;
+        width: 100%;
+    }
+    
+    div.event-title.indigo-text.text-lighten-1.collapsible-header, .collapsible {
+        border:unset;
+        box-shadow: unset;
+        font-size: 2.2rem;
+        display: block;
+        border-bottom: unset;
+        border-top: unset;
+        width: 100%;
+        padding-left: 0px;
+        margin-left: 0px;
+        text-indent: unset;
+        text-align: center;
+    }
+
+    .collapsible-header, .collapsible-header p {
+        font-size: 2rem;
+        line-height: 2.5rem!important;
+    }
+
+    .event-align, .event-align a, .event-align p {
+        color: rgb(214, 255, 255);
+        line-height: 2rem;
+        font-weight: 600;
+        text-shadow: 2px 2px 2px rgba(15, 7, 58, 0.493);
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        }
+
+    div.event-description {
+        padding: 5px 5%;
+        font-size: 1.8rem;
+    }
+
+    .page-padding {
+        padding: 0 10%!important;
+        }
+    }
+
+
+@media only screen and (min-width: 1365px max-width: 1999px) {
+    body {
+      font-size: 2rem;
+    }
+
+    nav .brand-logo {
+        display: inline;
+        white-space: nowrap;
+        font-size: 2.5rem;
+        position: absolute;
+        color: #fff;
+        display: inline-block;
+        padding-left: 1rem;
+        margin: unset;
+    }
+
+    div.h1 {
+        font-size: 2.7em!important;
+        text-align: center!important;
+        margin: 25px 0!important;
+        display: inline-block!important;
+        width: 100%;
+        }
+    
+    div.event-title.indigo-text.text-lighten-1.collapsible-header, .collapsible {
+        border:unset;
+        box-shadow: unset;
+        font-size: 2.5rem;
+        display: block;
+        border-bottom: unset;
+        border-top: unset;
+        width: 100%;
+        padding-left: 0px;
+        margin-left: 0px;
+        text-indent: unset;
+        text-align: center;
+    }
+
+    .collapsible-header, .collapsible-header p {
+        font-size: 1.5rem;
+        line-height: 1.7rem!important;
+    }
+
+    .event-align, .event-align a, .event-align p {
+        color: rgb(214, 255, 255);
+        line-height: 1.7rem;
+        font-weight: 600;
+        text-shadow: 2px 2px 2px rgba(15, 7, 58, 0.493);
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        }
+
+    div.event-description {
+        padding: 5px 5%;
+        font-size: 1.2rem;
+    }
+}
+
+@media only screen and (min-width: 1110px max-width: 1364px) {
+    body {
+      font-size: 1.3rem;
+    }
+
+    nav .brand-logo {
+        display: inline;
+        white-space: nowrap;
+        font-size: 2rem;
+        position: absolute;
+        color: #fff;
+        display: inline-block;
+        padding-left: 1rem;
+        margin: unset;
+    }
+
+    .jumbotron img {
+        background-image: url(/static/images/image_1.jpg);
+        background-position: center center;
+        background-size:cover;
+        background-repeat: no-repeat;
+        max-height: 450px;
+        min-height: 18vh;
+        height: auto;
+        width:auto;
+        overflow-y: hidden;
+    }
+ 
+
+  div.h1 {
+    font-size: 1.7em!important;
+    text-align: center!important;
+    margin: 25px 0!important;
+    display: inline-block!important;
+    width: 100%;
+    }
+
+    div.event-title.indigo-text.text-lighten-1.collapsible-header, .collapsible {
+        border:unset;
+        box-shadow: unset;
+        font-size: 0.90rem;
+        display: block;
+        border-bottom: unset;
+        border-top: unset;
+        width: 100%;
+        padding-left: 0px;
+        margin-left: 0px;
+        text-indent: unset;
+        text-align: center;
+}
+
+    .event-title, .event-title a {
+        color:rgb(255, 254, 222);
+        font-weight: 700;
+        text-shadow: 2px 2px 2px rgba(15, 7, 58, 0.493);
+        text-align: center;
+    }
+
+    div.hightlight1 {
+        color:lavender;
+        text-align: left;
+    }
+
+    .description {
+        border: unset;
+    }
+    
+    .event-town, .top-spacing {
+        display: block;
+        padding: 7px;
+    }
+    
+    .event-time, .event-date, .event-heading {
+        display: block;
+        padding: 0 2.5px;
+        color:rgb(255, 252, 210);
+        text-indent: 10px;
+    }
+
+    .event-link {
+        word-wrap: break-word;
+    }
+    
+    .event-type {
+        display: block;
+        padding: 0 5px;
+        color:rgb(255, 255, 255);
+    }
+    .event-description {
+        padding: 2.5px 5px;
+    }
+
+    .collapsible-body {
+        display: none;
+        border-bottom: 1px solid #ddd;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 5px;
+    }
+
+    .centered {
+        margin: 0 5%;
+       }
+
+    .box-form {
+    /* min-width: 60%; */
+    width: auto;
+    height: auto;
+    padding: 15px 20px;
+    border-radius: 15px;
+    margin: 2% 5%;
+    text-align: center;
+    border-top: 2px white solid;
+    border-left: 2px white solid;
+    background-color: rgb(225, 225, 225);
+    }
+
+    .box {
+        min-width: 90%;
+        width:auto;
+        height: auto;
+        box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.555);
+        padding:15px 20px;
+        border-radius: 15px;
+        display: flexbox;
+        margin:2% 5%;
+        text-align: center;
+        border-top: 2px white solid;
+        border-left: 2px white solid;
+        background-color: rgb(226, 225, 225);
+    } 
+
+    .profile-label {
+        margin-left: unset;
+        padding: unset;
+    
+    }
+
+    .show {
+        display: block;
+        z-index: 900;
+        width: 100%;
+    }
+
+    .border-l-r {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+    }
+    
+    div.spacer {
+        height: 15px;
+        width: 100%;
+        background-color: white;
+    }
+}
+
+
+@media only screen and (max-width: 440px) {
+    body {
+      font-size: 0.90rem;
+    }
+
+    nav .brand-logo {
+        display: inline;
+        white-space: nowrap;
+        font-size: 1.7rem;
+        position: absolute;
+        color: #fff;
+        display: inline-block;
+        padding: 0;
+        margin: unset;
+    }
+
+    .jumbotron img {
+        background-image: url(/static/images/image_1.jpg);
+        background-position: center center;
+        background-size:cover;
+        background-repeat: no-repeat;
+        max-height: 450px;
+        min-height: 18vh;
+        height: auto;
+        width:auto;
+        overflow-y: hidden;
+    }
+ 
+
+  div.h1 {
+    font-size: 1.4em!important;
+    text-align: center!important;
+    margin: 25px 0!important;
+    display: inline-block!important;
+    width: 100%;
+    }
+
+
+
+
+    div.event-title.indigo-text.text-lighten-1.collapsible-header, .collapsible {
+        border:unset;
+        box-shadow: unset;
+        font-size: 0.90rem;
+        display: block;
+        border-bottom: unset;
+        border-top: unset;
+        width: 100%;
+        padding-left: 0px;
+        margin-left: 0px;
+        text-indent: unset;
+        text-align: center;
+}
+
+.event-title, .event-title a {
+        color:rgb(255, 254, 222);
+        font-weight: 700;
+        text-shadow: 2px 2px 2px rgba(15, 7, 58, 0.493);
+        text-align: center;
+    }
+
+    div.hightlight1 {
+        color:lavender;
+        text-align: left;
+    }
+
+    .description {
+        border: unset;
+    }
+    
+    .event-town, .top-spacing {
+        display: block;
+        padding: 7px;
+    }
+    
+    .event-time, .event-date, .event-heading {
+        display: block;
+        padding: 0 2.5px;
+        color:rgb(255, 252, 210);
+        text-indent: 10px;
+    }
+
+    .event-link {
+        word-wrap: break-word;
+    }
+    
+    .event-type {
+        display: block;
+        padding: 0 5px;
+        color:rgb(255, 255, 255);
+    }
+    .event-description {
+        padding: 2.5px 5px;
+    }
+
+    .collapsible-body {
+        display: none;
+        border-bottom: 1px solid #ddd;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 5px;;
+    }
+
+    .centered {
+        margin: 0 5%;
+       }
+
+    .box-form {
+    /* min-width: 60%; */
+    width: auto;
+    height: auto;
+    padding: 15px 20px;
+    border-radius: 15px;
+    margin: 2% 5%;
+    text-align: center;
+    border-top: 2px white solid;
+    border-left: 2px white solid;
+    background-color: rgb(225, 225, 225);
+    }
+
+    .box {
+        min-width: 90%;
+        width:auto;
+        height: auto;
+        box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.555);
+        padding:15px 20px;
+        border-radius: 15px;
+        display: flexbox;
+        margin:2% 5%;
+        text-align: center;
+        border-top: 2px white solid;
+        border-left: 2px white solid;
+        background-color: rgb(226, 225, 225);
+    } 
+
+    .profile-label {
+        margin-left: unset;
+        padding: unset;
+    
+    }
+
+    .show {
+        display: block;
+        z-index: 900;
+        width: 100%;
+    }
+
+    .border-l-r {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+    }
+    
+    div.spacer {
+        height: 15px;
+        width: 100%;
+        background-color: white;
+    }
+ }

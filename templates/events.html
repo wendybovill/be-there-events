@@ -24,31 +24,34 @@
             </form>
         </div>
 
-        <div class="row card-pane page-padding ">
+        <div class=" page-padding col xl8 l8 m8 s12">
             {% if events|length > 0 %}
-            <ul id="eventList" class="collapsible" name="event_list" data-event="event_list">
+            <ul id="eventList" class="collapsible xl8 l8 m8 s12" name="event_list" data-event="event_list">
                 {% for event in events %}
-                
                 <li>
-                        <div class="event-title indigo lighten-1 collapsible-header ">
-                            <i class="fa fa-arrow-right top-spacing" aria-hidden="true"></i> {{ event.event_type }}:&nbsp;&nbsp; 
-                            <div class="event-heading">{{ event.event_title }}&nbsp;&nbsp; </div>
-                            <div class="event-date">on {{ event.event_date }}&nbsp;&nbsp;  </div>
-                            <div class="event-time">at {{ event.event_time }}&nbsp;&nbsp; </div>
-                            <div class="event-town"><small> - in {{ event.event_location_town }}</small></div>
-                        </div>
-                        <div class="description  white lighten-5 row collapsible-body ">
+                    <div class="indigo collapsible-header xl8 l8 m8 s12 hightlight1">
+                        <i class="fa fa-arrow-down white-text show-on-medium-and-up hide-on-small right" aria-hidden="true"></i>
+                        <div class="card-pane">{{ event.event_type }}&nbsp;&nbsp;<span class="highlight1"> {{ event.event_date }}</span></div>
+                        <div class="xl8 l8 m8 s12 highlight1">
+                            <p class="event-align "> {{ event.event_title }}</p>
+                            <p class="event-align">Where?&nbsp;&nbsp; <span class="highlight1"> {{ event.event_location_town }}</span><br>
+<small class="hightlight1">Click for more info</small></p></div>
+                        
+                    </div>
+                        <div class="description white lighten-5 collapsible-body s12 border-l-r">
                             <div class="event-description">
                                 {% if event.event_paid_for == "paid" %}
                                 <h3>Event Entrance Fee: £ {{ event.event_entrance_fee }}</h3>
                                 {% else %}
                                 <h3>Entry is Free</h3>
                                 {% endif %}
+                                <h5 >Time?</h5>
+                                <p class="center">{{ event.event_time }}</p>
                                 <h5>What is it?</h5>
                                 <p>{{ event.event_description }}</p>
                                 <p>{% if event.event_url %}
                                     Visit the link for more information:
-                                    <a href="{{ event.event_url }}" target="_blank">{{ event.event_url }}</a> 
+                                    <a class="event-link" href="{{ event.event_url }}" target="_blank">{{ event.event_url }}</a> 
                                     {% endif %}</p>
                                 <p><strong><em>* <small>Please ensure you contact the organiser if you are attending. They need to know how many people will be there.</small> *</em></strong></p>
                                 
@@ -87,6 +90,7 @@
                                 {% endif %}
                             {% endif %}
                         </div>
+                        <div class="spacer"></div>
                 </li>
                 {% endfor %}
             </ul>

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="center h1">The Event users Available</div>
+
+<div class="section centered row green-text text-darken-6">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <h2 class="center green-text">{{ message }}</h2>
+            {% endfor %}
+        {% endif%}
+    {% endwith %}
+</div>
+
+<div class="centered">
+    <table class="row xl10 m8 s12">
+        <thead>
+            <tr class="user-table">
+                <th>
+                    <tr >
+                        {% for user in users %}
+                        <td class="col xl12 l12 m12 s12 user-background">
+                            <div class="user-table ">
+                                <div class="left col xl8 l10 m12 s12">
+                                    <h3><a href="{{ url_for('edit_user', user_id=user._id) }}">{{ user.username }}</a></h3>
+                                </div>
+                                <div class="col l12 m8 s12">
+                                    <div class="left user-description xl8 l6 m9 s12">
+                                        <a href="{{ url_for('edit_user', user_id=user._id) }}">{{ user.email }}</a>
+                                    </div>
+                                    {% if session.user %}
+                                    <div class="col xl2 l3 m3 s12 right user-buttons">
+                                            {% if session.user == 'admin' %}
+                                                <a href="{{ url_for('edit_user', user_id=user._id)}}" class="btn-small indigo center">Edit</a> &nbsp; &nbsp; &nbsp;
+                                                <a href="{{ url_for('delete_user', user_id=user._id)}}" class="btn-small red darken-4 white-text center">Delete</a>
+                                            {% endif %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>           
+                        </td>
+                        {% endfor %}
+                    </tr>
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+        
+
+{% endblock content %}
