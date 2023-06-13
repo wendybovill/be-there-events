@@ -195,7 +195,8 @@ def verify_email(username):
             "verified": verify
         }
 
-        mongo.db.users.update_one({"username": request.form.get("username")}, {"$set": update})
+        mongo.db.users.update_one(
+            {"username": request.form.get("username")}, {"$set": update})
 
         flash("Your email has been verified " + request.form.get("username"))
 
@@ -415,8 +416,7 @@ def add_event():
         return redirect(url_for("get_events"))
 
     types = mongo.db.types.find().sort("type_name", 1)
-    return render_template("add_event.html", types=types
-    )
+    return render_template("add_event.html", types=types)
 
 
 @app.route("/edit_event/<event_id>", methods=["GET", "POST"])
