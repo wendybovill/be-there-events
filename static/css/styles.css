@@ -618,6 +618,15 @@ div.bottom {
     background-color: rgb(226, 225, 225);
 } 
 
+a.member-link {
+    color:grey;
+    font-size: 1rem;
+}
+
+a.member-link:hover {
+    color: indigo;
+}
+
 
 
 /*====================================================*/
