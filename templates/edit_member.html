@@ -96,9 +96,13 @@
             <!-- Verified email -->
             <div class="row">
                 <div class="input-field  col s12 switch">
-                    <label for="verified">Verify? <span>No</span> 
+                <label for="verified">Verify? <span>Yes <small>[Tick if Yes]</small></span>
+                {% if user.verified == "yes" %}
                     <input id="verified" name="verified" type="checkbox" checked>
-                    <span class="lever"></span> Yes<small>[Tick if Yes]</small></label>
+                {% else %}
+                    <input id="verfied" name="verified" type="checkbox">
+                {% endif%}
+                <span class="lever"></span>No</label>
                 </div>
             </div>
             <!-- Submit Button -->
@@ -113,4 +117,4 @@
             </form>
         </div>
 
-{% endblock content %}
+{% endblock content %}                     
