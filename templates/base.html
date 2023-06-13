@@ -31,6 +31,9 @@
                 <li><a href="{{ url_for('get_types')}}">View Event Types</a></li>
                 <li><a href="{{ url_for('add_type')}}">Add Event Type</a></li>
                 <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                {% if session.user == admin %}
+                <li><a href="{{ url_for('view_members') }}">Profile</a></li>
+                {% endif %}
                 <li><a href="{{ url_for('user_contact_page', username=session['user'])}}">Contact Us</a></li>
                 <li><a href="{{ url_for('log_out', username=session['user'])}}">Logout</a></li>
                 {% else %}

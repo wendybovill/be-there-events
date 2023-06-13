@@ -544,6 +544,12 @@ def delete_event_confirm(event_id):
     return redirect(url_for("get_events"))
 
 
+@app.route("/view_members")
+def view_members():
+    users = list(mongo.db.users.find().sort("username", 1))
+    return render_template("view_members.html", users=users)
+
+
 """Error Handling
 As part of Error handling I have redirected the HPPT 404 Not found request
 back to the Index Home page, with a flash message informing the user
