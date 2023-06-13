@@ -550,6 +550,41 @@ def view_members():
     return render_template("view_members.html", users=users)
 
 
+@app.route("/edit_user/<username>", methods=["GET", "POST"])
+def edit_user(username):
+    if request.method == "POST":
+        existing_username = mongo.db.users.find_one(
+            {"username": request.form.get("username")})["username"]
+        verify = "yes" if request.form.get("verified") else "no"
+
+        update = {
+            "username": request.form.get("username"),
+            "fname": request.form.get("fname").title(),
+            "lname": request.form.get("lname").title(),
+            "email": request.form.get("email").lower(),
+            "address_1": request.form.get("address_1").title(),
+            "address_2": request.form.get("address_2").title(),
+            "town": request.form.get("town").title(),
+            "postcode": request.form.get("postcode").upper(),
+            "phone": request.form.get("phone").lower(),
+            "verified": verify
+        }
+
+        mongo.db.users.update_one({"username": username}, {"$set": update})
+
+        users = mongo.db.users.find().sort("username", 1)
+        user = mongo.db.users.find_one({"username": username})
+        username = user
+        flash("The member " + request.form.get("username") + " is updated")
+        return render_template(
+            "edit_user.html", username=username, user=user, users=users)
+
+    users = mongo.db.users.find().sort("username", 1)
+    user = mongo.db.users.find_one({"username": username})
+    return render_template(
+        "edit_user.html", username=username, user=user, users=users)
+
+
 """Error Handling
 As part of Error handling I have redirected the HPPT 404 Not found request
 back to the Index Home page, with a flash message informing the user

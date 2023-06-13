@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="center h1">Edit The Event user</div>
+
+<div class="section centered row green-text text-darken-6">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <h2 class="center green-text">{{ message }}</h2>
+            {% endfor %}
+        {% endif%}
+    {% endwith %}
+</div>
+
+        <div class="row centered">
+            <form class="s12 card noshadow-card m8" method="POST" action="{{ url_for('edit_user', username=user.username) }}">
+            <!-- Username -->
+            <div class="row">
+                <div class="div-field col s12">
+                    <div id="username" name="username" type="text" class="validate" minlength="3" maxlength="90" value="{{ user.username }}" disabled>{{ user.username }}</div>
+                    <label for="username" class="grey-text text-darken-2" >Username</label>
+                </div>
+            </div>
+            <!-- First name -->
+            <div class="row">
+                <div class="div-field col s12">
+                    <div id="fname" name="fname" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.fname|title }}">{{ user.fname|title }}</div>
+                    <label for="fname" class="grey-text text-darken-2" >First Name</label>
+                </div>
+            </div>
+            <!-- Last name -->
+            <div class="row">
+                <div class="div-field col s12">
+                    <div id="lname" name="lname" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.lname|title }}">{{ user.lname|title }}</div>
+                    <label for="lname" class="grey-text text-darken-2" >Last Name</label>
+                </div>
+            </div>
+                        <!-- Address Line 1 -->
+                        <div class="row">
+                            <div class="div-field col s12">
+                                <div id="address_1" name="address_1" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.address_1|title }}">{{ user.address_1|title }}</div>
+                                <label for="address_1" class="grey-text text-darken-2" >Address line 1</label>
+                            </div>
+                        </div>
+                                    <!-- Address Line 2 -->
+            <div class="row">
+                <div class="div-field col s12">
+                    <div id="address_2" name="address_2" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.address_2|title }}">{{ user.address_2|title }}</div>
+                    <label for="address_2" class="grey-text text-darken-2" >Address line 2</label>
+                </div>
+            </div>
+                        <!-- Town -->
+                        <div class="row">
+                            <div class="div-field col s12">
+                                <div id="town" name="town" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.town|title }}">{{ user.town|title }}</div>
+                                <label for="town" class="grey-text text-darken-2" >Town</label>
+                            </div>
+                        </div>
+            <!-- Postcode -->
+            <div class="row">
+                <div class="div-field col s12">
+                    <div id="postcode" name="postcode" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.postcode|upper }}">{{ user.postcode|upper }}</div>
+                    <label for="postcode" class="grey-text text-darken-2" >Postcode</label>
+                </div>
+            </div>
+            <!-- Phone -->
+            <div class="row">
+                <div class="div-field col s12">
+                    <div id="phone" name="phone" type="text" class="validate" minlength="3" maxlength="90" pattern="^[0-9]{3,15}$" value="{{ user.phone|capitalize }}">{{ user.phone }}</div>
+                    <label for="phone" class="grey-text text-darken-2" >Phone</label>
+                </div>
+            </div>
+            <!-- Email -->
+            <div class="row">
+                <div class="div-field col s12">
+                    <div id="email" name="email" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9@a-zA-z0-]{3,15}$" value="{{ user.email|lower }}">{{ user.email|lower }}</div>
+                    <label for="email" class="grey-text text-darken-2" >Email Address</label>
+                </div>
+            </div>
+            <!-- Date of Birth - user must be 18 to sign up -->
+            <div class="row">
+                <div class="div-field col s12">
+                    <div id="dob" name="dob" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" disabled value="{{ user.dob }}">{{ user.dob }}</div>
+                    <label for="dob" class="grey-text text-darken-2" >Date of Birth</label>
+                </div>
+            </div>
+                    <!-- Verified email -->
+            <div class="row">
+                <div class="input-field  col s12 switch">
+                    <label for="verified">Verify? <span>No</span> 
+                    <input id="verified" name="verified" type="checkbox" checked>
+                    <span class="lever"></span> Yes<small>[Tick if Yes]</small></label>
+                </div>
+            </div>
+                <!-- Submit Button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <a href="{{ url_for('get_users') }}" class="btn-large grey darken-1 text-shadow white-text">Cancel</a>    
+                        <button user="submit" class="btn-large indigo darken-1 text-white text-shadow">
+                            Update Member <i class="right fa fa-check" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+{% endblock content %}
