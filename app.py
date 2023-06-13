@@ -569,7 +569,7 @@ def edit_member(user_id):
             "verified": verify
         }
 
-        mongo.db.users.update_one({"_id": ObjectId(user_id)}, {"$set": submit})
+        mongo.db.users.update_one({"_id": ObjectId(user_id)}, {"$set": update})
 
         flash("The member " + request.form.get("username") + " is updated")
 
