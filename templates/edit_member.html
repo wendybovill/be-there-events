@@ -16,76 +16,76 @@
 
         <div class="row centered">
             <form class="s12 card noshadow-card m8" method="POST" action="{{ url_for('edit_member', username=user.username, user=user, users=users) }}">
-            <!-- Username -->
-            <div class="row">
-                <div class="div-field col s12">
-                    <div id="username" name="username" type="text" class="validate" minlength="3" maxlength="90" value="{{ user.username }}" disabled>{{ user.username }}</div>
-                    <label for="username" class="grey-text text-darken-2" >Username</label>
+                <!-- Username -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="fas fa-pencil-alt prefix"></i>
+                    <div class="center input-disabled ">Username: {{ username }}<br></div>
+                    <input id="username" name="username" type="text" class="validate scrollspy hidden" minlength="2" maxlength="85" value="{{ user.username }}">
+                    <label for="username" class="grey-text text-darken-3 center username profile-label">Username - you cannot change your Username</label>
                 </div>
-            </div>
-            <!-- First name -->
-            <div class="row">
-                <div class="div-field col s12">
-                    <div id="fname" name="fname" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.fname|title }}">{{ user.fname|title }}</div>
-                    <label for="fname" class="grey-text text-darken-2" >First Name</label>
                 </div>
-            </div>
-            <!-- Last name -->
-            <div class="row">
-                <div class="div-field col s12">
-                    <div id="lname" name="lname" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.lname|title }}">{{ user.lname|title }}</div>
-                    <label for="lname" class="grey-text text-darken-2" >Last Name</label>
+                <!-- First name -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="fas fa-user prefix"></i>
+                        <input id="fname" name="fname" type="text" class="validate section scrollspy" minlength="2" maxlength="250" value="{{ user.fname|title }}">
+                        <label for="fname">Name</label>
+                    </div>
                 </div>
-            </div>
-            <!-- Address Line 1 -->
-            <div class="row">
-                <div class="div-field col s12">
-                    <div id="address_1" name="address_1" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.address_1|title }}">{{ user.address_1|title }}</div>
-                    <label for="address_1" class="grey-text text-darken-2" >Address line 1</label>
+                 <!-- Lastname -->
+                 <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="prefix fa fa-user" aria-hidden="true"></i>
+                    <input id="lname" name="lname" type="text" class="validate" minlength="2" maxlength="85" value="{{ user.lname|title }}">
+                    <label for="lname">Lastname</label>
+                    </div>
                 </div>
-            </div>
-            <!-- Address Line 2 -->
-            <div class="row">
-                <div class="div-field col s12">
-                    <div id="address_2" name="address_2" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.address_2|title }}">{{ user.address_2|title }}</div>
-                    <label for="address_2" class="grey-text text-darken-2" >Address line 2</label>
+                 <!-- Email Address -->
+                 <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="prefix fa fa-mouse-pointer" aria-hidden="true"></i>
+                    <input id="email" name="email" type="text" class="validate" minlength="2" maxlength="85" value="{{ user.email|lower }}">
+                    <label for="email">Email Address</label>
+                    </div>
                 </div>
-            </div>
-                        <!-- Town -->
-                        <div class="row">
-                            <div class="div-field col s12">
-                                <div id="town" name="town" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.town|title }}">{{ user.town|title }}</div>
-                                <label for="town" class="grey-text text-darken-2" >Town</label>
-                            </div>
-                        </div>
-            <!-- Postcode -->
-            <div class="row">
-                <div class="div-field col s12">
-                    <div id="postcode" name="postcode" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9]{3,15}$" value="{{ user.postcode|upper }}">{{ user.postcode|upper }}</div>
-                    <label for="postcode" class="grey-text text-darken-2" >Postcode</label>
+                 <!-- User Phone Number -->
+                 <div class="row white">
+                    <div class="input-field col s12">
+                    <i class="prefix fa fa-address-card" aria-hidden="true"></i>
+                    <input id="phone" name="phone" type="text" class="validate" minlength="5" maxlength="100" value="{{ user.phone }}">
+                    <label for="phone">Phone Number</label>
+                    </div>
                 </div>
-            </div>
-            <!-- Phone -->
-            <div class="row">
-                <div class="div-field col s12">
-                    <div id="phone" name="phone" type="text" class="validate" minlength="3" maxlength="90" pattern="^[0-9]{3,15}$" value="{{ user.phone|capitalize }}">{{ user.phone }}</div>
-                    <label for="phone" class="grey-text text-darken-2" >Phone</label>
+                <!-- User Address -->
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="prefix fa fa-map-marker" aria-hidden="true"></i>
+                        <input id="address_1" name="address_1" type="text" class="validate" minlength="1" maxlength="100" value="{{ user.address_1|title }}">
+                        <label for="address_1">Address Line 1</label>
+                    </div>
                 </div>
-            </div>
-            <!-- Email -->
-            <div class="row">
-                <div class="div-field col s12">
-                    <div id="email" name="email" type="text" class="validate" minlength="3" maxlength="90" pattern="^[a-zA-z0-9@a-zA-z0-]{3,15}$" value="{{ user.email|lower }}">{{ user.email|lower }}</div>
-                    <label for="email" class="grey-text text-darken-2" >Email Address</label>
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="prefix fa fa-map-marker" aria-hidden="true"></i>
+                        <input id="address_2" name="address_2" type="text" class="validate" minlength="5" maxlength="100" value="{{ user.address_2|title }}">
+                        <label for="address_2">Address Line 2</label>
+                    </div>
                 </div>
-            </div>
-            <!-- Date of Birth - user must be 18 to sign up -->
-            <div class="row">
-                <div class="div-field col s12">
-                    <div id="dob" name="dob" type="text" class="validate" minlength="3" maxlength="15" pattern="^[a-zA-z0-9]{3,15}$" disabled value="{{ user.dob }}">{{ user.dob }}</div>
-                    <label for="dob" class="grey-text text-darken-2" >Date of Birth</label>
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="prefix fa fa-map-signs" aria-hidden="true"></i>
+                        <input id="town" name="town" type="text" class="validate" minlength="5" maxlength="100" value="{{ user.town|title }}">
+                        <label for="town">Town</label>
+                    </div>
                 </div>
-            </div>
+                <div class="row white">
+                    <div class="input-field col s12">
+                        <i class="prefix fa fa-map-signs" aria-hidden="true"></i>
+                        <input id="postcode" name="postcode" type="text" class="validate" minlength="5" maxlength="100" value="{{ user.postcode|upper }}">
+                        <label for="postcode">Postcode</label>
+                    </div>
+                </div>
             <!-- Verified email -->
             <div class="row">
                 <div class="input-field  col s12 switch">
