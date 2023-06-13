@@ -583,7 +583,7 @@ def edit_member(user_id):
         user_id = mongo.db.user.find_one({"_id": ObjectId(user_id)})
         flash("The member " + request.form.get("username") + " is updated")
         return render_template(
-            "edit_member.html",user_id=user._id, user=user, users=users)
+            "edit_member.html", user_id=user._id, user=user, users=users)
 
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
