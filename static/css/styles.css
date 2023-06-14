@@ -8,7 +8,6 @@
 }
 
 header {
-    height: 55px;
     background-color: rgb(10, 32, 46);
     z-index: 9999;
     color: white;
@@ -36,15 +35,14 @@ header {
     color: white;
     font-size: 1.5em;
     float: left;
-    padding: 10px 25px;
-    margin-left: 25px;
-    margin-bottom: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 img.logo-image {
     width: 4rem;
     height: 4rem;
-    padding:10px;
+    margin:0 10px 2px 10px;
 }
 
 nav {
@@ -52,6 +50,11 @@ nav {
  background-color: rgb(20, 32, 43);
  height: 55px;
 }
+
+nav.nav-extended .nav-wrapper {
+    min-height: 56px;
+    height: 55px;
+    }
 
 main {
     flex: 1 0 auto;
@@ -174,7 +177,6 @@ div.spacer {
 
 /*  FRONT PAGE CSS */
 
-
 .jumbotron {
     background-image: url(/static/images/image_1.jpg);
     background-position: center center;
@@ -259,7 +261,6 @@ div#section_one p{
 .vertical-spacing a {
     padding: 15px 0;
 }
-
 
 
 
@@ -419,8 +420,6 @@ label {
     cursor: pointer;
     color: inherit;
     }
-
-
 
 input[type=search]:not(.browser-default)::placeholder, textarea.materialize-textarea::placeholder {
     background-color: rgba(216, 216, 216, 0.541);
@@ -626,9 +625,6 @@ div.bottom {
 } 
 
 
-
-
-
 /* MEMBER */
 
 .member-description {
@@ -677,15 +673,9 @@ tr.member-table {
 /*====================================================*/
 
 
-@media screen and (min-width: 1921px) {
-
-
+@media only screen and (min-width: 1365px) and (max-width: 1999px) {
 body {
     font-size: 2rem;
-}
-
-nav.nav-extended .nav-wrapper {
-    height: 1.5rem!important;
 }
 
 nav .brand-logo {
@@ -699,94 +689,18 @@ nav .brand-logo {
     margin: unset;
 }
 
-nav ul a {
-    -webkit-transition: background-color .3s;
-    transition: background-color .3s;
-    float: left;
-    padding: 0;
-    font-size: 2rem;
-    padding-left: 1.5rem;
-    padding-right: 0.5rem;
-    }
-
 div.h1 {
-    font-size: 2em!important;
+    font-size: 2.2em!important;
     text-align: center!important;
     margin: 25px 0!important;
     display: inline-block!important;
     width: 100%;
-}
+    }
 
 div.event-title.indigo-text.text-lighten-1.collapsible-header, .collapsible {
     border:unset;
     box-shadow: unset;
     font-size: 2.2rem;
-    display: block;
-    border-bottom: unset;
-    border-top: unset;
-    width: 100%;
-    padding-left: 0px;
-    margin-left: 0px;
-    text-indent: unset;
-    text-align: center;
-}
-
-.collapsible-header, .collapsible-header p {
-    font-size: 2rem;
-    line-height: 2.5rem!important;
-}
-
-.event-align, .event-align a, .event-align p {
-    color: rgb(214, 255, 255);
-    line-height: 2rem;
-    font-weight: 600;
-    text-shadow: 2px 2px 2px rgba(15, 7, 58, 0.493);
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    }
-
-div.event-description {
-    padding: 5px 5%;
-    font-size: 1.8rem;
-}
-
-.page-padding {
-    padding: 0 10%!important;
-    }
-}
-
-
-@media screen and (min-width: 1365px) and (max-width: 1999px) {
-body {
-    font-size: 2rem;
-}
-
-nav .brand-logo {
-    display: inline;
-    white-space: nowrap;
-    font-size: 2rem;
-    position: absolute;
-    color: #fff;
-    display: inline-block;
-    padding-left: 1rem;
-    margin: unset;
-}
-
-div.h1 {
-    font-size: 2.7em!important;
-    text-align: center!important;
-    margin: 25px 0!important;
-    display: inline-block!important;
-    width: 100%;
-    }
-
-div.event-title.indigo-text.text-lighten-1.collapsible-header, .collapsible {
-    border:unset;
-    box-shadow: unset;
-    font-size: 2.5rem;
     display: block;
     border-bottom: unset;
     border-top: unset;
