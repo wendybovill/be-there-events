@@ -36,7 +36,6 @@ header {
     font-size: 1.5em;
     float: left;
     padding: 10px;
-    margin-bottom: 10px;
 }
 
 img.logo-image {
@@ -52,7 +51,6 @@ nav {
 }
 
 nav.nav-extended .nav-wrapper {
-    min-height: 56px;
     height: 55px;
     }
 

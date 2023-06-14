@@ -10,6 +10,23 @@ from flask_mail import Mail, Message
 if os.path.exists("env.py"):
     import env
 
+"""
+This module is the main module that runs the app's
+basic and extended functions. Without this the app
+will not run. Pep8 requirements are adhered to.
+"""
+
+"""
+Import extensions required to run the functions
+"""
+
+
+"""
+
+App configurations for Database and Email Sending
+
+"""
+
 
 app = Flask(__name__)
 
@@ -31,6 +48,15 @@ mail = Mail(app)
 
 
 mongo = PyMongo(app)
+
+"""
+
+Email types defined for Contact forms
+
+The first defined sent is from a
+visiting user that is not logged in
+
+"""
 
 
 def send_email(email):
@@ -62,6 +88,14 @@ def send_email(email):
         email['name'], email['name'], email['email'], email['message'])
 
     mail.send(msg)
+
+
+"""
+Email types defined for Contact forms
+
+The second email defined to the user and the admin
+when a new user signs up to join the site
+"""
 
 
 def sign_up_thankyou(sign_up_email):
@@ -100,6 +134,14 @@ def sign_up_thankyou(sign_up_email):
     mail.send(msg)
 
 
+"""
+Email types defined for Contact forms
+
+The third email defined is a registered
+member who is logged in to their profile
+"""
+
+
 def send_user_email(user_email):
     msg = Message("User Contact Form on Event Lister",
                   sender=("Event List Team",
@@ -127,10 +169,37 @@ def send_user_email(user_email):
     mail.send(msg)
 
 
+"""
+Routes Defined:
+
+Home/ Index page route
+"""
+
+
 @app.route("/")
 @app.route("/home")
 def home():
     return render_template("index.html")
+
+
+"""
+Routes Defined:
+
+    Sign Up route:
+
+    The user is found in the database when the form
+    posts the users name, and it is then retrieved
+    along with the email addres.
+
+    This is compared with the database to see if there
+    is a match to an existing username or email address.
+    If there is the user is notified and has to change
+    it or login. If there is no username match the user
+    is registered and sent an email to verify their
+    email address.
+
+    They are notified of a successful sign up on the page.
+"""
 
 
 @app.route("/sign_up", methods=["GET", "POST"])
@@ -180,6 +249,27 @@ def sign_up():
     return render_template("register.html")
 
 
+"""
+Routes Defined:
+
+    Route to Verify Email Address:
+
+    The email the user received when signing up contains
+    a url to verify their email. They will only receive
+    this if their email address was valid.
+
+    The fill in the form the url takes them to and they are
+    then logged in. The user is given feedback in the page.
+
+    If the user can't be found or their username is different
+    they are informed of a log in error and told to check their
+    details.
+
+    Upon subission of the verification form they are redirected
+    to their profile page.
+"""
+
+
 @app.route("/verify_email/<username>", methods=["GET", "POST"])
 def verify_email(username):
 
@@ -226,6 +316,22 @@ def verify_email(username):
         "verify.html", username=username)
 
 
+"""
+Routes Defined:
+
+    Route to Log in:
+
+    The users email address and password are compared to
+    what is stored in the database, from checking and
+    comparing the login form info to the users database info.
+
+    If their details match they are logged in and redirected
+    to their profile page. If they do not match the user is
+    notified of needing to check their details on the login
+    page.
+"""
+
+
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
     if request.method == "POST":
@@ -258,6 +364,21 @@ def log_in():
     return render_template("login.html")
 
 
+"""
+Routes Defined:
+
+    Route to Log out:
+
+    The user requests to logout in the menu.
+    The user is directed to a page to confirm
+    if they really want to log out. The user
+    clicks confirm or cancel. If confirmed
+    they are then logged out of the session.
+    If they cancel the log out they are redirected
+    to the events page.
+"""
+
+
 @app.route("/log_out/<username>")
 def log_out(username):
     users = mongo.db.users.find().sort("username", 1)
@@ -275,6 +396,23 @@ def log_out_confirm(username):
     session.pop("user")
     flash("You are now logged out.")
     return redirect(url_for("get_events"))
+
+
+"""
+Routes Defined:
+
+    Route to users profile:
+
+    Upon login the user is redirected to their profile page.
+    They can also access their profile page in the menu,
+    once logged in.
+
+    On this page they can see the basic details they entered
+    and have the option to edit them or add more.
+
+    The site admin has access to view all the members profiles
+    and edit them if there is a security concern.
+"""
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
@@ -327,6 +465,23 @@ def edit_profile(username):
         "edit_profile.html", username=username, user=user, users=users)
 
 
+"""
+Routes Defined:
+
+    Route to get the Event Types:
+
+    Each Event is allocted a type of event by the member
+    who is creating the event. The event types can be
+    viewed once logged in. Each member can edit or delete
+    their own event type but not other members Event types.
+    A confirmation is required before an Event Type is deleted.
+    The user is notified of any feedback in the pages.
+
+    Admins have access to all the Event Types to edit or delete
+    if there are security concerns.
+"""
+
+
 @app.route("/get_types")
 def get_types():
     types = list(mongo.db.types.find().sort("type_name", 1))
@@ -377,6 +532,21 @@ def delete_type_confirm(type_id):
     mongo.db.types.delete_one({"_id": ObjectId(type_id)})
     flash("Event Type Deleted")
     return redirect(url_for("get_types"))
+
+
+"""
+Routes Defined:
+
+    Route to Events Listed:
+
+    The Events are publically accessible. They can be searched.
+
+    Only logged in members can add, edit and delete their own
+    events.
+
+    Admins have access to all the Events to be able to edit or
+    delete them if necessary due to security concerns.
+"""
 
 
 @app.route("/get_events")
@@ -449,6 +619,27 @@ def edit_event(event_id):
     return render_template("edit_events.html", event=event, types=types)
 
 
+"""
+Routes Defined:
+
+    Route to Search Events:
+
+    This view is publically accessible.
+    The search is requested in the search form. A search
+    index is created in the database. This expires after 2 minutes
+    if another search is not performed to extend it. This allows
+    for members to add new events that are then immediately searchable.
+    Its enough time for a user to search the events, note the events and
+    leave the page. If they then search for new events and another member
+    has just added one, that will be included in the new search results.
+
+    The search index is dropped after 2 minutes. If there is an existing
+    search and the search is requested again, the results are on the
+    previous search index. After 2 minutes the index is dropped to allow
+    for an updated index to be created on the next search.
+"""
+
+
 @app.route("/search_event", methods=["GET", "POST"])
 def search_event():
 
@@ -480,6 +671,32 @@ def search_event():
     return
 
 
+@app.route("/delete_event/<event_id>", methods=["GET", "POST"])
+def delete_event(event_id):
+    types = mongo.db.types.find().sort("type_name", 1)
+    event = mongo.db.events.find_one({"_id": ObjectId(event_id)})
+    flash("Are you sure you want to delete this event?")
+    return render_template("delete_event.html", event=event, types=types)
+
+
+@app.route("/delete_event_confirm/<event_id>")
+def delete_event_confirm(event_id):
+    mongo.db.events.delete_one({"_id": ObjectId(event_id)})
+    flash("Event Deleted")
+    return redirect(url_for("get_events"))
+
+
+"""
+Routes Defined:
+
+    Route to public contact page:
+
+    This calls the send email function defined in the
+    start of this file. It is used by a visitor to send
+    and email, or by a member who is not logged in.
+"""
+
+
 @app.route("/contact_page", methods=["GET", "POST"])
 def contact_page():
 
@@ -496,6 +713,21 @@ def contact_page():
         return render_template('contact.html')
 
     return render_template('contact.html')
+
+
+"""
+Routes Defined:
+
+    Route to member contact page:
+
+    This calls the send email function defined in the
+    start of this file. This view is for the logged
+    in member to send an email to the admin. They
+    receive a copy of their email. Their email address,
+    username and fullname are already included in the
+    send function. All the have to do is write the message
+    and submit the form.
+"""
 
 
 @app.route("/user_contact_page/<username>", methods=["GET", "POST"])
@@ -529,19 +761,34 @@ def user_contact_page(username):
             "user_contact.html", username=username, user=user, users=users)
 
 
-@app.route("/delete_event/<event_id>", methods=["GET", "POST"])
-def delete_event(event_id):
-    types = mongo.db.types.find().sort("type_name", 1)
-    event = mongo.db.events.find_one({"_id": ObjectId(event_id)})
-    flash("Are you sure you want to delete this event?")
-    return render_template("delete_event.html", event=event, types=types)
+"""
+Routes Defined:
 
+    Route to view members is for Admin only:
 
-@app.route("/delete_event_confirm/<event_id>")
-def delete_event_confirm(event_id):
-    mongo.db.events.delete_one({"_id": ObjectId(event_id)})
-    flash("Event Deleted")
-    return redirect(url_for("get_events"))
+    This lists the users by Username, Email Address,
+    their ID and says if their email is verified or not.
+
+    Knowing if the user is not verified, allows the Admin
+    to send an email requesting they verify their email,
+    and also allows the admin to keep an eye on them in
+    case they misuse the site, the admin then can delete
+    the member. If the member subsequently verifies their
+    email address, this will show in their profile for the
+    admin to see.
+
+    Future development will include the setting a function
+    to prevent the user logging in if their email is not
+    verified.
+
+    The Admin can view, edit or delete the members profiles
+    if they feel the site is being misused.
+
+    Most of the user functions search for users by username.
+    The editing of the members and deleting of the members
+    is performed by search using the user ID. This is incase
+    their usernames are similar
+"""
 
 
 @app.route("/view_members")
@@ -593,7 +840,8 @@ def delete_member_confirm(user_id):
         "view_members"))
 
 
-"""Error Handling
+"""
+Error Handling:
 As part of Error handling I have redirected the HPPT 404 Not found request
 back to the Index Home page, with a flash message informing the user
 what they have looked for can't be found
