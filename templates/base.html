@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css">
     {% block styles %}
     {% endblock styles %}
     <title>Event Calendar</title>
@@ -26,7 +26,7 @@
         {% block navigation %}
         <nav class="nav-extended lighten-1">
             <div class="nav-wrapper">
-              <a href="{{ url_for('home')}}" class=""><img src="../static/images/bee_logo.png" class="logo-image"></a>
+              <a href="{{ url_for('home')}}" class=""><img src="../static/images/bee_logo.png" class="logo-image" alt="Bee Logo with purple and white stripes and yellow head with big bug eyes and antennas"></a>
               <a href="{{ url_for('home')}}" class="brand-logo">BeThere! Events</a>
               <a href="#" class="sidenav-trigger right" data-target="mobile" ><i class="material-icons right">menu</i></a>
               <ul class="right hide-on-med-and-down">
@@ -75,7 +75,7 @@
         {% endblock navigation %}
     </header>
     <main>
-        <div class="jumbotron"></div>
+        <div class="jumbotron" alt="image showing people partying at a concert for all ages, mulit-coloured balloons floating above and confetti raining down. Colours are purple and white lights."></div>
         {% block content %}
 
         {% endblock content %}
