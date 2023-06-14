@@ -1,2 +1,0 @@
-- fixed error mongo has no attribute db by searching in google, saw code example in:https://www.appsloveworld.com/mongodb/100/242/attributeerror-type-object-pymongo-has-no-attribute-db-with-flask-blueprint
-- fixed events.html render template error, had forgotten double quotation marks around html filename
