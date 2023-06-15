@@ -24,18 +24,16 @@
                         <td class="col xl12 l12 m12 s12 type-background">
                             <div class="type-table ">
                                 <div class="left col xl8 l10 m12 s12">
-                                    <h3><a href="{{ url_for('edit_type', type_id=type._id) }}">{{ type.type_name }}</a></h3>
+                                    <h3>{{ type.type_name }}</h3>
                                 </div>
                                 <div class="col l12 m8 s12">
                                     <div class="left type-description xl8 l6 m9 s12">
-                                        <a href="{{ url_for('edit_type', type_id=type._id) }}">{{ type.type_description }}</a>
+                                        {{ type.type_description }}
                                     </div>
-                                    {% if session.user %}
+                                    {% if (session.user == type.added_by) or (session.user == 'admin') %}
                                     <div class="col xl2 l3 m3 s12 right type-buttons">
-                                            {% if (session.user == type.added_by) or (session.user == 'admin') %}
                                                 <a href="{{ url_for('edit_type', type_id=type._id)}}" class="btn-small indigo center">Edit</a> &nbsp; &nbsp; &nbsp;
                                                 <a href="{{ url_for('delete_type', type_id=type._id)}}" class="btn-small red darken-4 white-text center">Delete</a>
-                                            {% endif %}
                                     </div>
                                     {% endif %}
                                 </div>
