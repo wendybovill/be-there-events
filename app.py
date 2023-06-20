@@ -852,8 +852,104 @@ to the user and instructing them how to proceed where necessary
 
 @app.errorhandler(404)
 def redirect_http(e):
-    msg1 = "We can't find what you searched for, or it can't be loaded."
-    msg2 = "If this is an error please contact us."
+    msg1 = " We can't find what you searched for, or it can't be loaded."
+    msg2 = " If this is an error please contact us."
+    flash(msg1 + " " + msg2)
+    return render_template("index.html")
+
+
+@app.errorhandler(500)
+def redirect_http(e):
+    msg1 = " There is a problem with that request. Are you logged in?"
+    msg2 = " If you think its an error please contact us."
+    flash(msg1 + " " + msg2)
+    return render_template("index.html")
+
+
+@app.errorhandler(403)
+def redirect_http(e):
+    msg1 = " What you have requested to do is not allowed."
+    msg2 = " If you think its an error please contact us."
+    flash(msg1 + " " + msg2)
+    return render_template("index.html")
+
+
+@app.errorhandler(401)
+def redirect_http(e):
+    msg1 = " What you have requested to do is not allowed."
+    msg2 = " If you think its an error please contact us."
+    flash(msg1 + " " + msg2)
+    return render_template("index.html")
+
+
+@app.errorhandler(503)
+def redirect_http(e):
+    msg1 = " That option is not available."
+    msg2 = " If you think its an error please contact us."
+    flash(msg1 + " " + msg2)
+    return render_template("index.html")
+
+
+@app.errorhandler(406)
+def redirect_http(e):
+    msg1 = " That option is not acceptable."
+    msg2 = " If you think its an error please contact us."
+    flash(msg1 + " " + msg2)
+    return render_template("index.html")
+
+
+@app.errorhandler(405)
+def redirect_http(e):
+    msg1 = " That method is not allowed."
+    msg2 = " If you think its an error please contact us."
+    flash(msg1 + " " + msg2)
+    return render_template("index.html")
+
+
+@app.errorhandler(408)
+def redirect_http(e):
+    msg1 = " Theres been a timeout."
+    msg2 = " Is your internet connection ok?"
+    flash(msg1 + " " + msg2)
+    return render_template("index.html")
+
+
+@app.errorhandler(400)
+def redirect_http(e):
+    msg1 = " Its bad. Its a 400 Error."
+    msg2 = " The server did not like it."
+    flash(msg1 + " " + msg2)
+    return render_template("index.html")
+
+
+@app.errorhandler(413)
+def redirect_http(e):
+    msg1 = " Wow what are you trying to send?"
+    msg2 = " Its too large to be accepted."
+    flash(msg1 + " " + msg2)
+    return render_template("index.html")
+
+
+@app.errorhandler(429)
+def redirect_http(e):
+    msg1 = " Too many requests at once."
+    msg2 = " Slow down please."
+    flash(msg1 + " " + msg2)
+    return render_template("index.html")
+
+
+@app.errorhandler(416)
+def redirect_http(e):
+    msg1 = " I can't bring you what you have asked for."
+    msg2 = " That request can't be satisfied."
+    flash(msg1 + " " + msg2)
+    return render_template("index.html")
+
+
+@app.errorhandler(418)
+def redirect_http(e):
+    msg1 = " No Tea or Coffee here."
+    msg2 = " I can't bring that to you."
     flash(msg1 + " " + msg2)
     return render_template("index.html")
 

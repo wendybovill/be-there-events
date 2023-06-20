@@ -14,7 +14,7 @@
 
 
 <div class="center h1">Add A New Event</div>
-
+{% if session.user %}
         <div class="row centered">
             <form class="s12 m8 card noshadow-card " method="POST" action="{{ url_for('add_event') }}">
                 <!-- Type Selector -->
@@ -129,8 +129,10 @@
                 </div>
             </form>
         </div>
+{% else %}
+<h2 class="center red-text">You are not authorised to add events. Please sign up.</h2>
 
-
+{% endif %}
 
 
 {% endblock content %}

@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+{% if session.user %}
+{% if (session.user == event.added_by) or (session.user == 'admin') %}
 <div class="center h1">Delete this Event?</div>
         <div class="section">
             {% with messages = get_flashed_messages() %}
@@ -14,7 +15,7 @@
                             <p class="center-align"> <!-- cancel button -->
                         <a href="{{ url_for('get_events') }}" class="btn-small grey darken-1 text-shadow white-text">Cancel</a>
                         <a href="{{ url_for('delete_event_confirm', event_id=event._id)}}" class="btn-small red accent-4">Yes Delete</a>
-                            </p>
+                            <br><br></p>
                         </div>
                     </div>
                     {% endfor %}
@@ -139,7 +140,21 @@
                 </div>
             </form>
         </div>
+        {% else %}
+        <div class="section centered row green-text text-darken-6">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <h2 class="center green-text">{{ message }}</h2>
+                    {% endfor %}
+                {% endif%}
+            {% endwith %}
+        </div>
 
+{% endif %}
+{% else %}
+<h2 class="center red-text">You are not authorised to delete events of other users</h2>
+{% endif %}
 
 
 

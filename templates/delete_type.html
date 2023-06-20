@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+{% if session.user %}
+{% if (session.user == type.added_by) or (session.user == 'admin') %}
 <div class="center h1">Delete this Event Type?</div>
         <div class="section">
             {% with messages = get_flashed_messages() %}
@@ -40,8 +41,20 @@
                 </div>
             </form>
         </div>
+        {% else %}
+        <div class="section centered row green-text text-darken-6">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <h2 class="center green-text">{{ message }}</h2>
+                    {% endfor %}
+                {% endif%}
+            {% endwith %}
+        </div>
+{% endif %}
+{% else %}
+<h2 class="center red-text">You are not authorised to delete event types of other users</h2>
 
-
-
+{% endif %}
 
 {% endblock content %}

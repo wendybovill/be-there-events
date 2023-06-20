@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% if session.user == 'admin' %}
+
 <div class="center h1">Delete this Member {{ user.username }} with ID {{ user._id }}?</div>
         <div class="section">
             {% with messages = get_flashed_messages() %}
@@ -33,7 +35,18 @@
             </form>
         </div>
 
+        {% else %}
+        <div class="section centered row green-text text-darken-6">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <h2 class="center green-text">{{ message }}</h2>
+                    {% endfor %}
+                {% endif%}
+            {% endwith %}
+        </div>
+        <h2 class="center red-text">You are not authorised to delete other members</h2>
 
-
+{% endif %}
 
 {% endblock content %}

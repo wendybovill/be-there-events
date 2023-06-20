@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="center h1">Add A New Event Type</div>
-
+{% if session.user %}
 <div class="section centered row green-text text-darken-6">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -42,4 +42,7 @@
                 </div>
             </form>
         </div>
+        {% else %}
+        <h2 class="center red-text">You are not authorised to add event types. Please sign up.</h2>
+        {% endif %}
 {% endblock content %}
