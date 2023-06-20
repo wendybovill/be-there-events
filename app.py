@@ -35,6 +35,7 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
+
 app.config['MAIL_SERVER'] = 'mail.wideworldwebhosting.co.uk'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
@@ -48,6 +49,7 @@ mail = Mail(app)
 
 
 mongo = PyMongo(app)
+
 
 """
 
@@ -842,15 +844,17 @@ def delete_member_confirm(user_id):
 
 """
 Error Handling:
-As part of Error handling I have redirected the HPPT 404 Not found request
-back to the Index Home page, with a flash message informing the user
-what they have looked for can't be found
+As part of Error handling I have redirected all HTTP Error responses
+back to the Index Home page, with a flash message giving information
+to the user and instructing them how to proceed where necessary
 """
 
 
 @app.errorhandler(404)
 def redirect_http(e):
-    flash("We can't find what you searched for, or it can't be loaded")
+    msg1 = "We can't find what you searched for, or it can't be loaded."
+    msg2 = "If this is an error please contact us."
+    flash(msg1 + " " + msg2)
     return render_template("index.html")
 
 
