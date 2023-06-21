@@ -182,7 +182,7 @@ Handwritten notes forming part of development and testing:
 |
 | Code Function Prep 	| Database Schema Plan 	|
 |---	|---	|
-| ![Code Prep]() 	| ![Database Schema]()  	|
+| ![Code Prep](https://github.com/wendybovill/milestone-project-3/blob/7d03ced489b6a8c47be530662bf45bbe167a2cea/documentation/IMG_6266.png) 	| ![Database Schema]()  	|
 
 
 ## Site Design Process
