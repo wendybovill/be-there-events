@@ -332,7 +332,7 @@ Test Cases and Debugging:
 | Screenshots 4a. 4b |
 | ![Screenshot 4a](https://github.com/wendybovill/milestone-project-3/blob/4f9d6a3cb90791799f7415ff642620b8dc8fd7df/documentation/screenshots/4a.png) |
 | 4a |
-| screenshot |
+| screenshot|
 | 4b |
 | Priority Medium |
 | Status Completed |
@@ -345,7 +345,7 @@ Test Cases and Debugging:
 | Precondition Required: Sarari Browser. W3C Schools css validators |
 | Steps  |
 | Using Validation service on w3c for css. entered url for automated testing. FAIL  see screenshot 5a<br>Response indicated lines 619. 862. 1019 in Styles.css had the same error - display: flexbox. No such property for display. Required 'flex' instead.<br>Edited those lines in styles.css file to 'display: flex;' <br>Saved file and re-committed to github.<br>Re-ran the validator.<br>No errors displayed in site css. PASS<br>Validation errors detected in Materializecss third party stylesheets. ACCEPTED.<br>No fix available to third party stylesheets as too numerous and not within scope. |
-| screenshot |
+| ![Screenshot 5a](https://github.com/wendybovill/milestone-project-3/blob/086fe134138d980d0502306f9e5347ec04b03f34/documentation/screenshots/5a.png) |
 | 5a |
 | Priority Medium |
 | Status Completed |
