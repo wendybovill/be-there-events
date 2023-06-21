@@ -408,7 +408,7 @@ Test Cases and Debugging:
 
 | Screenshot Iphone Index Page |
 |-----------------------------------------------------------------------|
-| ![Finished Site Iphone Index Page](https://github.com/wendybovill/milestone-project-3/blob/43f702c830ea4035ead9ffff36f81610628a9149/documentation/screenshots/laptop.png)|
+| ![Finished Site Iphone Index Page](https://github.com/wendybovill/milestone-project-3/blob/200db3944839cdde5c523a451f6fd3ddd5c7bf78/documentation/screenshots/iphone.PNG)|
 
 
 
