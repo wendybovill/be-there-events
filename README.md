@@ -303,7 +303,7 @@ Test Cases and Debugging:
 | Also required: Email account and client |
 | Steps  |
 | Checked email recevied after Sign up. PASS<br>Clicked link within email to verify users email address. Browser responded to load page. PASS<br>Page loading failed. Name Error see screenshot 2a. FAIL<br>Fix: Line 248 in app.py user_verfied was incorrect syntax. Dot notation required. Changed to<br>user.verfied using dot notation.<br>Clicked link within email to verify users email address. Browser responded to load page. PASS<br>View opened correctly to form which then was filled in and submitted verifying the user and<br>redirected to profile page as per callback route. PASS |
-| [Screenshot 2a](https://github.com/wendybovill/milestone-project-3/blob/ded804d24f93a2b791e547e192c36ca4da5628f0/documentation/screenshots/2a.png) |
+| ![Screenshot 2a](https://github.com/wendybovill/milestone-project-3/blob/ded804d24f93a2b791e547e192c36ca4da5628f0/documentation/screenshots/2a.png) |
 | 2a |
 | Priority Medium |
 | Status Completed |
