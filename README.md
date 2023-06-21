@@ -288,7 +288,7 @@ Test Cases and Debugging:
 | Opened Site. Loaded Signup page. Filled in Form but on submission KeyError displayed. FAIL<br>ERROR : signup email was not defined. The username variable had not been passed through<br>to the sign_up email function. See screenshot 1a<br>Fix: Included variables required passed through to the format method within the sign_up_email<br>from the route/view on lines 166 of the app.py as per screenshot 1b<br>Opened Site. Loaded Signup page. Filled in Form. on submission sign up occurred and redirected as<br>per route defined on call back. PASS |
 | ![screenshot](https://github.com/wendybovill/milestone-project-3/blob/b9f4261d80572a48189c680d306353fc499ee997/documentation/screenshots/1a.png) |
 | 1a |
-| screenshot |
+| ![screenshot](https://github.com/wendybovill/milestone-project-3/blob/f36b960fd4df2a844f03b513eaa623bab0f08144/documentation/screenshots/1b.png) |
 | 1b |
 | Priority Medium |
 | Status Completed |
