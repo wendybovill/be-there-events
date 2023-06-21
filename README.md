@@ -404,7 +404,7 @@ Test Cases and Debugging:
 
 | Screenshot Ipad Index Page |
 |-----------------------------------------------------------------------|
-| ![Finished Site Ipad Index Page](https://github.com/wendybovill/milestone-project-3/blob/43f702c830ea4035ead9ffff36f81610628a9149/documentation/screenshots/laptop.png)|
+| ![Finished Site Ipad Index Page](https://github.com/wendybovill/milestone-project-3/blob/5df605d3f7c8bf6e2c985f2d33b0908a51b0ab55/documentation/screenshots/Ipad_index.PNG)|
 
 | Screenshot Iphone Index Page |
 |-----------------------------------------------------------------------|
