@@ -201,7 +201,7 @@ events by name, type, town, postcode and if its free.
 2. Design: 
 
 **Site Specification and Website Flow:** Documentation for Website Planning. 
-
+![Site Flow Chart Blueprint](https://github.com/wendybovill/milestone-project-3/blob/0d5ca4d39cb293064bd61d7e4800bd686a22d9b2/documentation/screenshots/Project_3_Site_Flow_Blueprint.png)
 
 
 
