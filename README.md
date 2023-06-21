@@ -287,9 +287,9 @@ Test Cases and Debugging:
 | Precondition Required: Sarari Browser. Heroku. Gitpod/Visual S Code Terminal. Debugging ON/True |
 | Steps  |
 | Opened Site. Loaded Signup page. Filled in Form but on submission KeyError displayed. FAIL<br>ERROR : signup email was not defined. The username variable had not been passed through<br>to the sign_up email function. See screenshot 1a<br>Fix: Included variables required passed through to the format method within the sign_up_email<br>from the route/view on lines 166 of the app.py as per screenshot 1b<br>Opened Site. Loaded Signup page. Filled in Form. on submission sign up occurred and redirected as<br>per route defined on call back. PASS |
-| ![screenshot](https://github.com/wendybovill/milestone-project-3/blob/b9f4261d80572a48189c680d306353fc499ee997/documentation/screenshots/1a.png) |
+| ![Screenshot 1a](https://github.com/wendybovill/milestone-project-3/blob/b9f4261d80572a48189c680d306353fc499ee997/documentation/screenshots/1a.png) |
 | 1a |
-| ![screenshot](https://github.com/wendybovill/milestone-project-3/blob/f36b960fd4df2a844f03b513eaa623bab0f08144/documentation/screenshots/1b.png) |
+| ![Screenshot 1b](https://github.com/wendybovill/milestone-project-3/blob/f36b960fd4df2a844f03b513eaa623bab0f08144/documentation/screenshots/1b.png) |
 | 1b |
 | Priority Medium |
 | Status Completed |
@@ -303,7 +303,7 @@ Test Cases and Debugging:
 | Also required: Email account and client |
 | Steps  |
 | Checked email recevied after Sign up. PASS<br>Clicked link within email to verify users email address. Browser responded to load page. PASS<br>Page loading failed. Name Error see screenshot 2a. FAIL<br>Fix: Line 248 in app.py user_verfied was incorrect syntax. Dot notation required. Changed to<br>user.verfied using dot notation.<br>Clicked link within email to verify users email address. Browser responded to load page. PASS<br>View opened correctly to form which then was filled in and submitted verifying the user and<br>redirected to profile page as per callback route. PASS |
-| SCreenshot |
+| [Screenshot 2a](https://github.com/wendybovill/milestone-project-3/blob/ded804d24f93a2b791e547e192c36ca4da5628f0/documentation/screenshots/2a.png) |
 | 2a |
 | Priority Medium |
 | Status Completed |
