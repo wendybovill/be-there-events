@@ -335,7 +335,7 @@ Test Cases and Debugging:
 | Screenshots 4a. 4b. 4c |
 | ![Screenshot 4a](https://github.com/wendybovill/milestone-project-3/blob/4f9d6a3cb90791799f7415ff642620b8dc8fd7df/documentation/screenshots/4a.png) |
 | 4a |
-| ![Screenshot 4a](https://github.com/wendybovill/milestone-project-3/blob/4f9d6a3cb90791799f7415ff642620b8dc8fd7df/documentation/screenshots/4a.png) |
+| ![Screenshot 4a](https://github.com/wendybovill/milestone-project-3/blob/3cdbafc37e4292cfd4fa90faba07067ea94697e6/documentation/screenshots/4b.png) |
 | 4b |
 | ![Screenshot 4a](https://github.com/wendybovill/milestone-project-3/blob/4f9d6a3cb90791799f7415ff642620b8dc8fd7df/documentation/screenshots/4a.png) |
 | 4c |
