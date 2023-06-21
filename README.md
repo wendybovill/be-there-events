@@ -316,7 +316,7 @@ Test Cases and Debugging:
 | Precondition Required: Sarari Browser. Heroku. Gitpod/Visual S Code Terminal. Debugging ON/True |
 | Steps  |
 | On Events page: Filled in search form with term. Submitted Search. FAIL<br>Heroku showed an IndentationError in line 470 of app.py  See screenshot 3a<br>Fix: Indented line as was under-indented after if statement on line 469 of app.py<br>Returned to Events page in browser after re-committing to Github.<br>Performed Search term submission. <br>Form Submission suceeded. Events loaded as per search term. PASS |
-| screenshot |
+| ![Screenshot 3a](https://github.com/wendybovill/milestone-project-3/blob/285472c55f18d270604427a220f93a6e08b3124e/documentation/screenshots/3a.png) |
 | 3a |
 | Priority Medium |
 | Status Completed |
