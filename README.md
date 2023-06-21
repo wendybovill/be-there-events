@@ -179,8 +179,11 @@ Throughout the development process, handwritten notes were made, serving as a 'T
 needs to be done and then ticked off when completed. These are available as photographs in notes.md
 
 Handwritten notes forming part of development and testing:
-[https://github.com/wendybovill/quiz-project/blob/cf7fefcbdea1a41fa06a9813784a2cf11f4629cb/documentation/handwritten_notes.md](https://github.com/wendybovill/quiz-project/blob/cf7fefcbdea1a41fa06a9813784a2cf11f4629cb/documentation/handwritten_notes.md)
-	
+|
+| Code Function Prep 	| Database Schema Plan 	|
+|---	|---	|
+| ![Code Prep]() 	| ![Database Schema]()  	|
+
 
 ## Site Design Process
 
