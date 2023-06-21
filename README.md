@@ -396,12 +396,20 @@ Test Cases and Debugging:
 - Python documentation, Flash documentation
 
 
-## Screenshots of Index page from finished site - Desktop View
+## Screenshots of Finished Site
 
-| Screenshot showing first part of Index Page Finished Site |
+| Screenshot Desktop Index Page |
 |-----------------------------------------------------------------------|
-| ![Finished Site Desktop Index Page](https://github.com/wendybovill/.png)|
-| Screenshot showing second part of Index Page Finished Site Desktop View  |
-| Finished Site Screenshots MD file [https://github.com/wendybovill/Finished_Site_Screenshots.md](https://github.com/wendybovill/Finished_Site_Screenshots.md)|
+| ![Finished Site Desktop Index Page](https://github.com/wendybovill/milestone-project-3/blob/43f702c830ea4035ead9ffff36f81610628a9149/documentation/screenshots/laptop.png)|
+
+| Screenshot Ipad Index Page |
+|-----------------------------------------------------------------------|
+| ![Finished Site Ipad Index Page](https://github.com/wendybovill/milestone-project-3/blob/43f702c830ea4035ead9ffff36f81610628a9149/documentation/screenshots/laptop.png)|
+
+| Screenshot Iphone Index Page |
+|-----------------------------------------------------------------------|
+| ![Finished Site Iphone Index Page](https://github.com/wendybovill/milestone-project-3/blob/43f702c830ea4035ead9ffff36f81610628a9149/documentation/screenshots/laptop.png)|
+
+
 
 
