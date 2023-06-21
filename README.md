@@ -200,10 +200,6 @@ events by name, type, town, postcode and if its free.
 
 2. Design: 
 
-**Site Specification and Website Flow:** Documentation for Website Planning. 
-![Site Flow Chart Blueprint](https://github.com/wendybovill/milestone-project-3/blob/0d5ca4d39cb293064bd61d7e4800bd686a22d9b2/documentation/screenshots/Project_3_Site_Flow_Blueprint.png)
-
-
 
 **Wireframe with Balsamiq:**
 
@@ -211,9 +207,7 @@ events by name, type, town, postcode and if its free.
 |----------------|
 | ![Balsamiq Wireframe](https://github.com/wendybovill/milestone-project-3/blob/05c8f408e4f5559092d70e072df660f56bf10867/documentation/screenshots/P3-wireframe.png)     |
 
-	
-
-	*Logo:* Formito.com Free Favicon Maker
+	*Logo:* Bee in Purple and White Stripes (Creative Licence) used Illustrator to design and Formito.com Free Favicon Maker to convert to favicon
 
 	*Colours:* Purple, Teal, and Navy, with white and grey as a base. 
 	(Colour symbolism: Purple: Mystery, Teal: Excitement and freshness, Navy: As a blue tone conveys serenity).
@@ -222,9 +216,16 @@ events by name, type, town, postcode and if its free.
 3. 	Documentation including readme file, spec sheet. Estimated time 1 week.
 
 4. 	Development strategy: Develop the base page and styles, that then will be used as a template for the
-	rest of the site pages. View plans are create, then the Route plan to match the Views. 
-    The code for the Routes are determined by the Views required. The Database Schema is created based on the
-    functionality plan and routes required.
+	rest of the site pages. View plans are create, then the Route plan to match the Views.
+
+5.	The code for the Routes are determined by the Views required. The Database Schema is created based on the
+	functionality plan and routes required.
+
+6. Blueprint
+
+
+   **Blueprint and Website Flow:** Documentation for Website Planning. 
+![Site Flow Chart Blueprint](https://github.com/wendybovill/milestone-project-3/blob/0d5ca4d39cb293064bd61d7e4800bd686a22d9b2/documentation/screenshots/Project_3_Site_Flow_Blueprint.png)
 
 
 ## Design Variation:
