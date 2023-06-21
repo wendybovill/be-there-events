@@ -175,8 +175,12 @@ created of the errors and added to the debugging md file. There were numerous er
 party extension, however these I have left as they are not within my remit. They are not causing any
 site errors or errors within my code. 
 
-Throughout the development process, handwritten notes were made, serving as a 'To Do List' of what
-needs to be done and then ticked off when completed. These are available as photographs in notes.md
+*Database Schema:*
+
+The database schema was designed after deciding what the site functionality should be like.
+Once the views were identified, it was decided what each users would need for the views to operate correctly, portraying the correct information to each user, and this helped decide what routes were needed and therefore the functions to call and operate the routes and views by the user requirements.
+This is a non-relational database using Mongo DB. The Schema fit into 3 main tables, being: Users, Events and Event Types. A search index gets created in the Events Table to search for Events using keywords gathered from Event title field, Event type field, Is_paid_for field to search for Free or paid, Event_location_town, and Event_location_postcode. Each time a search is performed, a datbase is created, it is dropped 2 minutes (120 seconds) after the last search is performed. This allows the user to get the newest events that have been created, within the results of the search they ran.
+Users are only allowed to edit their own events and event types, and as a result we have an 'added_by' field in the Event Types tables and in the Event tables.
 
 Handwritten notes forming part of development and testing:
 |
@@ -259,8 +263,9 @@ tiered authenticated access.
 
 # Acknowledgements
 
-- Stackflow was referenced but the solutions I needed were not in there.<br>
+- Stackflow was referenced but the solutions I needed were not in there instead language documentation was used eg. python, flash, mongo, and jinja<br>
 - I used notes I made during the module lessons, and the documentation for python, flash, mongo, and jinja.<br>
+- Pep8 Standards were followed and pylint in visual studio code was used
 - MaterializeCSS for use of their css
 - Markdown table generator used: https://www.tablesgenerator.com/markdown_tables
 - Lucid Chart for the Blueprints
@@ -328,7 +333,7 @@ Test Cases and Debugging:
 | **Owner ** wendybovill |
 | Precondition Required: Sarari Browser. Heroku. Gitpod/Visual S Code Terminal. Debugging ON/True |
 | Steps  |
-| In browser url address field. changed endpoint to a non-existent view to test http error response. Loaded http response page called. PASS<br>Page showed flash message as defenisve programming defined for error status code 404. PASS<br>Further error statuses defined and tested. Each error code gives different feedback messages to user. PASS |
+| In browser url address field. changed endpoint to a non-existent view to test http error response. Loaded http response page called. PASS<br>Page showed flash message as defensive programming defined for error status code 404. PASS<br>Further error statuses defined and tested. Each error code gives different feedback messages to user. PASS |
 | Screenshots 4a. 4b. 4c |
 | ![Screenshot 4a](https://github.com/wendybovill/milestone-project-3/blob/4f9d6a3cb90791799f7415ff642620b8dc8fd7df/documentation/screenshots/4a.png) |
 | 4a |
@@ -383,6 +388,16 @@ Test Cases and Debugging:
 | Automation Manual |
 
 
+*User Testing:*
+
+Manual Testing various possible user attempts to work around the site security was undertaken to ensure a user could not:
+- edit, update or delete other users Events or Event Types
+- see or edit or update other users profiles
+- use url changing as logged in or logged out users to view other users content, either profiles, or edit events or edit event types
+- view, edit, update or delete member profiles as an admin user
+- urls cannot be changed to gain access to restricted areas, users are redirected either through http error status responses to the index page with a relevant message or on the same pages with flash messages instructing them they are not authorized and need to log in (where appropriate)
+
+  
 
 *References used to assist debugging:*
 
