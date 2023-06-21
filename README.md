@@ -67,60 +67,59 @@
 
 ## User Stories:
 
-| User ID 	| Type         	| User Story                                                                                                                                                                                                                                                                                                                                                  	| Case Use                                                                                                                                                                                                                                                                                          	|
-|---------	|--------------	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
-| 1       	| Personal     	| **Mandy**<br>A Student App used with friends to<br>test general knowledge on health and anxiety. Is<br>looking for help with managing her anxiety. Finds<br>she did not know as much as she thought and is<br>determined now to find out more about managing her<br>physical health and to help improve her anxiety.                                        	| I would use the Quiz to gain an understanding of<br>much a know about physical<br>health and its effect<br>on my moods.<br><br>Its fun to test my knowledge<br>and its a simple quiz to play when I'm bored also.                                                                                 	|
-| 2       	| Personal     	| **Jason**<br>A young adult in university.<br>Battling with insomnia and decided to do some<br>research on how to improve his health to see if it<br>would have an effect on his insomnia. He found the<br>app on the resonate site and decided to give it a go.                                                                                             	| Its made me realise that there are things I<br>can do to improve my mental health, which would<br>help reduce my insomnia. Inspired by the Quiz,<br>I decided to do some more exercise to help<br>regulate my energy levels and moods, as well as<br>to improve my diet, less sugar and caffeine. 	|
-| 3       	| Business     	| **Sarah Personal Fitness Trainer**<br> Sarah was<br>referred to the app by her collegues. She discovered<br>its a useful tool to use with her clients, and has<br>helped remind her about the effect diet has on mental<br>health, in addition to exercise.                                                                                                 	| My clients are very greatful for the Quiz App which<br>I get them to complete in our first session.<br><br>It helps them realise that to take care of their body<br>is to take care of them mental health too.                                                                                    	|
-| 4       	| Business     	| **Resonate Wellbeing Organisation**<br>Resonates<br>Anxiety website has used the app for their visitors,<br>as a means to engage with them and raise awareness of<br>the importance of tools and other resources in<br>managing mental health.                                                                                                              	| We are delighted with the development of this App<br>and our clients have given great feedback. Our<br>clients have often completed the quiz more than once.                                                                                                                                      	|
-| 5       	| Organisation 	| **GP Doctors Surgery**<br>Uses this App for their<br>patients. They are able to download it via a QR code<br>on a poster in their surgery and from their website.<br>It has inspired their patients to do more for<br>themselves and ask for advice in realtion to diet and<br>mental health, rather than just asking for pills to<br>manage mental health. 	| Our practice clients are delighted with this App.<br>It has increased awareness of the importance of diet<br>and exercise in maintaining mental health". Our GP's<br>feel this is helping them manage their patients better.                                                                      	|
+| USER 	| TYPE 	| CASE 	|
+|---	|---	|---	|
+| Janet 	| Student 	| "My friends and I are often saying we don't know what to do. It is great to have<br><br>a website that lists everything that’s on. We can search for free events too<br><br>which is what we need since we are students. We would recommend this to our friends<br><br>s as its something we all need to have so we don't end up bored with nothing to do."<br> 	|
+| Max 	| Student 	| This is such a good idea. We are often bored in the holidays and all our friends<br><br>could be anywhere else in the country due to living away from home at Uni. I find<br><br>we are sometimes at a loose end. We don't want to just hang out at a pub all the<br><br>time. Its good knowing whats on and when and where.<br> 	|
+| John T 	| Business 	| I'm so glad we have finally got somewhere we can advertise to promote our business<br><br>events in for free. We sometimes have events for promotions and as a business<br><br>we've been struggling since Covid19 shut everything down. We are all really <br><br>feeling the pinch from Cost Of Living. So something like this gives us a free<br><br>platform to promote our business and give back to the community at the same time.<br> 	|
+| Sandra 	| Charity 	| "We run the local charity shop for Cancer awareness. We are so happy we can advertise<br><br>our events locally to draw people in who can either get involved in sponsored runs and<br><br>marathons or who can donate to the cause. This website is exactly whats needed to boost<br><br>our communities since Covid19. Facebook used to be able to do that but now they charge<br><br>for everything. So being able to have a central free place to look is what we've needed."<br> 	|
+| Pete 	| Organisation/Club 	| As an organisation its been hard to get younger members recruited. Now we can advertise<br><br>our events for free in the community and get more young people and families involved.<br><br>People often don’t know what fly fishing is. We've been asked all sorts of thing when its<br><br>mentioned. Now we can promote our sport and our club and hopefully get some new members<br><br>to join up soon.<br> 	|
 
 
 
 ## Technology Requirements:
 
-Html
-Css
-MaterializeCss (included in script and style links)
-Gitpod
-VS Code
-Git Repository
-JS Query
-Favicons (as pngs and linked in styles in html head section)
-FontAwesome
-Python
-Various Python Modules:
-    blinker==1.6.2
-    click==8.1.3
-    dnspython==2.3.0
-    Flask==2.3.2
-    Flask-Ext==0.1
-    Flask-Mail==0.9.1
-    Flask-PyMongo==2.3.0
-    ipywidgets==8.0.6
-    itsdangerous==2.1.2
-    jupyter==1.0.0
-    jupyter-console==6.6.3
-    jupyterlab-widgets==3.0.7
-    pymongo==4.3.3
-    qtconsole==5.4.3
-    QtPy==2.3.1
-    Werkzeug==2.3.4
-    widgetsnbextension==4.0.7
-Jinja Template
-Mongo Database
-Heroku
-Adobe Illustrator to create the Favicon image
-Pexels.com for the free image used on the site
-Balsamiq for Wireframes
-Lucid Charts for the Site Blueprint (Flowchart Diagram)
-Microsoft Excel to create the usercases that are then uploaded as CSS to convert to MD Tables
-MD Table converter
-Favicon Converter
-Chrome, Firefox, Safari
-Ipad, Iphone, Macbook for testing
-Windows, Android phone for testing
-Selenium Extension in Browser and installed in VS Code with NPM to translate .side files
+Html<br>
+Css<br>
+MaterializeCss (included in script and style links)<br>
+Gitpod<br>
+VS Code<br>
+Git Repository<br>
+JS Query<br>
+Favicons (as pngs and linked in styles in html head section)<br>
+FontAwesome<br>
+Jinja Template<br>
+Mongo Database<br>
+Heroku<br>
+Adobe Illustrator to create the Favicon image<br>
+Pexels.com for the free image used on the site<br>
+Balsamiq for Wireframes<br>
+Lucid Charts for the Site Blueprint (Flowchart Diagram)<br>
+Microsoft Excel to create the usercases that are then uploaded as CSS to convert to MD Tables<br>
+MD Table converter<br>
+Favicon Converter<br>
+Chrome, Firefox, Safari<br>
+Ipad, Iphone, Macbook for testing<br>
+Windows, Android phone for testing<br>
+Python<br>
+Various Python Modules:<br>
+-   blinker==1.6.2<br>
+-   click==8.1.3<br>
+-   dnspython==2.3.0<br>
+-   Flask==2.3.2<br>
+-   Flask-Ext==0.1<br>
+-   Flask-Mail==0.9.1<br>
+-   Flask-PyMongo==2.3.0<br>
+-   ipywidgets==8.0.6<br>
+-   itsdangerous==2.1.2<br>
+-   jupyter==1.0.0<br>
+-   jupyter-console==6.6.3<br>
+-   jupyterlab-widgets==3.0.7<br>
+-   pymongo==4.3.3<br>
+-   qtconsole==5.4.3<br>
+-   QtPy==2.3.1<br>
+-   Werkzeug==2.3.4<br>
+-   widgetsnbextension==4.0.7<br>
 
 
 ## Development Process:  
@@ -277,30 +276,109 @@ tiered authenticated access.
 
 **TEST CASES:**
 
-Test Cases:
-[https://github.com/wendybovill/test_cases.md](https://github.com/wendybovill/test_cases.md)
+Test Cases and Debugging:
 
-WC3 Validation and CSS Jigsaw:
-https://github.com/wendybovill/.pdf
+| Test Cases: |
+|---|
+| ID 1 |
+| Title Testing in Safari Browser with Gitpod |
+| Owner wendybovill |
+| Precondition Required: Sarari Browser. Heroku. Gitpod/Visual S Code Terminal. Debugging ON/True |
+| Steps  |
+| Opened Site. Loaded Signup page. Filled in Form but on submission KeyError displayed. FAIL<br>ERROR : signup email was not defined. The username variable had not been passed through<br>to the sign_up email function. See screenshot 1a<br>Fix: Included variables required passed through to the format method within the sign_up_email<br>from the route/view on lines 166 of the app.py as per screenshot 1b<br>Opened Site. Loaded Signup page. Filled in Form. on submission sign up occurred and redirected as<br>per route defined on call back. PASS |
+| screenshot |
+| 1a |
+| screenshot |
+| 1b |
+| Priority Medium |
+| Status Completed |
+| Estimate 30 minutes |
+| Type Acceptance |
+| Automation Manual |
+| ID 2 |
+| Title Testing in Safari Browser with Gitpod |
+| Owner wendybovill |
+| Precondition Required: Sarari Browser. Heroku. Gitpod/Visual S Code Terminal. Debugging ON/True |
+| Also required: Email account and client |
+| Steps  |
+| Checked email recevied after Sign up. PASS<br>Clicked link within email to verify users email address. Browser responded to load page. PASS<br>Page loading failed. Name Error see screenshot 2a. FAIL<br>Fix: Line 248 in app.py user_verfied was incorrect syntax. Dot notation required. Changed to<br>user.verfied using dot notation.<br>Clicked link within email to verify users email address. Browser responded to load page. PASS<br>View opened correctly to form which then was filled in and submitted verifying the user and<br>redirected to profile page as per callback route. PASS |
+| SCreenshot |
+| 2a |
+| Priority Medium |
+| Status Completed |
+| Estimate 25 minutes |
+| Type Acceptance |
+| Automation Manual |
+| ID 3 |
+| Title Testing in Safari Browser with Gitpod and Heroku |
+| Owner wendybovill |
+| Precondition Required: Sarari Browser. Heroku. Gitpod/Visual S Code Terminal. Debugging ON/True |
+| Steps  |
+| On Events page: Filled in search form with term. Submitted Search. FAIL<br>Heroku showed an IndentationError in line 470 of app.py  See screenshot 3a<br>Fix: Indented line as was under-indented after if statement on line 469 of app.py<br>Returned to Events page in browser after re-committing to Github.<br>Performed Search term submission. <br>Form Submission suceeded. Events loaded as per search term. PASS |
+| screenshot |
+| 3a |
+| Priority Medium |
+| Status Completed |
+| Estimate 20 minutes |
+| Type Acceptance |
+| Automation Manual |
+| ID 4 |
+| Title Testing in Safari Browser |
+| **Owner ** wendybovill |
+| Precondition Required: Sarari Browser. Heroku. Gitpod/Visual S Code Terminal. Debugging ON/True |
+| Steps  |
+| In browser url address field. changed endpoint to a non-existent view to test http error response. Loaded http response page called. PASS<br>Page showed flash message as defenisve programming defined for error status code 404. PASS<br>Further error statuses defined and tested. Each error code gives different feedback messages to user. PASS |
+| Screenshots 4a. 4b |
+| screenshot |
+| 4a |
+| screenshot |
+| 4b |
+| Priority Medium |
+| Status Completed |
+| Estimate 1 hour |
+| Type Acceptance |
+| Automation Manual |
+| ID 5 |
+| Title Testing in Safari Browser |
+| Owner wendybovill |
+| Precondition Required: Sarari Browser. W3C Schools css validators |
+| Steps  |
+| Using Validation service on w3c for css. entered url for automated testing. FAIL  see screenshot 5a<br>Response indicated lines 619. 862. 1019 in Styles.css had the same error - display: flexbox. No such property for display. Required 'flex' instead.<br>Edited those lines in styles.css file to 'display: flex;' <br>Saved file and re-committed to github.<br>Re-ran the validator.<br>No errors displayed in site css. PASS<br>Validation errors detected in Materializecss third party stylesheets. ACCEPTED.<br>No fix available to third party stylesheets as too numerous and not within scope. |
+| screenshot |
+| 5a |
+| Priority Medium |
+| Status Completed |
+| Estimate 10 minutes |
+| Type Acceptance |
+| Automation Automated |
+| ID 6 |
+| Title Testing in Safari Browser |
+| Owner wendybovill |
+| Precondition Required: Sarari Browser. W3C Schools html validators |
+| Steps  |
+| Using Validation service on w3c for css. entered url for automated testing. FAIL  see screenshot 5a<br>Response indicated lines 619. 862. 1019 in Styles.css had the same error - display: flexbox. No such property for display. Required 'flex' instead.<br>Edited those lines in styles.css file to 'display: flex;' <br>Saved file and re-committed to github.<br>Re-ran the validator.<br>No errors displayed in site css. PASS<br>Validation errors detected in Materializecss third party stylesheets. ACCEPTED.<br>No fix available to third party stylesheets as too numerous and not within scope. |
+| screenshot |
+| 6a |
+| screenshot |
+| 6b |
+| Priority Medium |
+| Status Completed |
+| Estimate 10 minutes |
+| Type Acceptance |
+| Automation Automated |
+| ID 7 |
+| Title Testing for Responsiveness |
+| Owner wendybovill |
+| Precondition Required: Testing in Safari Browser. Chrome Browser. Firefox Browser. Internet Explorer and mobile devices: |
+| Mobiles Apple Iphone XS. Iphone 8 Plus and Android Hero. 11 and 12 Inch Ipads |
+| Steps  |
+| Loaded each device. checked each page: Events. Contact Us. Sign Up. Verify and Login as a logged out user <br>Each device loaded and displayed page content as expected with correct responsiveness. PASS<br>Then repeated steps as logged in user. including Profile page. Search. Edit Profile. Edit Event Types. Edit Event. Add Event. Add Event Types<br>Contact us as logged in user. Delete own Event and Event Types. PASS. <br>Next Tested View All Members. Edit Members. as admin user. PASS |
+| Priority Medium |
+| Status Completed |
+| Estimate 1 hour  |
+| Type Acceptance |
+| Automation Manual |
 
-https://github.com/wendybovill/.pdf
-
-
-
-**SCREENSHOTS of Debugging, error fixing and troubleshooting:**
-
-Pdf showing testing screenshots:
-https://github.com/wendybovill/Testing_screenshots.pdf
-
-
-*Debugging:* 
-
-Document of validation and errors can be viewed by clicking on the link below:
-[https://github.com/wendybovill/Validator_tests.md](https://github.com/wendybovill/Validator_tests.md)
-
-
-Handwritten notes forming part of development and testing:
-[https://github.com/wendybovill/handwritten_notes.md](https://github.com/wendybovill/handwritten_notes.md)
 
 
 *References used to assist debugging:*
