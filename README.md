@@ -207,7 +207,7 @@ events by name, type, town, postcode and if its free.
 
 **Wireframe with Balsamiq:**
 
-| Desktop Mockup |
+| Mockups |
 |----------------|
 | ![Balsamiq Wireframe](https://github.com/wendybovill/milestone-project-3/blob/05c8f408e4f5559092d70e072df660f56bf10867/documentation/screenshots/P3-wireframe.png)     |
 
