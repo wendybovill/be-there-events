@@ -259,21 +259,18 @@ tiered authenticated access.
 
 # Acknowledgements
 
-- Stackflow for help with Javascript and CSS where required,where information was read and then
-  interpreted and applied to the requirements of the site and functions required for the actions
-  necessary:<br>
-	  - To plan out what functions to use and streamline them rather than bulky functions.<br>
-	  - Further information on shortening functions and syntax used.<br>
-	  - Information on how to write to the local storage.<br>
-	  - Information on editing the api to create one for the questions and answer content.<br>
-	  - Information in adding and removing classes.<br>
-	  - Information in switching question and answers and indicating which ones are correct or not.<br>
-
+- Stackflow was referenced but the solutions I needed were not in there.<br>
+- I used notes I made during the module lessons, and the documentation for python, flash, mongo, and jinja.<br>
+- MaterializeCSS for use of their css
 - Markdown table generator used: https://www.tablesgenerator.com/markdown_tables
-
-- CSS various sites used to assist in getting information on using a gradient as the background, using
-  using unconventional positioning and resizing, which the validator complains of, but it works rather 
-  than not working without these parameters.
+- Lucid Chart for the Blueprints
+- Favicon for its converter from png to favicons
+- Adobe Illustrator to make the Bee Logo
+- Balsamiq to make the wireframes
+- Gitpod for the Workspace environment
+- Github for commits and keeping track
+- Heroku for deployment
+- Mongo DB for a database
 
 
 # Debugging & Test Results:
