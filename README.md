@@ -403,11 +403,6 @@ Test Cases and Debugging:
 
 ## Screenshots of Finished Site
 
-| Desktop Screenshot 	| Ipad Screenshot 	| Iphone Screenshot 	|
-|![Finished Site Desktop Index Page](https://github.com/wendybovill/milestone-project-3/blob/43f702c830ea4035ead9ffff36f81610628a9149/documentation/screenshots/laptop.png)	|![Finished Site Ipad Index Page](https://github.com/wendybovill/milestone-project-3/blob/5df605d3f7c8bf6e2c985f2d33b0908a51b0ab55/documentation/screenshots/Ipad_index.PNG)	|![Finished Site Iphone Index Page](https://github.com/wendybovill/milestone-project-3/blob/200db3944839cdde5c523a451f6fd3ddd5c7bf78/documentation/screenshots/iphone.PNG)|
-
-
-
 | Screenshot Desktop Index Page |
 |-----------------------------------------------------------------------|
 | ![Finished Site Desktop Index Page](https://github.com/wendybovill/milestone-project-3/blob/43f702c830ea4035ead9ffff36f81610628a9149/documentation/screenshots/laptop.png)|
