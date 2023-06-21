@@ -332,11 +332,13 @@ Test Cases and Debugging:
 | Precondition Required: Sarari Browser. Heroku. Gitpod/Visual S Code Terminal. Debugging ON/True |
 | Steps  |
 | In browser url address field. changed endpoint to a non-existent view to test http error response. Loaded http response page called. PASS<br>Page showed flash message as defenisve programming defined for error status code 404. PASS<br>Further error statuses defined and tested. Each error code gives different feedback messages to user. PASS |
-| Screenshots 4a. 4b |
+| Screenshots 4a. 4b. 4c |
 | ![Screenshot 4a](https://github.com/wendybovill/milestone-project-3/blob/4f9d6a3cb90791799f7415ff642620b8dc8fd7df/documentation/screenshots/4a.png) |
 | 4a |
-| |
-|  |
+| ![Screenshot 4a](https://github.com/wendybovill/milestone-project-3/blob/4f9d6a3cb90791799f7415ff642620b8dc8fd7df/documentation/screenshots/4a.png) |
+| 4b |
+| ![Screenshot 4a](https://github.com/wendybovill/milestone-project-3/blob/4f9d6a3cb90791799f7415ff642620b8dc8fd7df/documentation/screenshots/4a.png) |
+| 4c |
 | Priority Medium |
 | Status Completed |
 | Estimate 1 hour |
