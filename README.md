@@ -360,8 +360,8 @@ Test Cases and Debugging:
 | Using Validation service on w3c for css. entered url for automated testing. FAIL  see screenshot 5a<br>Response indicated lines 619. 862. 1019 in Styles.css had the same error - display: flexbox. No such property for display. Required 'flex' instead.<br>Edited those lines in styles.css file to 'display: flex;' <br>Saved file and re-committed to github.<br>Re-ran the validator.<br>No errors displayed in site css. PASS<br>Validation errors detected in Materializecss third party stylesheets. ACCEPTED.<br>No fix available to third party stylesheets as too numerous and not within scope. |
 | ![Screenshot 6a](https://github.com/wendybovill/milestone-project-3/blob/229b7106f79e26362ba1e4fc040772dd33174a70/documentation/screenshots/6a.png) |
 | 6a |
-|  |
-|  |
+| ![Screenshot 6b](https://github.com/wendybovill/milestone-project-3/blob/e317cbf9c8617f03c0a732ce1780c9597e914297/documentation/screenshots/6b.png)|
+| 6b |
 | Priority Medium |
 | Status Completed |
 | Estimate 10 minutes |
