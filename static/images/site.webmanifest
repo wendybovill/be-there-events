@@ -1,0 +1,38 @@
+short_name": "Event Lister",
+  "name": "BeThere! Event Lister",
+  "icons": [
+    {
+      "src": "static/images/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "static/images/android-chrome-512x512.png.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "id": "/",
+  "start_url": "/",
+  "background_color": "#14202B",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#14202B",
+  "shortcuts": [
+    {
+      "name": "BeThere! Event Lister",
+      "short_name": "BeThere!",
+      "description": "List your event for free",
+      "url": "https://event-lister.herokuapp.com",
+      "icons": [{ "src": "static/images/android-chrome-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "BeThere! Event Lister",
+      "short_name": "BeThere!",
+      "description": "List your event for free",
+      "url": "https://event-lister.herokuapp.com",
+      "icons": [{ "src": "static/images/android-chrome-512x512.png", "sizes": "512x512" }]
+    }
+  ],
+  "description": "List your event for free"
+}
