@@ -51,17 +51,12 @@ mail = Mail(app)
 mongo = PyMongo(app)
 
 
-"""
-
-Email types defined for Contact forms
-
-The first defined sent is from a
-visiting user that is not logged in
-
-"""
-
-
 def send_email(email):
+    """
+    Email types defined for Contact forms:
+
+    Email template sending contact form for logged out user
+    """
     msg = Message("Contact form on Event Lister Website",
                   sender=("Event List Team",
                           "event_lister@wideworldwebhosting.co.uk"),
@@ -92,15 +87,13 @@ def send_email(email):
     mail.send(msg)
 
 
-"""
-Email types defined for Contact forms
-
-The second email defined to the user and the admin
-when a new user signs up to join the site
-"""
-
-
 def sign_up_thankyou(sign_up_email):
+    """
+    Email types defined for Contact forms:
+
+    Email template for email to thank user for signing up.
+    Sent to user and admin.
+    """
     msg = Message("New Sign Up on BeThere! Events",
                   sender=("Event List Team",
                           "event_lister@wideworldwebhosting.co.uk"),
@@ -136,15 +129,13 @@ def sign_up_thankyou(sign_up_email):
     mail.send(msg)
 
 
-"""
-Email types defined for Contact forms
-
-The third email defined is a registered
-member who is logged in to their profile
-"""
-
-
 def send_user_email(user_email):
+    """
+    Email types defined for Contact forms:
+
+    Email template for contact form for logged in user.
+    Sent to user and admin.
+    """
     msg = Message("User Contact Form on Event Lister",
                   sender=("Event List Team",
                           "event_lister@wideworldwebhosting.co.uk"),
@@ -171,23 +162,16 @@ def send_user_email(user_email):
     mail.send(msg)
 
 
-"""
-Routes Defined:
-
-Home/ Index page route
-"""
-
-
 @app.route("/")
 @app.route("/home")
 def home():
     return render_template("index.html")
 
 
-"""
-Routes Defined:
-
-    Sign Up route:
+@app.route("/sign_up", methods=["GET", "POST"])
+def sign_up():
+    """
+    Sign Up route and functions:
 
     The user is found in the database when the form
     posts the users name, and it is then retrieved
@@ -200,12 +184,9 @@ Routes Defined:
     is registered and sent an email to verify their
     email address.
 
-    They are notified of a successful sign up on the page.
-"""
-
-
-@app.route("/sign_up", methods=["GET", "POST"])
-def sign_up():
+    They are notified of a successful sign up on the page
+    using the email 'sign_up_thankyou' template.
+    """
     if request.method == "POST":
         existing_username = mongo.db.users.find_one(
             {"username": request.form.get("username")}
@@ -251,30 +232,26 @@ def sign_up():
     return render_template("register.html")
 
 
-"""
-Routes Defined:
-
-    Route to Verify Email Address:
+@app.route("/verify_email/<username>", methods=["GET", "POST"])
+def verify_email(username):
+    """
+    Route & functions to Verify Email Address:
 
     The email the user received when signing up contains
     a url to verify their email. They will only receive
     this if their email address was valid.
 
-    The fill in the form the url takes them to and they are
-    then logged in. The user is given feedback in the page.
+    They fill in the form the url takes them to and they are
+    then logged in. They need to enter the same details they to
+    register. The user is given feedback in the page.
 
     If the user can't be found or their username is different
-    they are informed of a log in error and told to check their
+    they are informed of a login error and told to check their
     details.
 
     Upon subission of the verification form they are redirected
     to their profile page.
-"""
-
-
-@app.route("/verify_email/<username>", methods=["GET", "POST"])
-def verify_email(username):
-
+    """
     if request.method == "POST":
         user = mongo.db.users.find_one(
                     {"username": request.form.get("username")})
@@ -318,10 +295,10 @@ def verify_email(username):
         "verify.html", username=username)
 
 
-"""
-Routes Defined:
-
-    Route to Log in:
+@app.route("/log_in", methods=["GET", "POST"])
+def log_in():
+    """
+    Route & functions to Log in:
 
     The users email address and password are compared to
     what is stored in the database, from checking and
@@ -331,11 +308,7 @@ Routes Defined:
     to their profile page. If they do not match the user is
     notified of needing to check their details on the login
     page.
-"""
-
-
-@app.route("/log_in", methods=["GET", "POST"])
-def log_in():
+    """
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
@@ -366,23 +339,15 @@ def log_in():
     return render_template("login.html")
 
 
-"""
-Routes Defined:
-
-    Route to Log out:
+@app.route("/log_out/<username>")
+def log_out(username):
+    """
+    Route and functions to Log out:
 
     The user requests to logout in the menu.
     The user is directed to a page to confirm
-    if they really want to log out. The user
-    clicks confirm or cancel. If confirmed
-    they are then logged out of the session.
-    If they cancel the log out they are redirected
-    to the events page.
-"""
-
-
-@app.route("/log_out/<username>")
-def log_out(username):
+    if they really want to log out. 
+    """
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
     # redirect to confirmation page
@@ -393,6 +358,16 @@ def log_out(username):
 
 @app.route("/log_out_confirm/<username>")
 def log_out_confirm(username):
+    """
+    Route and functions to Confirm Log out:
+
+    In this view the user has to confirm
+    if they really want to log out. The user
+    clicks confirm or cancel. If confirmed
+    they are then logged out of the session.
+    If they cancel the log out they are redirected
+    to the events page.
+    """
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
     session.pop("user")
@@ -400,26 +375,23 @@ def log_out_confirm(username):
     return redirect(url_for("get_events"))
 
 
-"""
-Routes Defined:
-
-    Route to users profile:
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    """
+    Route  and functions for a user to view their profile:
 
     Upon login the user is redirected to their profile page.
     They can also access their profile page in the menu,
     once logged in.
 
-    On this page they can see the basic details they entered
+    Upon choosing 'Profile' in the navigation menu:
+    The user is directed to their profile view.
+    In the profile view, they can see the basic details they entered
     and have the option to edit them or add more.
 
     The site admin has access to view all the members profiles
     and edit them if there is a security concern.
-"""
-
-
-@app.route("/profile/<username>", methods=["GET", "POST"])
-def profile(username):
-
+    """
     username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
     users = mongo.db.users.find().sort("username", 1)
@@ -436,6 +408,16 @@ def profile(username):
 
 @app.route("/edit_profile/<username>", methods=["GET", "POST"])
 def edit_profile(username):
+    """
+    Route  and functions for a user to Edit their profile:
+
+    In this view, the user form is made available where they
+    can see the basic details they previously entered
+    and have the option to Edit them or add more.
+
+    The site admin has access to Edit all the members profiles
+    and edit them if there is a security concern.
+    """
     if request.method == "POST":
         existing_username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
@@ -467,31 +449,31 @@ def edit_profile(username):
         "edit_profile.html", username=username, user=user, users=users)
 
 
-"""
-Routes Defined:
-
-    Route to get the Event Types:
-
-    Each Event is allocted a type of event by the member
-    who is creating the event. The event types can be
-    viewed once logged in. Each member can edit or delete
-    their own event type but not other members Event types.
-    A confirmation is required before an Event Type is deleted.
-    The user is notified of any feedback in the pages.
-
-    Admins have access to all the Event Types to edit or delete
-    if there are security concerns.
-"""
-
-
 @app.route("/get_types")
 def get_types():
+    """
+    Route and functions to get the Event Types:
+
+    Each Event is allocted a 'type of event' by the member
+    who is creating the event. 
+    The get types view allows the user to view the event types
+    in a list format. If there is one they have created
+    they are then given the option to view or edit their event type.
+    """
     types = list(mongo.db.types.find().sort("type_name", 1))
     return render_template("types.html", types=types)
 
 
 @app.route("/add_type", methods=["GET", "POST"])
 def add_type():
+    """
+    Route and functions to Add an Event Type:
+
+    A form is offered to the user to add an event type.
+    The fields from this form is retrieved and then sent
+    to the database to be stored. This is then listed in
+    the view 'get_types' above.
+    """
     if request.method == "POST":
         type = {
             "added_by": session["user"],
@@ -508,6 +490,15 @@ def add_type():
 
 @app.route("/edit_type/<type_id>", methods=["GET", "POST"])
 def edit_type(type_id):
+    """
+    Route and functions to get Edit an Event Type:
+
+    Each event type has buttons to edit the event type.
+    Only the user who created the event type or the user 'admin'
+    can view these buttons. On Editing the event type, the
+    new form data is retrieved and that event type is updated in
+    the database by its id. Feedback flash message is sent to user.
+    """
     if request.method == "POST":
         type = {
             "type_name": request.form.get("type_name"),
@@ -523,6 +514,15 @@ def edit_type(type_id):
 
 @app.route("/delete_type/<type_id>", methods=["GET", "POST"])
 def delete_type(type_id):
+    """
+    Route and functions to get Delete an Event Type:
+
+    Each event type has buttons to delete the event type.
+    Only the user who created the event type or the user 'admin'
+    can view these buttons. On selecting delete button the user is
+    directed to a page that asks the user to confirm if they want
+    to delete that event type.
+    """
     types = mongo.db.types.find().sort("type_name", 1)
     type = mongo.db.types.find_one({"_id": ObjectId(type_id)})
     flash("Are you sure you want to delete this Event Type?")
@@ -531,16 +531,28 @@ def delete_type(type_id):
 
 @app.route("/delete_type_confirm/<type_id>")
 def delete_type_confirm(type_id):
+    """
+    Route and functions to Confirm to Delete an Event Type:
+
+    Each event type has buttons to delete the event type.
+    Only the user who created the event type or the user 'admin'
+    can view these buttons. A view to confirm delete is loaded 
+    in the page, if the user selects 'delete' the event type
+    by its id, is deleted. If the user select cancel the
+    event type is not cancelled. In either instance the
+    user is redirected by to the 'get_types' view.
+    """
     mongo.db.types.delete_one({"_id": ObjectId(type_id)})
     flash("Event Type Deleted")
     return redirect(url_for("get_types"))
 
 
-"""
-Routes Defined:
-
+@app.route("/get_events")
+def get_events():
+    """
     Route to Events Listed:
-
+    The events are retrieved from the database and listed using 
+    loops within the view template.
     The Events are publically accessible. They can be searched.
 
     Only logged in members can add, edit and delete their own
@@ -548,17 +560,21 @@ Routes Defined:
 
     Admins have access to all the Events to be able to edit or
     delete them if necessary due to security concerns.
-"""
-
-
-@app.route("/get_events")
-def get_events():
+    """
     events = list(mongo.db.events.find())
     return render_template("events.html", events=events)
 
 
 @app.route("/add_event", methods=["GET", "POST"])
 def add_event():
+    """
+    Route to Add an Event:
+    There is a form that gets filled in for the user to add
+    an event. This information is retrieved from the form and 
+    then inserted into the database. The user is returned to
+    the Event list view after adding their event.
+    Only logged in members can add an event.
+    """
     if request.method == "POST":
         event_paid_for = "paid" if request.form.get(
             "event_paid_for") else "free"
@@ -593,6 +609,19 @@ def add_event():
 
 @app.route("/edit_event/<event_id>", methods=["GET", "POST"])
 def edit_event(event_id):
+    """
+    Route to Edit event:
+    The event selected is retrieved from the database using their ID
+    and displayed in a form.
+
+    Only logged in members can add, edit and delete their own
+    events. The button to edit is hidden from a user that
+    doesn't match the user who created the event or doesn't
+    match 'admin' user.
+
+    The form data is retrieved from the form and the the
+    database is updated according to the event ID.
+    """
     if request.method == "POST":
         event_paid_for = "paid" if request.form.get(
             "event_paid_for") else "free"
@@ -621,10 +650,51 @@ def edit_event(event_id):
     return render_template("edit_events.html", event=event, types=types)
 
 
-"""
-Routes Defined:
+@app.route("/delete_event/<event_id>", methods=["GET", "POST"])
+def delete_event(event_id):
+    """
+    Route to Delete event:
+    The event selected is retrieved from the database using their ID
+    and displayed to the user
 
-    Route to Search Events:
+    Only logged in members can delete their own
+    events. The button to edit is hidden from a user that
+    doesn't match the user who created the event or doesn't
+    match 'admin' user.
+
+    If the user selects to delete the event they are directed
+    to a view to confirm if they want to delete the event.
+    """
+    types = mongo.db.types.find().sort("type_name", 1)
+    event = mongo.db.events.find_one({"_id": ObjectId(event_id)})
+    flash("Are you sure you want to delete this event?")
+    return render_template("delete_event.html", event=event, types=types)
+
+
+@app.route("/delete_event_confirm/<event_id>")
+def delete_event_confirm(event_id):
+    """
+    Route to Confirm delete of an event:
+
+    Only logged in members can delete their own
+    events. The button to edit is hidden from a user that
+    doesn't match the user who created the event or doesn't
+    match 'admin' user.
+
+    The view to confirm delete offers the user an option
+    to cancel or to delete. Both options return the user to 
+    the get_events view. Selecting 'Yes' to delete, removes
+    the event from the database by its ID.
+    """
+    mongo.db.events.delete_one({"_id": ObjectId(event_id)})
+    flash("Event Deleted")
+    return redirect(url_for("get_events"))
+
+
+@app.route("/search_event", methods=["GET", "POST"])
+def search_event():
+    """
+    Route and function to Search Events:
 
     This view is publically accessible.
     The search is requested in the search form. A search
@@ -639,12 +709,13 @@ Routes Defined:
     search and the search is requested again, the results are on the
     previous search index. After 2 minutes the index is dropped to allow
     for an updated index to be created on the next search.
-"""
 
-
-@app.route("/search_event", methods=["GET", "POST"])
-def search_event():
-
+    NB: The method below that creates the index is shown as an error here
+    in python due to the length, but also due to no whitespace after comma.
+    This has been ignored because Mongodb requires the command without 
+    whitespaces after the comma, and without the array split by bracket.
+    The same applies to the drop index method.
+    """
     if request.method == "POST":
 
         search_term = request.form.get("search_event")
@@ -653,7 +724,8 @@ def search_event():
             [("event_title","text"),("event_type","text"),("event_date","text"),("event_paid_for","text"),("event_time","text"),("event_description","text"),("event_location_town","text"),("event_location_postcode","text")])
 
         events = list(
-            mongo.db.events.find({"$text": {"$search": search_term}}))
+            mongo.db.events.find(
+                {"$text": {"$search": search_term}}))
 
         if events is None:
             flash("There are no results for that search")
@@ -673,35 +745,25 @@ def search_event():
     return
 
 
-@app.route("/delete_event/<event_id>", methods=["GET", "POST"])
-def delete_event(event_id):
-    types = mongo.db.types.find().sort("type_name", 1)
-    event = mongo.db.events.find_one({"_id": ObjectId(event_id)})
-    flash("Are you sure you want to delete this event?")
-    return render_template("delete_event.html", event=event, types=types)
-
-
-@app.route("/delete_event_confirm/<event_id>")
-def delete_event_confirm(event_id):
-    mongo.db.events.delete_one({"_id": ObjectId(event_id)})
-    flash("Event Deleted")
-    return redirect(url_for("get_events"))
-
-
-"""
-Routes Defined:
-
+@app.route("/contact_page", methods=["GET", "POST"])
+def contact_page():
+    """
     Route to public contact page:
+
+    A contact form is in the view for the logged out user
+    to send an email. The user is required to fill in all
+    details including email address, first name, last name,
+    message. The data is retrieved from the form and forwarded 
+    to the send_email function, which uses the logged out
+    user contact template.
 
     This calls the send email function defined in the
     start of this file. It is used by a visitor to send
     and email, or by a member who is not logged in.
-"""
 
-
-@app.route("/contact_page", methods=["GET", "POST"])
-def contact_page():
-
+    The user is given feedback about their email sent,
+    and receive a copy of their email.
+    """
     if request.method == "POST":
 
         email = {}
@@ -717,9 +779,9 @@ def contact_page():
     return render_template('contact.html')
 
 
-"""
-Routes Defined:
-
+@app.route("/user_contact_page/<username>", methods=["GET", "POST"])
+def user_contact_page(username):
+    """
     Route to member contact page:
 
     This calls the send email function defined in the
@@ -729,11 +791,9 @@ Routes Defined:
     username and fullname are already included in the
     send function. All the have to do is write the message
     and submit the form.
-"""
-
-
-@app.route("/user_contact_page/<username>", methods=["GET", "POST"])
-def user_contact_page(username):
+    The member is given feedback about their email and
+    they receive a copy of their email sent.
+    """
     existing_username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     session["user"] = mongo.db.users.find_one(
@@ -763,12 +823,12 @@ def user_contact_page(username):
             "user_contact.html", username=username, user=user, users=users)
 
 
-"""
-Routes Defined:
-
+@app.route("/view_members")
+def view_members():
+    """
     Route to view members is for Admin only:
 
-    This lists the users by Username, Email Address,
+    This lists the site members by Username, Email Address,
     their ID and says if their email is verified or not.
 
     Knowing if the user is not verified, allows the Admin
@@ -790,11 +850,7 @@ Routes Defined:
     The editing of the members and deleting of the members
     is performed by search using the user ID. This is incase
     their usernames are similar
-"""
-
-
-@app.route("/view_members")
-def view_members():
+    """
     users = list(mongo.db.users.find().sort("username", 1))
     return render_template(
         "view_members.html", users=users)
@@ -802,6 +858,15 @@ def view_members():
 
 @app.route("/edit_member/<user_id>", methods=["GET", "POST"])
 def edit_member(user_id):
+    """
+    Route to edit members is for Admin only:
+
+    The edit button allows the 'admin' user to edit the
+    profile form fields for the member. There isthe option
+    cancel. The update button calls the update function
+    which retrieves the data from the form an updates
+    the single member by theirID.
+    """
     if request.method == "POST":
         verify = "yes" if request.form.get("verified") else "no"
 
@@ -828,6 +893,13 @@ def edit_member(user_id):
 
 @app.route("/delete_member/<user_id>")
 def delete_member(user_id):
+    """
+    Route to delete a member is for Admin only:
+
+    The view to delete a member has a button that calls
+    the function to load the view which  calls the delete
+    member confirm view.
+    """
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     flash("Are you sure you want to delete this member?")
     return render_template(
@@ -836,6 +908,13 @@ def delete_member(user_id):
 
 @app.route("/delete_member_confirm/<user_id>")
 def delete_member_confirm(user_id):
+    """
+    Route to confirm member delete is for Admin only:
+
+    There is a button to cancel and a button to delete
+    me mber. Both options redirect to 'view members' after. 
+    Delete removed the single member from the database by theirID.
+    """
     mongo.db.users.delete_one({"_id": ObjectId(user_id)})
     flash("Member Deleted")
     return redirect(url_for(
