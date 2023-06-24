@@ -26,10 +26,10 @@
 
         <div class=" page-padding col xl8 l8 m8 s12">
             {% if events|length > 0 %}
-            <ul id="eventList" class="collapsible xl8 l8 m8 s12" name="event_list" data-event="event_list">
+            <ul id="eventList" class="collapsible col xl8 l8 m8 s12" name="event_list" data-event="event_list">
                 {% for event in events %}
                 <li>
-                    <div class="indigo collapsible-header xl8 l8 m8 s12 hightlight1">
+                    <div class="indigo collapsible-header col xl8 l8 m8 s12 hightlight1">
                         <i class="fa fa-arrow-down white-text show-on-medium-and-up hide-on-small right" aria-hidden="true"></i>
                         <div class="card-pane">{{ event.event_type }}&nbsp;&nbsp;<span class="highlight1"> {{ event.event_date }}</span></div>
                         <div class="xl8 l8 m8 s12 highlight1">
@@ -38,14 +38,14 @@
 <small class="hightlight1">Click for more info</small></p></div>
                         
                     </div>
-                        <div class="description white lighten-5 collapsible-body s12 border-l-r">
+                        <div class="description white lighten-5 collapsible-body col xl8 l8 m8 s12 border-l-r">
                             <div class="event-description">
                                 {% if event.event_paid_for == "paid" %}
                                 <h3>Event Entrance Fee: £ {{ event.event_entrance_fee }}</h3>
                                 {% else %}
                                 <h3>Entry is Free</h3>
                                 {% endif %}
-                                <h5 >Time?</h5>
+                                <h5 class="center">Time?</h5>
                                 <p class="center">{{ event.event_time }}</p>
                                 <h5>What is it?</h5>
                                 <p>{{ event.event_description }}</p>

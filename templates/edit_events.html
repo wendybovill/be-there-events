@@ -21,14 +21,14 @@
             <form class="s12 m8 card noshadow-card " method="POST" action="{{ url_for('edit_event', event_id=event._id) }}">
                 <!-- Type Selector -->
                 <div class="row white">
-                    <div class="input-field col s12 m10">
+                    <div class="input-field col s12">
                         <label for="event_type" class="event">What is it?</label>
                         <i class="prefix fa fa-calendar-plus" aria-hidden="true" ></i>
                             <select id="event_type" name="event_type" class="validate" required>
                                 <option value="{{ types.type_name }}" selected>Choose type</option>
                                     {% for type in types %}
                                         {% if type.type_name == event.event_type %}
-                                            <option value="{{ type.type_name }}" selected>{{ type.type_name }}</option>
+                                            <option value="{{ event.event_type }}" selected>{{ event.event_type }}</option>
                                         {% else %}
                                             <option value="{{ type.type_name }}">{{ type.type_name }}</option>
                                         {% endif %}

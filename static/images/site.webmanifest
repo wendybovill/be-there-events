@@ -33,6 +33,4 @@ short_name": "Event Lister",
       "url": "https://event-lister.herokuapp.com",
       "icons": [{ "src": "static/images/android-chrome-512x512.png", "sizes": "512x512" }]
     }
-  ],
-  "description": "List your event for free"
-}
+  ]
