@@ -126,6 +126,9 @@ def sign_up_thankyou(sign_up_email):
     Email template for email to thank user for signing up.
     Sent to user and admin.
 
+    The a link below cannot be shortened or url doesn't work.
+    Therefore complaint of 'too long' is ignored.
+
     """
     msg = Message("New Sign Up on BeThere! Events",
                   sender=("Event List Team",
@@ -771,7 +774,12 @@ def search_event():
     if request.method == "POST":
 
         search_term = request.form.get("search_event")
+        """ The method below cannot have its array split
+            or whitespace added to it, though 'too long',
+            if it is split or whitespace added by the comma's
+            it will not create the index.
 
+        """
         mongo.db.events.create_index(
             [("event_title","text"),("event_type","text"),("event_date","text"),("event_paid_for","text"),("event_time","text"),("event_description","text"),("event_location_town","text"),("event_location_postcode","text")])
 
@@ -787,7 +795,12 @@ def search_event():
             if events:
                 search_completed = True
             return render_template("events.html", events=events)
+        """ The method below cannot have its array split
+            or whitespace added to it, though 'too long',
+            if it is split or whitespace added by the comma's
+            it will not create the index.
 
+        """
         if search_completed:
             time.sleep(120)
             mongo.db.events.drop_index(
