@@ -1,3 +1,37 @@
+""" Module Purpose:
+
+    This module is the main module that runs the app's
+    basic and extended functions. Without this the app
+    will not run. Pep8 requirements are adhered to.
+
+App description:
+
+    The app is created to be an Event Lister, for users to list
+    their events for free. There is a login required for a user
+    to add an event. However the events listed are viewable by
+    the a site visitor. In order to receive a login, a user has
+    to sign up. They then receive an email to verify email address.
+    After verification, they are logged into their user profile.
+
+    Each member can add and event and an event type. But each user
+    is restricted to only edit or update or delete their own event
+    and event type.
+
+    Events are searchable by the title, descriptions and if its
+    'paid' or 'free'.
+
+    There is one 'admin' user, who is allowed to edit, update, and
+    delete other members events, event types, as well as their
+    profiles, and admin can also delete a member by ID.
+
+    Members can edit their own profiles but not profiles of others.
+
+Each route and function is explained in doc strings, as well as
+information on the next route/function called.
+
+"""
+
+
 import os
 import pathlib
 import time
@@ -10,30 +44,27 @@ from flask_mail import Mail, Message
 if os.path.exists("env.py"):
     import env
 
-"""
-This module is the main module that runs the app's
-basic and extended functions. Without this the app
-will not run. Pep8 requirements are adhered to.
-"""
-
-"""
-Import extensions required to run the functions
-"""
-
-
-"""
-
-App configurations for Database and Email Sending
-
-"""
-
 
 app = Flask(__name__)
+
+
+"""
+
+App configurations for Database
+
+"""
 
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
+
+
+"""
+
+App configurations for Email Sending
+
+"""
 
 
 app.config['MAIL_SERVER'] = 'mail.wideworldwebhosting.co.uk'
@@ -56,6 +87,7 @@ def send_email(email):
     Email types defined for Contact forms:
 
     Email template sending contact form for logged out user
+
     """
     msg = Message("Contact form on Event Lister Website",
                   sender=("Event List Team",
@@ -93,6 +125,7 @@ def sign_up_thankyou(sign_up_email):
 
     Email template for email to thank user for signing up.
     Sent to user and admin.
+
     """
     msg = Message("New Sign Up on BeThere! Events",
                   sender=("Event List Team",
@@ -135,6 +168,7 @@ def send_user_email(user_email):
 
     Email template for contact form for logged in user.
     Sent to user and admin.
+
     """
     msg = Message("User Contact Form on Event Lister",
                   sender=("Event List Team",
@@ -186,6 +220,7 @@ def sign_up():
 
     They are notified of a successful sign up on the page
     using the email 'sign_up_thankyou' template.
+
     """
     if request.method == "POST":
         existing_username = mongo.db.users.find_one(
@@ -251,6 +286,7 @@ def verify_email(username):
 
     Upon subission of the verification form they are redirected
     to their profile page.
+
     """
     if request.method == "POST":
         user = mongo.db.users.find_one(
@@ -308,6 +344,7 @@ def log_in():
     to their profile page. If they do not match the user is
     notified of needing to check their details on the login
     page.
+
     """
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
@@ -346,7 +383,8 @@ def log_out(username):
 
     The user requests to logout in the menu.
     The user is directed to a page to confirm
-    if they really want to log out. 
+    if they really want to log out.
+
     """
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
@@ -367,6 +405,7 @@ def log_out_confirm(username):
     they are then logged out of the session.
     If they cancel the log out they are redirected
     to the events page.
+
     """
     users = mongo.db.users.find().sort("username", 1)
     user = mongo.db.users.find_one({"username": username})
@@ -391,6 +430,7 @@ def profile(username):
 
     The site admin has access to view all the members profiles
     and edit them if there is a security concern.
+
     """
     username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
@@ -417,6 +457,7 @@ def edit_profile(username):
 
     The site admin has access to Edit all the members profiles
     and edit them if there is a security concern.
+
     """
     if request.method == "POST":
         existing_username = mongo.db.users.find_one(
@@ -459,6 +500,7 @@ def get_types():
     The get types view allows the user to view the event types
     in a list format. If there is one they have created
     they are then given the option to view or edit their event type.
+
     """
     types = list(mongo.db.types.find().sort("type_name", 1))
     return render_template("types.html", types=types)
@@ -473,6 +515,7 @@ def add_type():
     The fields from this form is retrieved and then sent
     to the database to be stored. This is then listed in
     the view 'get_types' above.
+
     """
     if request.method == "POST":
         type = {
@@ -498,6 +541,7 @@ def edit_type(type_id):
     can view these buttons. On Editing the event type, the
     new form data is retrieved and that event type is updated in
     the database by its id. Feedback flash message is sent to user.
+
     """
     if request.method == "POST":
         type = {
@@ -522,6 +566,7 @@ def delete_type(type_id):
     can view these buttons. On selecting delete button the user is
     directed to a page that asks the user to confirm if they want
     to delete that event type.
+
     """
     types = mongo.db.types.find().sort("type_name", 1)
     type = mongo.db.types.find_one({"_id": ObjectId(type_id)})
@@ -541,6 +586,7 @@ def delete_type_confirm(type_id):
     by its id, is deleted. If the user select cancel the
     event type is not cancelled. In either instance the
     user is redirected by to the 'get_types' view.
+
     """
     mongo.db.types.delete_one({"_id": ObjectId(type_id)})
     flash("Event Type Deleted")
@@ -560,6 +606,7 @@ def get_events():
 
     Admins have access to all the Events to be able to edit or
     delete them if necessary due to security concerns.
+
     """
     events = list(mongo.db.events.find())
     return render_template("events.html", events=events)
@@ -574,6 +621,7 @@ def add_event():
     then inserted into the database. The user is returned to
     the Event list view after adding their event.
     Only logged in members can add an event.
+
     """
     if request.method == "POST":
         event_paid_for = "paid" if request.form.get(
@@ -621,6 +669,7 @@ def edit_event(event_id):
 
     The form data is retrieved from the form and the the
     database is updated according to the event ID.
+
     """
     if request.method == "POST":
         event_paid_for = "paid" if request.form.get(
@@ -664,6 +713,7 @@ def delete_event(event_id):
 
     If the user selects to delete the event they are directed
     to a view to confirm if they want to delete the event.
+
     """
     types = mongo.db.types.find().sort("type_name", 1)
     event = mongo.db.events.find_one({"_id": ObjectId(event_id)})
@@ -685,6 +735,7 @@ def delete_event_confirm(event_id):
     to cancel or to delete. Both options return the user to 
     the get_events view. Selecting 'Yes' to delete, removes
     the event from the database by its ID.
+
     """
     mongo.db.events.delete_one({"_id": ObjectId(event_id)})
     flash("Event Deleted")
@@ -715,6 +766,7 @@ def search_event():
     This has been ignored because Mongodb requires the command without 
     whitespaces after the comma, and without the array split by bracket.
     The same applies to the drop index method.
+
     """
     if request.method == "POST":
 
@@ -763,6 +815,7 @@ def contact_page():
 
     The user is given feedback about their email sent,
     and receive a copy of their email.
+
     """
     if request.method == "POST":
 
@@ -793,6 +846,7 @@ def user_contact_page(username):
     and submit the form.
     The member is given feedback about their email and
     they receive a copy of their email sent.
+
     """
     existing_username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
@@ -850,6 +904,7 @@ def view_members():
     The editing of the members and deleting of the members
     is performed by search using the user ID. This is incase
     their usernames are similar
+
     """
     users = list(mongo.db.users.find().sort("username", 1))
     return render_template(
@@ -865,7 +920,8 @@ def edit_member(user_id):
     profile form fields for the member. There isthe option
     cancel. The update button calls the update function
     which retrieves the data from the form an updates
-    the single member by theirID.
+    the single member by their ID.
+
     """
     if request.method == "POST":
         verify = "yes" if request.form.get("verified") else "no"
@@ -899,6 +955,7 @@ def delete_member(user_id):
     The view to delete a member has a button that calls
     the function to load the view which  calls the delete
     member confirm view.
+
     """
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     flash("Are you sure you want to delete this member?")
@@ -912,8 +969,9 @@ def delete_member_confirm(user_id):
     Route to confirm member delete is for Admin only:
 
     There is a button to cancel and a button to delete
-    me mber. Both options redirect to 'view members' after. 
-    Delete removed the single member from the database by theirID.
+    me mber. Both options redirect to 'view members' after.
+    Delete removed the single member from the database by their ID.
+
     """
     mongo.db.users.delete_one({"_id": ObjectId(user_id)})
     flash("Member Deleted")
@@ -921,11 +979,12 @@ def delete_member_confirm(user_id):
         "view_members"))
 
 
-"""
-Error Handling:
+""" Error Handling:
+
 As part of Error handling I have redirected all HTTP Error responses
 back to the Index Home page, with a flash message giving information
 to the user and instructing them how to proceed where necessary
+
 """
 
 
@@ -961,22 +1020,6 @@ def redirect_http(e):
     return render_template("index.html")
 
 
-@app.errorhandler(503)
-def redirect_http(e):
-    msg1 = " That option is not available."
-    msg2 = " If you think its an error please contact us."
-    flash(msg1 + " " + msg2)
-    return render_template("index.html")
-
-
-@app.errorhandler(406)
-def redirect_http(e):
-    msg1 = " That option is not acceptable."
-    msg2 = " If you think its an error please contact us."
-    flash(msg1 + " " + msg2)
-    return render_template("index.html")
-
-
 @app.errorhandler(405)
 def redirect_http(e):
     msg1 = " That method is not allowed."
@@ -985,50 +1028,10 @@ def redirect_http(e):
     return render_template("index.html")
 
 
-@app.errorhandler(408)
-def redirect_http(e):
-    msg1 = " Theres been a timeout."
-    msg2 = " Is your internet connection ok?"
-    flash(msg1 + " " + msg2)
-    return render_template("index.html")
-
-
 @app.errorhandler(400)
 def redirect_http(e):
     msg1 = " Its bad. Its a 400 Error."
     msg2 = " The server did not like it."
-    flash(msg1 + " " + msg2)
-    return render_template("index.html")
-
-
-@app.errorhandler(413)
-def redirect_http(e):
-    msg1 = " Wow what are you trying to send?"
-    msg2 = " Its too large to be accepted."
-    flash(msg1 + " " + msg2)
-    return render_template("index.html")
-
-
-@app.errorhandler(429)
-def redirect_http(e):
-    msg1 = " Too many requests at once."
-    msg2 = " Slow down please."
-    flash(msg1 + " " + msg2)
-    return render_template("index.html")
-
-
-@app.errorhandler(416)
-def redirect_http(e):
-    msg1 = " I can't bring you what you have asked for."
-    msg2 = " That request can't be satisfied."
-    flash(msg1 + " " + msg2)
-    return render_template("index.html")
-
-
-@app.errorhandler(418)
-def redirect_http(e):
-    msg1 = " No Tea or Coffee here."
-    msg2 = " I can't bring that to you."
     flash(msg1 + " " + msg2)
     return render_template("index.html")
 
