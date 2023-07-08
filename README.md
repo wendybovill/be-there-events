@@ -191,7 +191,7 @@ Handwritten notes forming part of development and testing:
 
 |  	| Security Features Added in the Development Process and Deployment Process: 	|
 |---	|---	|
-| 1 	| Throughout the development, defensive programing was implemented. Flask Werkzeug is used for securit features  	|
+| 1 	| Throughout the development, defensive programing was implemented. Flask Werkzeug security extension is used for security features  	|
 | 2 	| On sign-up the user details are checked in the database to ensure there isn't an existing user, username or password 	|
 | 3 	| On sign-up and log-in the password is encrypted 	|
 | 4 	| On sign-up a new user is sent an email to their email address where they then click a preconfigured url that will take them<br> to verify their email and log in with the credentials they selected on Sign Up. 	|
