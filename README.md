@@ -29,7 +29,7 @@
 
 [13 Screenshots and Finished Site](#screenshots-of-finished-site) <br> 
 &ensp;-&ensp;[13a Screenshots Showing Update and Delete](#screenshots-showing-update-and-delete) <br> 
-&ensp;-&ensp;[13b Screenshots Responsive Design](#screenshots-showing-responsive-design) <br> 
+&ensp;-&ensp;[13b Screenshots Responsive Design](#responsive-design-screenshots) <br> 
 
 <hr>
 
