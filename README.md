@@ -1,6 +1,6 @@
 
 # Milestone 3 Project: Back End Development
-![Deployed Project Link](http://event-lister.herokuapp.com/)
+[Deployed Project Link](http://event-lister.herokuapp.com/)
 ![BeThere! Events](https://github.com/wendybovill/milestone-project-3/blob/708cd50b2a4f31ac142e058146344a630ffe1acd/documentation/events-devices.jpg)
 
 ## Index
