@@ -29,6 +29,7 @@
 
 [13 Screenshots and Finished Site](#screenshots-and-finished-site)
 
+<hr>
 
 
 # Target Audience
