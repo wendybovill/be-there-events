@@ -1,8 +1,37 @@
 
 # Milestone 3 Project: Back End Development
 
+## Index
 
-## Target Audience:
+[1 Target Audience](#target-audience)
+
+[2 Purpose](#purpose)
+
+[3 Database Schema and Plan](#database-schema-and-site-plan)
+
+[4 User Stories](#user-stories)
+
+[5 Technology Requirements](#tecnology-requirements)
+
+[6 Development Process](#development-process)
+
+[7 Security Features](#security-features)
+
+[8 Site Design Process](#site-design-process)
+
+[9 Future Development](#future-development)
+
+[10 Deployment Process](#deployment-process)
+
+[11 Acknowledgements](#acknowledgements)
+
+[12 Debugging and Test Results](#debugging-and-test-results)
+
+[13 Screenshots and Finished Site](#screenshots-and-finished-site)
+
+
+
+# Target Audience
 
 - Members of the public who are looking to advertise events for free.
 
@@ -13,7 +42,7 @@
 - Businesses who are looking to promote an event to Advertise their business, or product.
 
 
-## Purpose: 
+# Purpose
 
 - To create a sense of community among members of the public. 
 - To make available local recreational events or sponsored events from Charity or Businesses. 
@@ -22,7 +51,9 @@
   bored and create problems in their community.
 - To encourage a sense of "togetherness" in the communities.
 
-***This site will have:***
+[Index](#index)
+
+# Database Schema and Site Plan
 
 1. Home Page with a welcome message and brief outline of what the site is for.
 
@@ -64,8 +95,35 @@
 
 13. A log out confirmation before a user is logged out.
 
+##Database Schema:
 
-## User Stories:
+The database schema was designed after deciding what the site functionality should be like.
+
+Once the views were identified, it was decided what each users would need for the views to operate correctly, portraying the correct information to each user, and this helped decide what routes were needed and therefore the functions to call and operate the routes and views by the user requirements.
+
+This is a non-relational database using Mongo DB.
+
+The Schema fit into 3 main tables, being: Users, Events and Event Types. 
+
+A search index gets created in the Events Table to search for Events using keywords gathered from Event title field, Event type field, Is_paid_for field to search for Free or paid, Event_location_town, and Event_location_postcode. Each time a search is performed, a datbase is created, it is dropped 2 minutes (120 seconds) after the last search is performed. This allows the user to get the newest events that have been created, within the results of the search they ran.
+
+**Users are only allowed to edit their own events and event types, and as a result we have an 'added_by' field in the Event Types tables and in the Event tables. This allows the buttons for Edit and Delete to show only if the user is the user that added that entry, or if they are an admin user.**
+
+
+|
+| Code Function Prep 	| Database Schema Plan 	|
+|---	|---	|
+| ![Code Prep](https://github.com/wendybovill/milestone-project-3/blob/7d03ced489b6a8c47be530662bf45bbe167a2cea/documentation/IMG_6266.png) 	| ![Database Schema](https://github.com/wendybovill/milestone-project-3/blob/791bc2d59c3df3ae01b7da2dbb14a9cbfe9cf304/documentation/IMG_6267.png)  	|
+
+
+   **Blueprint:** Documentation for Database Schema and Website Plan 
+![Site Flow Chart Blueprint](https://github.com/wendybovill/milestone-project-3/blob/b4af1a3ed763165c7f955c41618f19f32c66113a/documentation/screenshots/Project_3_Blueprint.png)
+
+[Index](#index)
+
+
+
+# User Stories
 
 | USER 	| TYPE 	| CASE 	|
 |---	|---	|---	|
@@ -75,8 +133,11 @@
 | Sandra 	| Charity 	| "We run the local charity shop for Cancer awareness. We are so happy we can advertise our events locally to draw people in who can either get involved in sponsored runs and marathons or who can donate to the cause. This website is exactly whats needed to boost our communities since Covid19. Facebook used to be able to do that but now they charge for everything. So being able to have a central free place to look is what we've needed."  	|
 | Pete 	| Organisation/Club 	| As an organisation its been hard to get younger members recruited. Now we can advertise our events for free in the community and get more young people and families involved. People often don’t know what fly fishing is. We've been asked all sorts of thing when its mentioned. Now we can promote our sport and our club and hopefully get some new members to join up soon.  	|
 
+[Index](#index)
 
-## Technology Requirements:
+
+
+# Technology Requirements
 
 Html<br>
 Css<br>
@@ -120,10 +181,13 @@ Various Python Modules:<br>
 -   Werkzeug==2.3.4<br>
 -   widgetsnbextension==4.0.7<br>
 
+[Index](#index)
 
-# Development Process:  
 
-*Development Method:*
+
+# Development Process  
+
+**Development Method:**
 
 After receiving technical specification and design requirements, wireframe was created in Balsamiq.
 The Html and CSS were created for the templates to, the base template was created using Jinja template.
@@ -174,20 +238,11 @@ created of the errors and added to the debugging md file. There were numerous er
 party extension, however these I have left as they are not within my remit. They are not causing any
 site errors or errors within my code. 
 
-*Database Schema:*
+[Index](#index)
 
-The database schema was designed after deciding what the site functionality should be like.
-Once the views were identified, it was decided what each users would need for the views to operate correctly, portraying the correct information to each user, and this helped decide what routes were needed and therefore the functions to call and operate the routes and views by the user requirements.
-This is a non-relational database using Mongo DB. The Schema fit into 3 main tables, being: Users, Events and Event Types. A search index gets created in the Events Table to search for Events using keywords gathered from Event title field, Event type field, Is_paid_for field to search for Free or paid, Event_location_town, and Event_location_postcode. Each time a search is performed, a datbase is created, it is dropped 2 minutes (120 seconds) after the last search is performed. This allows the user to get the newest events that have been created, within the results of the search they ran.
-Users are only allowed to edit their own events and event types, and as a result we have an 'added_by' field in the Event Types tables and in the Event tables.
 
-Handwritten notes forming part of development and testing:
-|
-| Code Function Prep 	| Database Schema Plan 	|
-|---	|---	|
-| ![Code Prep](https://github.com/wendybovill/milestone-project-3/blob/7d03ced489b6a8c47be530662bf45bbe167a2cea/documentation/IMG_6266.png) 	| ![Database Schema](https://github.com/wendybovill/milestone-project-3/blob/791bc2d59c3df3ae01b7da2dbb14a9cbfe9cf304/documentation/IMG_6267.png)  	|
 
-## Security Features
+# Security Features
 
 |  	| Security Features Added in the Development Process and Deployment Process: 	|
 |---	|---	|
@@ -202,9 +257,13 @@ Handwritten notes forming part of development and testing:
 | 9 	| Further defensive programming was developed as part of the testing process, to ensure that a user has to be logged in<br>to make any changes, and that they can only access there own account and posts 	|
 | 10 	| Defensive programming was completed to ensure a visitor to the site cannot alter the url to gain access to the backend<br> or to any of the signed up user accounts and features, for example to any area that is restricted to logged In<br> users, or the admin. When altering the url, the visitor is shown an error page and given feedback. 	|
 | 11	| Debug mode is set to False in the app.py file  	|
+| 12	| A User can only edit and update or delete their OWN entries, not those of others.<br>Those buttons are HIDDEN if the user is not the user who created that entry, or is not an admin user.<br>Admin can edit, update and delete their own and other users entries and profiles.  	|
+
+[Index](#index)
 
 
-## Site Design Process
+
+# Site Design Process
 
 1. Content:
 
@@ -221,7 +280,6 @@ events by name, type, town, postcode and if its free.
 
 
 2. Design: 
-
 
 **Wireframe with Balsamiq:**
 
@@ -243,20 +301,17 @@ events by name, type, town, postcode and if its free.
 5.	The code for the Routes are determined by the Views required. The Database Schema is created based on the
 	functionality plan and routes required.
 
-6. Blueprint
-
-
-   **Blueprint and Website Flow:** Documentation for Website Planning. 
-![Site Flow Chart Blueprint](https://github.com/wendybovill/milestone-project-3/blob/b4af1a3ed763165c7f955c41618f19f32c66113a/documentation/screenshots/Project_3_Blueprint.png)
-
 
 ## Design Variation:
 The site has extra features added which are not in the original mockups/wireframes, which were a simple design
 of the layout of the site. The Site Blueprint (Flowchart) determines the Views required and the site flow for
 tiered authenticated access.
 
+[Index](#index)
 
-## Future Development:
+
+
+# Future Development
 
 1. Add an email update function and view to require the user to re-verify their newly updated email.
 
@@ -275,8 +330,11 @@ tiered authenticated access.
 7. Set the front page to display the next event in a section and also to display a section showing the latest
    event added.
 
+[Index](#index)
 
-# Deployment Process / Re-Deployment Process
+
+
+# Deployment Process
 
 |  	| DEPLOYMENT PROCESS / REDEPLOYMENT PROCESS 	|
 |---	|---	|
@@ -288,6 +346,9 @@ tiered authenticated access.
 | 6 	| Ensure the vars you have entered match up with what has been required in the env file that is being ignored by .gitignore file, once you have<br> verified you have all of these set up. In the terminal do Git add . (to add all files, include the fullstop), git commit -m "commit message here" and <br>then finally do git push. Once the final changes are pushed to github, go to heroku, and in the tab "Deploy" select the branch to be deployed <br>(from githup) and select Deploy Branch. Then in Heroku, top right corner, under "more" select view logs, and ensure there are no errors in <br>the logs. If there are, then go to your workspace and fix them. Recommit them to github and redeploy branch, check logs, and next to the <br>"more" on top right you can view app. Test out the app that it works correctly. If not repeat process of fixing and redeploying. 	|
 | 7 	| The database that has been used for this app is mongodb https://www.mongodb.com. Credentials supplied in separate document not publically available. There should be <br>no need to redploy this if the url is correctly added to the heroku vars configs. Login information is supplied in a separate file, not part of the <br>public domain. If you need to create a new user you can do this once logged in, under the database access tab, create a user defining what <br>access level they have. You can create a password and username, make sure you write this down somewhere. Go to the network access <br>section and add the ip address of the client that needs to connect to the database. Then go to Databases and select "connect" to complete <br>the process. 	|
 | 8 	| The url for the database includes the database name and login credentials, so this needs to be added to the heroku and env configs vars <br>and kept secret. 	|
+
+[Index](#index)
+
 
 
 # Acknowledgements
@@ -306,8 +367,11 @@ tiered authenticated access.
 - Heroku for deployment
 - Mongo DB for a database
 
+[Index](#index)
 
-# Debugging & Test Results:
+
+
+# Debugging and Test Results
 
 **TEST CASES:**
 
@@ -417,7 +481,7 @@ Test Cases and Debugging:
 | Automation Manual |
 
 
-*User Testing:*
+**User Testing:**
 
 Manual Testing various possible user attempts to work around the site security was undertaken to ensure a user could not:
 - edit, update or delete other users Events or Event Types
@@ -426,7 +490,6 @@ Manual Testing various possible user attempts to work around the site security w
 - view, edit, update or delete member profiles as an admin user
 - urls cannot be changed to gain access to restricted areas, users are redirected either through http error status responses to the index page with a relevant message or on the same pages with flash messages instructing them they are not authorized and need to log in (where appropriate)
 
-  
 
 *References used to assist debugging:*
 
@@ -440,6 +503,9 @@ Manual Testing various possible user attempts to work around the site security w
   (problems detected in the terminal were then corrected)
 
 - Python documentation, Flash documentation
+
+[Index](#index)
+
 
 
 # Screenshots of Finished Site
@@ -455,5 +521,8 @@ Manual Testing various possible user attempts to work around the site security w
 | Screenshot Iphone Index Page |
 |-----------------------------------------------------------------------|
 | ![Finished Site Iphone Index Page](https://github.com/wendybovill/milestone-project-3/blob/200db3944839cdde5c523a451f6fd3ddd5c7bf78/documentation/screenshots/iphone.PNG)|
+
+
+[Index](#index)
 
 
