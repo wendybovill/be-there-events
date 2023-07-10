@@ -51,7 +51,7 @@
   bored and create problems in their community.
 - To encourage a sense of "togetherness" in the communities.
 
-[Index](#index)
+[Back to Index](#index)
 
 # Database Schema and Site Plan
 
@@ -125,7 +125,7 @@ A search index gets created in the Events Table to search for Events using keywo
    **Blueprint:** Documentation for Database Schema and Website Plan 
 ![Site Flow Chart Blueprint](https://github.com/wendybovill/milestone-project-3/blob/b4af1a3ed763165c7f955c41618f19f32c66113a/documentation/screenshots/Project_3_Blueprint.png)
 
-[Index](#index)
+[Back to Index](#index)
 
 
 
@@ -139,7 +139,7 @@ A search index gets created in the Events Table to search for Events using keywo
 | Sandra 	| Charity 	| "We run the local charity shop for Cancer awareness. We are so happy we can advertise our events locally to draw people in who can either get involved in sponsored runs and marathons or who can donate to the cause. This website is exactly whats needed to boost our communities since Covid19. Facebook used to be able to do that but now they charge for everything. So being able to have a central free place to look is what we've needed."  	|
 | Pete 	| Organisation/Club 	| As an organisation its been hard to get younger members recruited. Now we can advertise our events for free in the community and get more young people and families involved. People often don’t know what fly fishing is. We've been asked all sorts of thing when its mentioned. Now we can promote our sport and our club and hopefully get some new members to join up soon.  	|
 
-[Index](#index)
+[Back to Index](#index)
 
 
 
@@ -187,7 +187,7 @@ Various Python Modules:<br>
 -   Werkzeug==2.3.4<br>
 -   widgetsnbextension==4.0.7<br>
 
-[Index](#index)
+[Back to Index](#index)
 
 
 
@@ -244,7 +244,7 @@ created of the errors and added to the debugging md file. There were numerous er
 party extension, however these I have left as they are not within my remit. They are not causing any
 site errors or errors within my code. 
 
-[Index](#index)
+[Back to Index](#index)
 
 
 
@@ -265,7 +265,7 @@ site errors or errors within my code.
 | 11	| Debug mode is set to False in the app.py file  	|
 | 12	| A User can only edit and update or delete their OWN entries, not those of others.<br>Those buttons are HIDDEN if the user is not the user who created that entry, or is not an admin user.<br>Admin can edit, update and delete their own and other users entries and profiles.  	|
 
-[Index](#index)
+[Back to Index](#index)
 
 
 
@@ -313,7 +313,7 @@ The site has extra features added which are not in the original mockups/wirefram
 of the layout of the site. The Site Blueprint (Flowchart) determines the Views required and the site flow for
 tiered authenticated access.
 
-[Index](#index)
+[Back to Index](#index)
 
 
 
@@ -336,7 +336,7 @@ tiered authenticated access.
 7. Set the front page to display the next event in a section and also to display a section showing the latest
    event added.
 
-[Index](#index)
+[Back to Index](#index)
 
 
 
@@ -353,7 +353,7 @@ tiered authenticated access.
 | 7 	| The database that has been used for this app is mongodb https://www.mongodb.com. Credentials supplied in separate document not publically available. There should be <br>no need to redploy this if the url is correctly added to the heroku vars configs. Login information is supplied in a separate file, not part of the <br>public domain. If you need to create a new user you can do this once logged in, under the database access tab, create a user defining what <br>access level they have. You can create a password and username, make sure you write this down somewhere. Go to the network access <br>section and add the ip address of the client that needs to connect to the database. Then go to Databases and select "connect" to complete <br>the process. 	|
 | 8 	| The url for the database includes the database name and login credentials, so this needs to be added to the heroku and env configs vars <br>and kept secret. 	|
 
-[Index](#index)
+[Back to Index](#index)
 
 
 
@@ -373,7 +373,7 @@ tiered authenticated access.
 - Heroku for deployment
 - Mongo DB for a database
 
-[Index](#index)
+[Back to Index](#index)
 
 
 
@@ -510,7 +510,7 @@ Manual Testing various possible user attempts to work around the site security w
 
 - Python documentation, Flash documentation
 
-[Index](#index)
+[Back to Index](#index)
 
 
 
@@ -529,6 +529,6 @@ Manual Testing various possible user attempts to work around the site security w
 | ![Finished Site Iphone Index Page](https://github.com/wendybovill/milestone-project-3/blob/200db3944839cdde5c523a451f6fd3ddd5c7bf78/documentation/screenshots/iphone.PNG)|
 
 
-[Index](#index)
+[Back to Index](#index)
 
 
