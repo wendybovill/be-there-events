@@ -95,7 +95,7 @@
 
 13. A log out confirmation before a user is logged out.
 
-##Database Schema:
+## Database Schema:
 
 The database schema was designed after deciding what the site functionality should be like.
 
