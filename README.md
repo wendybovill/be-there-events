@@ -527,15 +527,15 @@ Manual Testing various possible user attempts to work around the site security w
 
 | Screenshot Desktop EVENT-TYPE READ, UPDATE/EDIT and DELETE |
 |-----------------------------------------------------------------------|
-| ![Event Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/ba10bc185289e3aba42954201590fc67d7603ad5/documentation/screenshots/event_edit_delete_view.png)|
+| ![Event-Type Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/46eacafceed7928da2898f71d727457ad5c21622/documentation/screenshots/event_type_edit_delete.png)|
 
 | Screenshot Desktop PROFILE READ, UPDATE/EDIT |
 |-----------------------------------------------------------------------|
-| ![Event Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/ba10bc185289e3aba42954201590fc67d7603ad5/documentation/screenshots/event_edit_delete_view.png)|
+| ![Profile View Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/46eacafceed7928da2898f71d727457ad5c21622/documentation/screenshots/admin_profile_view_edit_option.png)|
 
 | Screenshot Desktop MEMBERS LIST READ, UPDATE/EDIT and DELETE |
 |-----------------------------------------------------------------------|
-| ![Event Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/ba10bc185289e3aba42954201590fc67d7603ad5/documentation/screenshots/event_edit_delete_view.png)|
+| ![Members List (Admin only view) Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/46eacafceed7928da2898f71d727457ad5c21622/documentation/screenshots/member_list_view_edit_delete.png)|
 
 | Screenshot Ipad Index Page |
 |-----------------------------------------------------------------------|
