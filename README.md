@@ -7,7 +7,7 @@
 
 [2 Purpose](#purpose)
 
-[3 Database Schema and Plan](#database-schema-and-site-plan)
+[3 Database Schema and Plan](#database-schema-and-site-plan) <br>
 &ensp;-&ensp;[3a Database Schema Plan Detail](#database-schema-plan-detail)
 
 [4 User Stories](#user-stories)
