@@ -27,9 +27,9 @@
 
 [12 Debugging and Test Results](#debugging-and-test-results)
 
-[13 Screenshots and Finished Site](#screenshots-of-finished-site)
-	... [13a Screenshots Showing Update and Delete](#screenshots-showing-update-and-delete)
-	... [13b Screenshots Responsive Design](#screenshots-showing-responsive-design)
+[13 Screenshots and Finished Site](#screenshots-of-finished-site) <br> 
+	[13a Screenshots Showing Update and Delete](#screenshots-showing-update-and-delete) <br> 
+	[13b Screenshots Responsive Design](#screenshots-showing-responsive-design) <br> 
 
 <hr>
 
