@@ -110,7 +110,6 @@ A search index gets created in the Events Table to search for Events using keywo
 **Users are only allowed to edit their own events and event types, and as a result we have an 'added_by' field in the Event Types tables and in the Event tables. This allows the buttons for Edit and Delete to show only if the user is the user that added that entry, or if they are an admin user.**
 
 
-|
 | Code Function Prep 	| Database Schema Plan 	|
 |---	|---	|
 | ![Code Prep](https://github.com/wendybovill/milestone-project-3/blob/7d03ced489b6a8c47be530662bf45bbe167a2cea/documentation/IMG_6266.png) 	| ![Database Schema](https://github.com/wendybovill/milestone-project-3/blob/791bc2d59c3df3ae01b7da2dbb14a9cbfe9cf304/documentation/IMG_6267.png)  	|
