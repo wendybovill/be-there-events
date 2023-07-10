@@ -27,7 +27,7 @@
 
 [12 Debugging and Test Results](#debugging-and-test-results)
 
-[13 Screenshots and Finished Site](#screenshots-and-finished-site)
+[13 Screenshots and Finished Site](#screenshots-of-finished-site)
 
 <hr>
 
@@ -401,6 +401,7 @@ Test Cases and Debugging:
 | Estimate 30 minutes |
 | Type Acceptance |
 | Automation Manual |
+[Back to Index](#index)
 | ID 2 |
 | Title Testing in Safari Browser with Gitpod |
 | Owner wendybovill |
@@ -415,6 +416,7 @@ Test Cases and Debugging:
 | Estimate 25 minutes |
 | Type Acceptance |
 | Automation Manual |
+[Back to Index](#index)
 | ID 3 |
 | Title Testing in Safari Browser with Gitpod and Heroku |
 | Owner wendybovill |
@@ -428,6 +430,7 @@ Test Cases and Debugging:
 | Estimate 20 minutes |
 | Type Acceptance |
 | Automation Manual |
+[Back to Index](#index)
 | ID 4 |
 | Title Testing in Safari Browser |
 | **Owner ** wendybovill |
@@ -446,6 +449,7 @@ Test Cases and Debugging:
 | Estimate 1 hour |
 | Type Acceptance |
 | Automation Manual |
+[Back to Index](#index)
 | ID 5 |
 | Title Testing in Safari Browser |
 | Owner wendybovill |
@@ -459,6 +463,7 @@ Test Cases and Debugging:
 | Estimate 10 minutes |
 | Type Acceptance |
 | Automation Automated |
+[Back to Index](#index)
 | ID 6 |
 | Title Testing in Safari Browser |
 | Owner wendybovill |
@@ -474,6 +479,7 @@ Test Cases and Debugging:
 | Estimate 10 minutes |
 | Type Acceptance |
 | Automation Automated |
+[Back to Index](#index)
 | ID 7 |
 | Title Testing for Responsiveness |
 | Owner wendybovill |
@@ -486,6 +492,8 @@ Test Cases and Debugging:
 | Estimate 1 hour  |
 | Type Acceptance |
 | Automation Manual |
+
+[Back to Index](#index)
 
 
 **User Testing:**
@@ -529,6 +537,8 @@ Manual Testing various possible user attempts to work around the site security w
 |-----------------------------------------------------------------------|
 | ![Event-Type Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/46eacafceed7928da2898f71d727457ad5c21622/documentation/screenshots/event_type_edit_delete.png)|
 
+[Back to Index](#index)
+
 | Screenshot Desktop PROFILE READ, UPDATE/EDIT |
 |-----------------------------------------------------------------------|
 | ![Profile View Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/46eacafceed7928da2898f71d727457ad5c21622/documentation/screenshots/admin_profile_view_edit_option.png)|
@@ -536,6 +546,8 @@ Manual Testing various possible user attempts to work around the site security w
 | Screenshot Desktop MEMBERS LIST READ, UPDATE/EDIT and DELETE |
 |-----------------------------------------------------------------------|
 | ![Members List (Admin only view) Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/46eacafceed7928da2898f71d727457ad5c21622/documentation/screenshots/member_list_view_edit_delete.png)|
+
+[Back to Index](#index)
 
 | Screenshot Ipad Index Page |
 |-----------------------------------------------------------------------|
