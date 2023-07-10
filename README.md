@@ -8,6 +8,7 @@
 [2 Purpose](#purpose)
 
 [3 Database Schema and Plan](#database-schema-and-site-plan)
+&ensp;-&ensp;[3a Database Schema Plan Detail](#database-schema-plan-detail)
 
 [4 User Stories](#user-stories)
 
@@ -98,7 +99,7 @@
 
 13. A log out confirmation before a user is logged out.
 
-## Database Schema:
+## Database Schema Plan Detail:
 
 The database schema was designed after deciding what the site functionality should be like.
 
