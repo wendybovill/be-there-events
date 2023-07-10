@@ -105,6 +105,13 @@ This is a non-relational database using Mongo DB.
 
 The Schema fit into 3 main tables, being: Users, Events and Event Types. 
 
+In the User Collection, the users have an email address that is used when they log in, but also as a means of verification, which once they have signed up, they are sent an email, which they then have to click on a link that verifies their email address. The verified field is a boolean, that is then marked True when the email is verified. The admin can manually verify the user. If a user repeatedly refuses the request of an admin to verify their email, the admin can delete the users profile, or if a user is confirmed to be a false user (for spamming the site) the admin can manually delete the user. Future development will prevent the user logging in if they have not verified their email address.
+
+In the Event collection, the events are also given fields such as 'paid_for', which if is null, then is set to 'Free', and visitors can search for Free events in the Search Index. The events have a pre-populated heading within the body, titled "Free" if the event is not paid for. This is default, unless the even is marked 'paid_for', in which case the 'entry_fee' is required, and the cost is then displayed in the body of the event instead of the 'Free' text.
+
+In the Event collection, the location and postcode fields are required for the users to be able to search for an event by their location, town or postcode.
+The organiser is not always the user who posts the event, therefore this field is required so a user knows who to contact for further information. There can be a url for the event or website linked to the event where tickets could be purchased (for example). Or there could be a phone number and email address for the user to get further information about the event organised from the organiser.
+
 A search index gets created in the Events Table to search for Events using keywords gathered from Event title field, Event type field, Is_paid_for field to search for Free or paid, Event_location_town, and Event_location_postcode. Each time a search is performed, a datbase is created, it is dropped 2 minutes (120 seconds) after the last search is performed. This allows the user to get the newest events that have been created, within the results of the search they ran.
 
 **Users are only allowed to edit their own events and event types, and as a result we have an 'added_by' field in the Event Types tables and in the Event tables. This allows the buttons for Edit and Delete to show only if the user is the user that added that entry, or if they are an admin user.**
