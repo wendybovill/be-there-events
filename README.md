@@ -521,6 +521,22 @@ Manual Testing various possible user attempts to work around the site security w
 |-----------------------------------------------------------------------|
 | ![Finished Site Desktop Index Page](https://github.com/wendybovill/milestone-project-3/blob/43f702c830ea4035ead9ffff36f81610628a9149/documentation/screenshots/laptop.png)|
 
+| Screenshot Desktop EVENT READ, UPDATE/EDIT and DELETE |
+|-----------------------------------------------------------------------|
+| ![Event Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/ba10bc185289e3aba42954201590fc67d7603ad5/documentation/screenshots/event_edit_delete_view.png)|
+
+| Screenshot Desktop EVENT-TYPE READ, UPDATE/EDIT and DELETE |
+|-----------------------------------------------------------------------|
+| ![Event Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/ba10bc185289e3aba42954201590fc67d7603ad5/documentation/screenshots/event_edit_delete_view.png)|
+
+| Screenshot Desktop PROFILE READ, UPDATE/EDIT |
+|-----------------------------------------------------------------------|
+| ![Event Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/ba10bc185289e3aba42954201590fc67d7603ad5/documentation/screenshots/event_edit_delete_view.png)|
+
+| Screenshot Desktop MEMBERS LIST READ, UPDATE/EDIT and DELETE |
+|-----------------------------------------------------------------------|
+| ![Event Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/ba10bc185289e3aba42954201590fc67d7603ad5/documentation/screenshots/event_edit_delete_view.png)|
+
 | Screenshot Ipad Index Page |
 |-----------------------------------------------------------------------|
 | ![Finished Site Ipad Index Page](https://github.com/wendybovill/milestone-project-3/blob/5df605d3f7c8bf6e2c985f2d33b0908a51b0ab55/documentation/screenshots/Ipad_index.PNG)|
@@ -528,6 +544,7 @@ Manual Testing various possible user attempts to work around the site security w
 | Screenshot Iphone Index Page |
 |-----------------------------------------------------------------------|
 | ![Finished Site Iphone Index Page](https://github.com/wendybovill/milestone-project-3/blob/200db3944839cdde5c523a451f6fd3ddd5c7bf78/documentation/screenshots/iphone.PNG)|
+
 
 
 [Back to Index](#index)
