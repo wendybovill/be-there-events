@@ -28,6 +28,8 @@
 [12 Debugging and Test Results](#debugging-and-test-results)
 
 [13 Screenshots and Finished Site](#screenshots-of-finished-site)
+	... [13a Screenshots Showing Update and Delete](#screenshots-showing-update-and-delete)
+	... [13b Screenshots Responsive Design](#screenshots-showing-responsive-design)
 
 <hr>
 
@@ -529,6 +531,8 @@ Manual Testing various possible user attempts to work around the site security w
 |-----------------------------------------------------------------------|
 | ![Finished Site Desktop Index Page](https://github.com/wendybovill/milestone-project-3/blob/43f702c830ea4035ead9ffff36f81610628a9149/documentation/screenshots/laptop.png)|
 
+ ## Screenshots Showing update and delete
+ 
 | Screenshot Desktop EVENT READ, UPDATE/EDIT and DELETE |
 |-----------------------------------------------------------------------|
 | ![Event Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/ba10bc185289e3aba42954201590fc67d7603ad5/documentation/screenshots/event_edit_delete_view.png)|
@@ -548,6 +552,9 @@ Manual Testing various possible user attempts to work around the site security w
 | ![Members List (Admin only view) Read, Update/Edit, Delete](https://github.com/wendybovill/milestone-project-3/blob/46eacafceed7928da2898f71d727457ad5c21622/documentation/screenshots/member_list_view_edit_delete.png)|
 
 [Back to Index](#index)
+
+
+## Responsive Design Screenshots
 
 | Screenshot Ipad Index Page |
 |-----------------------------------------------------------------------|
